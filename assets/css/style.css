@@ -13,14 +13,16 @@
     padding: 10px;
     color: brown;
     display: flex;
+    justify-content: center;
 }
 
 .nav {
+    display: flex;
+    width: auto;
+    height: auto;
     font-size: 30px;
     padding: 10px;
-    display: flex;
-    flex-direction: row;
-    justify-items: right;
+    justify-content: space-evenly;
 }
 
 .genre {
@@ -34,7 +36,6 @@
     height: 400px;
 }
 
-button {
-    padding: 5px;
-    border: 5px;
+.button {
+    display: flex;
 }
