@@ -1,1 +1,40 @@
 @import "https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css";
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap');
+
+* {
+    padding: 5px;
+    background-color: grey;
+    font-family: 'Poppins', Arial, Helvetica, sans-serif;
+}
+
+.header {
+    width: 100%;
+    font-size: 40px;
+    padding: 10px;
+    color: brown;
+    display: flex;
+}
+
+.nav {
+    font-size: 30px;
+    padding: 10px;
+    display: flex;
+    flex-direction: row;
+    justify-items: right;
+}
+
+.genre {
+    color:lightgray;
+}
+
+.hero{
+    background-image: url(/projects/songSafari/assets/css/music-rainbow.jpeg);
+    background-size: cover;
+    background-position: center;
+    height: 400px;
+}
+
+button {
+    padding: 5px;
+    border: 5px;
+}
