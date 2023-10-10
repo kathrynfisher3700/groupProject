@@ -1,1 +1,19 @@
-var genreBtn = document.querySelector("")
+$(function () {
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    // Event listeners
+    var genreBtn = document.querySelector("")
+
+});
