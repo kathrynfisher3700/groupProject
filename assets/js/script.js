@@ -138,5 +138,9 @@ $(function () {
     var electronicBtn = document.querySelector("electronic-btn")
     var hiphopBtn = document.querySelector("hiphop-btn")
 
-    
+    classicalBtn.addEventListener("click", );
+    rockBtn.addEventListener("click", );
+    popBtn.addEventListener("click", );
+    electronicBtn.addEventListener("click", );
+    hiphopBtn.addEventListener("click", );
 });
