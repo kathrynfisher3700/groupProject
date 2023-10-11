@@ -1,16 +1,64 @@
 <!DOCTYPE html>
 <html lang="en">
 
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="assets/css/style.css" />
+    <link
+      rel="icon"
+      type="image/x-icon"
+      href="/projects/songSafari/assets/css/background-music.jpeg"
+    />
+
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="assets/css/style.css" />
-    <link rel="icon" type="image/x-icon" href="/projects/songSafari/assets/css/background-music.jpeg" />
+    <link rel="icon" type="image/x-icon" href="assets/css/background-music.jpeg" />
     <title>Song Safari</title>
-</head>
+  </head>
 
-<body>
+  <body>
     <header class="header">
+      <h1>Welcome to Song Safari!</h1>
+      <input
+        class="input is-rounded is-small"
+        type="text"
+        placeholder="Search by artist, genre, or subgenre"
+      />
+    </header>
+
+    <div class="hero"></div>
+
+    <div class="wrapper">
+      <aside>
+        <div class="genres">
+          Popular Genres
+          <button class="button is-link">Classical</button>
+          <button class="button is-link">Rock</button>
+          <button class="button is-link">Pop</button>
+          <button class="button is-link">Electronic</button>
+          <button class="button is-link">Hip-Hop/R&B</button>
+          <button class="button is-link">Explore!</button>
+        </div>
+      </aside>
+
+      <section>
+        <div class="content">
+          About Song Safari:
+          <p>
+            Embark on a guided journey through musical subgenres, discovering
+            new sounds or finding familiar tracks. SongSafari is not just an
+            app; it's your ticket to explore the vast landscape of music!
+          </p>
+        </div>
+      </section>
+      <section class="videoContainer">
+
+      </section>
+=======
     <h1>Welcome to Song Safari!</h1>
     <input class="input is-rounded is-small" type="text" placeholder="Search by artist, genre, or subgenre">
 </header>
@@ -31,12 +79,14 @@
 <div class="wrapper">
         <aside>
             <div class="genres" id="popular-genres">Popular Genres
-                   <button class="button is-link" id="classical-btn">Classical</button>
-                   <button class="button is-link" id="rock-btn">Rock</button>
-                   <button class="button is-link" id="pop-btn">Pop</button>
-                   <button class="button is-link" id="electronic">Electronic</button>
-                   <button class="button is-link" id="hiphop-btn">Hip-Hop/R&B</button>
-                   <button class="button is-link" id="explore-btn">Explore!</button>
+
+                   <button class="button is-link" data-genre="classical" id="classical-btn">Classical</button>
+                   <button class="button is-link" data-genre="rock" id="rock-btn">Rock</button>
+                   <button class="button is-link" data-genre="pop" id="pop-btn">Pop</button>
+                   <button class="button is-link" data-genre="electronic" id="electronic">Electronic</button>
+                   <button class="button is-link" data-genre="r&b" id="hiphop-btn">Hip-Hop/R&B</button>
+                   <button class="button is-link" data-genre="explore" id="explore-btn">Explore!</button>
+
             </div>
 
         </aside>
@@ -49,16 +99,21 @@
                     SongSafari is not just an app; it's your ticket to explore the vast landscape of music!
                 </p>
             </div>
+            <div class="subgenres">More Info
+                    
+            </div>
         </section>
 
 g
 
 </body>
 
-<footer>Styled with Bulma 🤑</footer>
+    </div>
+  </body>
 
-<!-- Jquery CDN via google -->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-<script src="assets/js/script.js"></script>
+  <footer>Styled with Bulma 🤑</footer>
 
+  <!-- Jquery CDN via google -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+  <script src="assets/js/script.js"></script>
 </html>
