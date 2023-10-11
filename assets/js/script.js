@@ -143,4 +143,6 @@ $(function () {
     popBtn.addEventListener("click", );
     electronicBtn.addEventListener("click", );
     hiphopBtn.addEventListener("click", );
+
+    
 });
