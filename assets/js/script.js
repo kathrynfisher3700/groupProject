@@ -144,7 +144,7 @@ $(function () {
     const apiKey = "AIzaSyAi35TA2LU4-0dUTqpU9iXnaZKSVYINmmg";
 
     let grabYoutube = function(){
-    fetch(`https://www.googleapis.com/youtube/v3/videos?id=${musicType}&key=${apiKey}&part=snippet`)
+    fetch(`https://www.googleapis.com/youtube/v3/videos?id=${artist}&key=${apiKey}&part=snippet`)
     .then((result)=>{
         return result.json();
         console.log(result);
@@ -153,9 +153,11 @@ $(function () {
         let videos = data.items;
         let videoContainer = document.querySelector(".videoContainer");
         for (video of videos){
-            videoContainer.innerHTML +=  `"<img src="${video.snippet.thumbnails.high.url}">`
-            videoId = video.id.videoId;
-            const videoLink = `https://www.youtube.com/watch?v=${videoId}`;
+            // videoContainer.innerHTML +=  `"<img src="${video.snippet.thumbnails.high.url}">`
+            let videoId = video.id.videoId;
+            const videoLink = `https://youtube.com/embed/${videoId}`;
+            let videoPlacement = document.querySelector(".videoPlacement")
+            videoPlacement.innerHTML = "src="+videoLink;
             console.log(videoLink);
         }
 
