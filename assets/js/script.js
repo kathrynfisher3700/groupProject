@@ -122,17 +122,17 @@ $(function () {
     function getNewSubGenres(genre) {
         // TODO: write this
         console.log(`your requested genre is: ${genre}`);
-        genreName = 'pop';
-        apiSuffix = artistsByGenreSuffix;
+        subGenre = 'dance pop';
+        genreName = genre;
+        console.log(`genre name is: ${genreName}`);
+        apiSuffix = `search?q=${encodeURIComponent(genreName)}&type=artist&limit=50`;
+        console.log(apiSuffix);
+        getSpotifyData(apiSuffix);
     }
 
     async function generate() {
         await getToken();
-        // apiSuffix = artistsByGenreSuffix;
-        // await getSpotifyData(apiSuffix);
-        // apiSuffix = listGenresSuffix;
-        // getSpotifyData(apiSuffix);
-        // console.log(spotifyData);
+        getNewSubGenres('pop');
     }
 
     generate();
