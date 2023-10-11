@@ -131,4 +131,12 @@ $(function () {
     /*\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/*/
     // var genreBtn = document.querySelector("")
 
+
+    var classicalBtn = document.querySelector("classical-btn")
+    var rockBtn = document.querySelector("rock-btn")
+    var popBtn = document.querySelector("pop-btn")
+    var electronicBtn = document.querySelector("electronic-btn")
+    var hiphopBtn = document.querySelector("hiphop-btn")
+
+    
 });
