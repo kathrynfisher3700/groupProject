@@ -28,7 +28,7 @@ body{
 }
 
 .hero {
-    background-image: url(/projects/songSafari/assets/css/music-rainbow.jpeg);
+    background-image: url(./music-rainbow.jpeg);
     background-size: cover;
     background-position: center;
     height: 250px;
