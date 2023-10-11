@@ -153,6 +153,7 @@ $(function () {
     var electronicBtn = document.querySelector("electronic-btn")
     var hiphopBtn = document.querySelector("hiphop-btn")
 
+
     $('#popular-genres').on("click", function(e) {
         e.preventDefault();
         if (e.target.nodeName == 'BUTTON') {

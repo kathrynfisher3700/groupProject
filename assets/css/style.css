@@ -28,7 +28,7 @@ body {
 }
 
 .hero {
-    background-image: url(/projects/songSafari/assets/css/music-rainbow.jpeg);
+    background-image: url(../css/music-rainbow.jpeg);
     background-size: cover;
     background-position: center;
     height: 250px;
@@ -52,10 +52,12 @@ body {
 aside {
     display: flex;
     width: 40%;
+    justify-content: center;
 }
 
 section {
     display: flex;
+    flex-flow: column wrap;
     width: 60%;
 }
 
