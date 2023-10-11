@@ -3,11 +3,14 @@ $(function () {
     //------------------------------------------Variables-----------------------------------------//
     /*\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/*/
 
-    let genreKeyword = "jazz funk";
+    let genreKeyword = 'pop';
+    let spotifyData = '';
+    let genres = [];
+    let artists = [];
 
     // Variables for querying Spotify API
     let token = '';
-    let genreNeeded = 'Jazz';
+    let genreNeeded = 'classical';
     let genreQuery = `genre:${genreNeeded}`;
 
     // These are Kurt's personal keys. Keep them safe please! We will find a way to hide them at deployment
@@ -23,7 +26,8 @@ $(function () {
 
     // Specific suffices for different requests
     // Search for aritsts that include 'genreKeyword' in their description (could be name, genres, etc)
-    let artistsByGenreSuffix = `search?q=${encodeURIComponent(genreKeyword)}&type=artist`;
+
+    let artistsByGenreSuffix = `search?q=${encodeURIComponent(genreKeyword)}&type=artist&limit=50`;
 
     // Return an object of all available genres
     let listGenresSuffix = 'recommendations/available-genre-seeds';
@@ -48,6 +52,7 @@ $(function () {
                 'Content-Type': 'application/x-www-form-urlencoded',
             },
             body: 'grant_type=client_credentials',
+
         })
             .then((response) => response.json())
             .then((data) => {
@@ -61,30 +66,10 @@ $(function () {
             });
     }
 
-    // function getArtistsInGenre() {
-    //     const accessToken = token;
-    //     // const genreKeyword = 'jazz'; // Replace with the desired genre keyword
-    //     const searchEndpoint = `https://api.spotify.com/v1/${apiSuffix}`;
-
-    //     fetch(searchEndpoint, {
-    //         method: 'GET',
-    //         headers: {
-    //             'Authorization': `Bearer ${accessToken}`,
-    //         },
-    //     })
-    //         .then(response => response.json())
-    //         .then(data => {
-    //             console.log(data);
-    //             // const artists = data.artists.items;
-    //             // console.log('Artists in the specified genre:', artists);
-    //         })
-    //         .catch(error => console.error('Error:', error));
-    // }
-
 
     // This is the primary Spotify API call function
     // Modify the variable 'apiSuffix' and pass it in to the function call to suit your search
-     // e.g. to display all available genres ===> apiSuffix = listGenresSuffix
+    // e.g. to display all available genres ===> apiSuffix = listGenresSuffix
     function getSpotifyData(apiSuffix) {
         // Spotify API endpoint
         console.log(`suffix is ${apiSuffix}`);
@@ -101,13 +86,24 @@ $(function () {
                 if (response.status === 200) {
                     return response.json();
                 } else {
-                    throw new Error('Failed to fetch genres');
+                    throw new Error('Failed to fetch data');
                 }
             })
             .then(data => {
                 console.log(data);
-                const genres = data.genres;
-                // console.log('List of Spotify genres:', genres);
+                spotifyData = data;
+                console.log(data.artists.items[0]);
+                artists = data.artists.items;
+                subGenres = [];
+                artists.forEach(artist => {
+                    for (let i=0; i<artist.genres.length; i++) {
+                        if (!subGenres.includes(artist.genres[i])) {
+                            subGenres.push(artist.genres[i]);
+                        }
+                    }
+                });
+                console.log('Here is the array of subgenres');
+                console.log(subGenres);
             })
             .catch(error => console.error('Error:', error));
     }
@@ -115,9 +111,10 @@ $(function () {
     async function generate() {
         await getToken();
         apiSuffix = artistsByGenreSuffix;
-        getSpotifyData(apiSuffix);
-        apiSuffix = listGenresSuffix;
-        getSpotifyData(apiSuffix);
+        await getSpotifyData(apiSuffix);
+        // apiSuffix = listGenresSuffix;
+        // getSpotifyData(apiSuffix);
+        // console.log(spotifyData);
     }
 
     generate();
@@ -129,6 +126,18 @@ $(function () {
     /*/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\*/
     //-------------------------------------Event listeners----------------------------------------//
     /*\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/*/
-    // var genreBtn = document.querySelector("")
+    // var genreBtn = document.querySelector("")=======
 
+
+    var classicalBtn = document.querySelector("classical-btn")
+    var rockBtn = document.querySelector("rock-btn")
+    var popBtn = document.querySelector("pop-btn")
+    var electronicBtn = document.querySelector("electronic-btn")
+    var hiphopBtn = document.querySelector("hiphop-btn")
+
+    classicalBtn.addEventListener("click", );
+    rockBtn.addEventListener("click", );
+    popBtn.addEventListener("click", );
+    electronicBtn.addEventListener("click", );
+    hiphopBtn.addEventListener("click", );
 });
