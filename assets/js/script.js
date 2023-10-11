@@ -26,6 +26,7 @@ $(function () {
 
     // Specific suffices for different requests
     // Search for aritsts that include 'genreKeyword' in their description (could be name, genres, etc)
+
     let artistsByGenreSuffix = `search?q=${encodeURIComponent(genreKeyword)}&type=artist&limit=50`;
 
     // Return an object of all available genres
@@ -51,6 +52,7 @@ $(function () {
                 'Content-Type': 'application/x-www-form-urlencoded',
             },
             body: 'grant_type=client_credentials',
+
         })
             .then((response) => response.json())
             .then((data) => {
@@ -124,6 +126,18 @@ $(function () {
     /*/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\*/
     //-------------------------------------Event listeners----------------------------------------//
     /*\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/*/
-    // var genreBtn = document.querySelector("")
+    // var genreBtn = document.querySelector("")=======
 
+
+    var classicalBtn = document.querySelector("classical-btn")
+    var rockBtn = document.querySelector("rock-btn")
+    var popBtn = document.querySelector("pop-btn")
+    var electronicBtn = document.querySelector("electronic-btn")
+    var hiphopBtn = document.querySelector("hiphop-btn")
+
+    classicalBtn.addEventListener("click", );
+    rockBtn.addEventListener("click", );
+    popBtn.addEventListener("click", );
+    electronicBtn.addEventListener("click", );
+    hiphopBtn.addEventListener("click", );
 });
