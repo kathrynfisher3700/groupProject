@@ -13,17 +13,17 @@ body {
     background-color: #EA8CFF;
 }
 
-.container {
+/* .container {
     display: flex;
-}
-.content{
+} */
+/* .content{
     display: flex;
     justify-content: center;
 }
 .content p {
     display: block;
     width: 100%;  
-}
+} */
 
 .header {
     background-image: linear-gradient(to left, #EA8CFF, #4E45E5);
