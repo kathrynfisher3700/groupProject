@@ -3,7 +3,6 @@ $(function () {
     //------------------------------------------Variables-----------------------------------------//
     /*\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/*/
 
-    let genreKeyword = 'pop';
     let spotifyData = '';
     let genres = [];
     let artists = [];
@@ -27,7 +26,9 @@ $(function () {
     // Specific suffices for different requests
     // Search for aritsts that include 'genreKeyword' in their description (could be name, genres, etc)
 
-    let artistsByGenreSuffix = `search?q=${encodeURIComponent(genreKeyword)}&type=artist&limit=50`;
+    let genreName = 'classical';
+    let subGenre = 'early romantic era';
+    let artistsByGenreSuffix = `search?q=${encodeURIComponent(genreName)}&type=artist&limit=50`;
 
     // Return an object of all available genres
     let listGenresSuffix = 'recommendations/available-genre-seeds';
@@ -92,26 +93,43 @@ $(function () {
             .then(data => {
                 console.log(data);
                 spotifyData = data;
-                console.log(data.artists.items[0]);
+                // console.log(data.artists.items[0]);
                 artists = data.artists.items;
-                subGenres = [];
+                console.log(`Here are the artists who have ${genreName} in their profile:`);
+                console.log(artists);
+                let subArtists = [];
                 artists.forEach(artist => {
-                    for (let i=0; i<artist.genres.length; i++) {
-                        if (!subGenres.includes(artist.genres[i])) {
-                            subGenres.push(artist.genres[i]);
-                        }
+                    if (artist.genres.includes(subGenre) && !subArtists.includes(artist)) {
+                        subArtists.push(artist);
                     }
+                // subGenres = [];
+                // artists.forEach(artist => {
+                //     for (let i=0; i<artist.genres.length; i++) {
+                //         if (!subGenres.includes(artist.genres[i])) {
+                //             subGenres.push(artist.genres[i]);
+                //         }
+                //     }
+                // });
+                // console.log('Here is the array of subgenres');
+                // console.log(subGenres);
                 });
-                console.log('Here is the array of subgenres');
-                console.log(subGenres);
+                console.log(`Here are the artists who have ${subGenre} in their listed genres`);
+                console.log(subArtists);
             })
             .catch(error => console.error('Error:', error));
     }
 
+    function getNewSubGenres(genre) {
+        // TODO: write this
+        console.log(`your requested genre is: ${genre}`);
+        genreName = 'pop';
+        apiSuffix = artistsByGenreSuffix;
+    }
+
     async function generate() {
         await getToken();
-        apiSuffix = artistsByGenreSuffix;
-        await getSpotifyData(apiSuffix);
+        // apiSuffix = artistsByGenreSuffix;
+        // await getSpotifyData(apiSuffix);
         // apiSuffix = listGenresSuffix;
         // getSpotifyData(apiSuffix);
         // console.log(spotifyData);
@@ -135,9 +153,12 @@ $(function () {
     var electronicBtn = document.querySelector("electronic-btn")
     var hiphopBtn = document.querySelector("hiphop-btn")
 
-    classicalBtn.addEventListener("click", );
-    rockBtn.addEventListener("click", );
-    popBtn.addEventListener("click", );
-    electronicBtn.addEventListener("click", );
-    hiphopBtn.addEventListener("click", );
+    $('#popular-genres').on("click", function(e) {
+        e.preventDefault();
+        if (e.target.nodeName == 'BUTTON') {
+            let clickedButton = e.target;
+            console.log(clickedButton.dataset.genre);
+            getNewSubGenres(clickedButton.dataset.genre);
+        }
+    })
 });
