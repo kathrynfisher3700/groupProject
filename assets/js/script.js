@@ -49502,7 +49502,7 @@ let grabYoutube = function() {
 
 
     let grabYoutubeChannel = function () {
-        fetch(`https://youtube.googleapis.com/youtube/v3/search?part=snippet&maxResults=3&q=coldplay&type=channel&chart=mostPopular&key=${apiKey}`)
+        fetch(`https://youtube.googleapis.com/youtube/v3/search?part=snippet&maxResults=3&q=brunomarsofficial&type=channel&chart=mostPopular&key=${apiKey}`)
             .then((result) => {
                 return result.json();
                 console.log(result);
