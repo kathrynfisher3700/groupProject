@@ -8021,18 +8021,23 @@ $(function () {
         }, 10000);
     }
 
+    // Populates the main screen with new subgenre information
     function populateSubGenres(genre, artists, subGenres) {
-        //TODO: write this to populate screen
-        console.log(subGenres);
-        console.log(artists);
-        console.log(genre);
-        console.log(artistsArray[artists]);
         for (let i = 1; i < 5; i++) {
-            let currGenre = capitalizeFirstLetter(genresArray[subGenres][Math.floor(Math.random() * subGenres.length)]);
+            let currGenre = capitalizeFirstLetter(genresArray[subGenres][Math.floor(Math.random() * genresArray[subGenres].length)]);
             $(`#span_${i}`).text(currGenre);
         }
-
+        populateArtists(genre, artists);
     };
+
+    // Performs API calls to collect information about selected artists
+    function populateArtists(subGenre, artists) {
+        // TODO: put ?random? artists into the divs
+        for (let i=0; i<5; i++) {
+            let newArtist = artistsArray[artists][Math.floor(Math.random() * artistsArray[artists].length)];
+            console.log(newArtist);
+        }
+    }
 
     async function getNewSubGenres(genre) {
         // Reset global genre variables to empty arrays
