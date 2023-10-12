@@ -7845,11 +7845,9 @@ $(function () {
                 let videos = data.items;
                 let videoContainer = document.querySelector(".videoContainer");
                 for (video of videos) {
-                    // videoContainer.innerHTML +=  `"<img src="${video.snippet.thumbnails.high.url}">`
                     let videoId = video.id.videoId;
                     const videoLink = `https://youtube.com/embed/${videoId}`;
                     let videoPlacement = document.querySelector(".videoPlacement")
-                    videoPlacement.innerHTML = "src=" + videoLink;
                     console.log(videoLink);
                 }
 
