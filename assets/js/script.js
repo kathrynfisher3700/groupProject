@@ -1,107 +1,5 @@
-
-//     //------------------------------------------Functions-----------------------------------------//
-//     /*\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/*/
-
-//     // Make the token request
-//     // TODO: Eventually, this will need to be wrapped in a function to request a new
-//     // token every hour (access tokens expire after 1 hour)
-//     // IF returning a 400 error, check clientId and clientSecret for accuracy
-//     const getToken = async () => {
-//         // Convert client ID and client secret to base64 for token request (required)
-//         const base64Credentials = btoa(`${clientId}:${clientSecret}`);
-
-//         await fetch('https://accounts.spotify.com/api/token', {
-//             method: 'POST',
-//             headers: {
-//                 Authorization: `Basic ${base64Credentials}`,
-//                 'Content-Type': 'application/x-www-form-urlencoded',
-//             },
-//             body: 'grant_type=client_credentials',
-//         })
-//             .then((response) => response.json())
-//             .then((data) => {
-//                 // Extract the access token from the response and store in global 'token' variable
-//                 // This token is used to make requests to the Spotify API
-//                 token = data.access_token;
-//                 console.log('Access Token:', token);
-//             })
-//             .catch((error) => {
-//                 console.error('Error:', error);
-//             });
-//     }
-
-//     // function getArtistsInGenre() {
-//     //     const accessToken = token;
-//     //     // const genreKeyword = 'jazz'; // Replace with the desired genre keyword
-//     //     const searchEndpoint = `https://api.spotify.com/v1/${apiSuffix}`;
-
-//     //     fetch(searchEndpoint, {
-//     //         method: 'GET',
-//     //         headers: {
-//     //             'Authorization': `Bearer ${accessToken}`,
-//     //         },
-//     //     })
-//     //         .then(response => response.json())
-//     //         .then(data => {
-//     //             console.log(data);
-//     //             // const artists = data.artists.items;
-//     //             // console.log('Artists in the specified genre:', artists);
-//     //         })
-//     //         .catch(error => console.error('Error:', error));
-//     // }
-
-
-//     // This is the primary Spotify API call function
-//     // Modify the variable 'apiSuffix' and pass it in to the function call to suit your search
-//      // e.g. to display all available genres ===> apiSuffix = listGenresSuffix
-//     function getSpotifyData(apiSuffix) {
-//         // Spotify API endpoint
-//         console.log(`suffix is ${apiSuffix}`);
-//         const spotifyEndpoint = `https://api.spotify.com/v1/${apiSuffix}`;
-
-//         // Make the API request to get a list of genres
-//         fetch(spotifyEndpoint, {
-//             method: 'GET',
-//             headers: {
-//                 'Authorization': `Bearer ${token}`,
-//             },
-//         })
-//             .then(response => {
-//                 if (response.status === 200) {
-//                     return response.json();
-//                 } else {
-//                     throw new Error('Failed to fetch genres');
-//                 }
-//             })
-//             .then(data => {
-//                 console.log(data);
-//                 const genres = data.genres;
-//                 // console.log('List of Spotify genres:', genres);
-//             })
-//             .catch(error => console.error('Error:', error));
-//     }
-
-//     async function generate() {
-//         await getToken();
-//         apiSuffix = artistsByGenreSuffix;
-//         getSpotifyData(apiSuffix);
-//         apiSuffix = listGenresSuffix;
-//         getSpotifyData(apiSuffix);
-//     }
-
-//     generate();
-
-
-
-
-
-//     /*/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\*/
-//     //-------------------------------------Event listeners----------------------------------------//
-//     /*\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/*/
-//     // var genreBtn = document.querySelector("")
-
-// });
-
+// Wrapper function for jQuery
+// ALL JavaScript code must go in this function
 $(function () {
     /*/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\*/
     //------------------------------------------Variables-----------------------------------------//
@@ -115,6 +13,12 @@ $(function () {
     let token = '';
     let genreNeeded = 'classical';
     let genreQuery = `genre:${genreNeeded}`;
+
+    // Genres variables
+    // These will be reset upon each button click, or call to getGenres
+    let genresArr = [];
+    let subGenres = [];
+
 
     // These are Kurt's personal keys. Keep them safe please! We will find a way to hide them at deployment
     const clientId = '838b3be49dbd4b3fbeee945d6a9894cc';
@@ -139,33 +43,33 @@ $(function () {
 
 
     /*/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\*/
-    //-------------------------------------Youtube----------------------------------------//
+    //------------------------------------------Youtube-------------------------------------------//
     /*\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/*/
     const apiKey = "AIzaSyAi35TA2LU4-0dUTqpU9iXnaZKSVYINmmg";
 
-    let grabYoutube = function(){
-    fetch(`https://www.googleapis.com/youtube/v3/videos?id=${artist}&key=${apiKey}&part=snippet`)
-    .then((result)=>{
-        return result.json();
-        console.log(result);
-    }).then((data)=>{
-        console.log(data)
-        let videos = data.items;
-        let videoContainer = document.querySelector(".videoContainer");
-        for (video of videos){
-            // videoContainer.innerHTML +=  `"<img src="${video.snippet.thumbnails.high.url}">`
-            let videoId = video.id.videoId;
-            const videoLink = `https://youtube.com/embed/${videoId}`;
-            let videoPlacement = document.querySelector(".videoPlacement")
-            videoPlacement.innerHTML = "src="+videoLink;
-            console.log(videoLink);
-        }
+    let grabYoutube = function () {
+        fetch(`https://www.googleapis.com/youtube/v3/videos?id=${artist}&key=${apiKey}&part=snippet`)
+            .then((result) => {
+                return result.json();
+                console.log(result);
+            }).then((data) => {
+                console.log(data)
+                let videos = data.items;
+                let videoContainer = document.querySelector(".videoContainer");
+                for (video of videos) {
+                    // videoContainer.innerHTML +=  `"<img src="${video.snippet.thumbnails.high.url}">`
+                    let videoId = video.id.videoId;
+                    const videoLink = `https://youtube.com/embed/${videoId}`;
+                    let videoPlacement = document.querySelector(".videoPlacement")
+                    videoPlacement.innerHTML = "src=" + videoLink;
+                    console.log(videoLink);
+                }
 
-        
-      
-    })
-};
-grabYoutube();
+
+
+            })
+    };
+
 
 
     // Make the token request
@@ -203,6 +107,57 @@ grabYoutube();
     // e.g. to display all available genres ===> apiSuffix = listGenresSuffix
     function getSpotifyData(apiSuffix) {
         // Spotify API endpoint
+        // console.log(`suffix is ${apiSuffix}`);
+        const spotifyEndpoint = `https://api.spotify.com/v1/${apiSuffix}`;
+
+        // Make the API request to get a list of genres
+        fetch(spotifyEndpoint, {
+            method: 'GET',
+            headers: {
+                'Authorization': `Bearer ${token}`,
+            },
+        })
+            .then(response => {
+                if (response.status === 200) {
+                    return response.json();
+                } else {
+                    throw new Error('Failed to fetch data');
+                }
+            })
+            .then(data => {
+                // console.log(data);
+                spotifyData = data;
+                // console.log(data.artists.items[0]);
+                artists = data.artists.items;
+                // console.log(`Here are the artists who have ${genreName} in their profile:`);
+                // console.log(artists);
+                let subArtists = [];
+                artists.forEach(artist => {
+                    if (artist.genres.includes(subGenre) && !subArtists.includes(artist)) {
+                        subArtists.push(artist);
+                    }
+                    // subGenres = [];
+                    // artists.forEach(artist => {
+                    //     for (let i=0; i<artist.genres.length; i++) {
+                    //         if (!subGenres.includes(artist.genres[i])) {
+                    //             subGenres.push(artist.genres[i]);
+                    //         }
+                    //     }
+                    // });
+                    // console.log('Here is the array of subgenres');
+                    // console.log(subGenres);
+                });
+                // console.log(`Here are the artists who have ${subGenre} in their listed genres`);
+                // console.log(subArtists);
+            })
+            .catch(error => console.error('Error:', error));
+    }
+
+
+    async function getAllFromGenre(apiSuffix) {
+        // let currArtists = [];
+
+        // Spotify API endpoint
         console.log(`suffix is ${apiSuffix}`);
         const spotifyEndpoint = `https://api.spotify.com/v1/${apiSuffix}`;
 
@@ -221,51 +176,73 @@ grabYoutube();
                 }
             })
             .then(data => {
-                console.log(data);
-                spotifyData = data;
-                // console.log(data.artists.items[0]);
-                artists = data.artists.items;
-                console.log(`Here are the artists who have ${genreName} in their profile:`);
-                console.log(artists);
-                let subArtists = [];
-                artists.forEach(artist => {
-                    if (artist.genres.includes(subGenre) && !subArtists.includes(artist)) {
-                        subArtists.push(artist);
-                    }
-                // subGenres = [];
-                // artists.forEach(artist => {
-                //     for (let i=0; i<artist.genres.length; i++) {
-                //         if (!subGenres.includes(artist.genres[i])) {
-                //             subGenres.push(artist.genres[i]);
-                //         }
-                //     }
-                // });
-                // console.log('Here is the array of subgenres');
-                // console.log(subGenres);
+                data.artists.items.forEach(artist => {
+                    genresArr.push(artist);
                 });
-                console.log(`Here are the artists who have ${subGenre} in their listed genres`);
-                console.log(subArtists);
-            })
-            .catch(error => console.error('Error:', error));
+                // console.log(currArtists);
+                if (data.artists.next != null) {
+                    let tempArr = apiSuffix.split('offset=');
+                    let newSuffix = tempArr[0] + 'offset=' + (parseInt(tempArr[1]) + 50);
+                    getAllFromGenre(`${newSuffix}`);
+                    // console.log(moreArtists);
+                    // moreArtists.forEach(artist => {
+                    //     currArtists.push(artist);
+                    // });
+                    // console.log(currArtists);
+                }
+            });
     }
 
-    function getNewSubGenres(genre) {
-        // TODO: write this
-        console.log(`your requested genre is: ${genre}`);
-        subGenre = 'dance pop';
-        genreName = genre;
-        console.log(`genre name is: ${genreName}`);
-        apiSuffix = `search?q=${encodeURIComponent(genreName)}&type=artist&limit=50`;
-        console.log(apiSuffix);
+
+
+
+
+    async function getNewSubGenres(genre) {
+        // Reset global genre variables to empty arrays
+        genresArr = [];
+        subGenres = [];
+
+
+        apiSuffix = `search?q=genre:${encodeURIComponent(genre)}&type=artist&limit=50&offset=0`;
+        // console.log(apiSuffix);
         getSpotifyData(apiSuffix);
+        await getAllFromGenre(apiSuffix);
+        setTimeout(function () {
+            console.log(genresArr);
+            genresArr.sort(function (a, b) { return b.popularity - a.popularity });
+            console.log(genresArr);
+            genresArr.forEach(artist => {
+                for (let i = 0; i < artist.genres.length; i++) {
+                    if (!subGenres.includes(artist.genres[i])) {
+                        subGenres.push(artist.genres[i]);
+                    }
+                }
+            });
+            console.log('Here is the array of subgenres');
+            console.log(subGenres);
+            for (let i=1; i<5; i++) {
+                $(`#span_${i}`).text(subGenres[Math.floor(Math.random() * subGenres.length)]);
+            }
+        }, 10000);
     }
 
     async function generate() {
         await getToken();
-        getNewSubGenres('pop');
     }
 
+    async function getGenres() {
+
+        await getNewSubGenres('hip-hop');
+    }
+
+
+    /*/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\*/
+    //-------------------------------------On page load-------------------------------------------//
+    /*\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/*/
+
     generate();
+    // getGenres();
+    // grabYoutube();
 
 
 
@@ -284,7 +261,8 @@ grabYoutube();
     var hiphopBtn = document.querySelector("hiphop-btn")
 
 
-    $('#popular-genres').on("click", function(e) {
+    $('#popular-genres').on("click", function (e) {
+        console.log("hello click");
         e.preventDefault();
         if (e.target.nodeName == 'BUTTON') {
             let clickedButton = e.target;
