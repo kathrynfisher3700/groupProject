@@ -7834,28 +7834,48 @@ $(function () {
     //------------------------------------------Youtube-------------------------------------------//
     /*\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/*/
     const apiKey = "AIzaSyAi35TA2LU4-0dUTqpU9iXnaZKSVYINmmg";
+    artist = "coldplay"
 
-    let grabYoutube = function () {
-        fetch(`https://www.googleapis.com/youtube/v3/videos?id=${artist}&key=${apiKey}&part=snippet`)
+
+
+// let grabYoutube = function() {
+//     fetch(`https://youtube.googleapis.com/youtube/v3/search?part=snippet&maxResults=4&q=coldplay&type=channel&key=${apiKey}`)
+//     .then((result) => {
+//         return result.json();
+//         console.log(result);
+//     }).then((data) => {
+//         console.log(data)
+//         let videos = data.items;
+//         let videoContainer = document.querySelector(".videoContainer");
+//         for (video of videos) {
+//             let channelId = video.id.channelId;
+//             const videoLink = `width="420" height="345" src="https://youtube.com/embed/${channelId}"`; //EMBED YOUTUBE VIDEO
+//             let videoPlacement = document.querySelector(".videoPlacement")
+//             console.log(videoLink);
+//         }
+//     })
+// };
+
+
+    let grabYoutubeChannel = function () {
+        fetch(`https://youtube.googleapis.com/youtube/v3/search?part=snippet&maxResults=1&q=coldplay&type=channel&key=${apiKey}`)
             .then((result) => {
                 return result.json();
                 console.log(result);
             }).then((data) => {
                 console.log(data)
                 let videos = data.items;
-                let videoContainer = document.querySelector(".videoContainer");
+                let videoContainer = document.querySelector(".videoContainer"); //need div to put link to channel 
                 for (video of videos) {
-                    let videoId = video.id.videoId;
-                    const videoLink = `width="420" height="345" src="https://youtube.com/embed/${videoId}"`;
-                    let videoPlacement = document.querySelector(".videoPlacement")
+                    let channelId = video.id.channelId;
+                    const videoLink = "https://youtube.com/channel/${channelId}"; //this is video link
+                    let videoPlacement = document.querySelector(".videoPlacement");
+                    videoPlacement.innerHTML = "Check out this artist's Youtube Channel here:" + videoLink; //TEXT to add for channel link
                     console.log(videoLink);
                 }
             })
     };
-
-    // $("x").click(grabYoutube);
-
-
+grabYoutubeChannel();
 
     // Make the token request
     // TODO: Eventually, this will need to be wrapped in a function to request a new
