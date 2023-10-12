@@ -49806,14 +49806,14 @@ grabYoutubeVideo();
             let newGenresArr = `${newGenre}SubGenres`;
 
             // Call function to populate screen
-            // populateSubGenres(newArtistArr, newGenresArr);
+            populateSubGenres(newArtistArr, newGenresArr);
 
             // New function to pull from our existing arrays and populate sub genres
 
 
             // Old way -------
             // May be used to implement the "Explore!" button if we choose to
-            getNewSubGenres(clickedButton.dataset.genre);
+            //getNewSubGenres(clickedButton.dataset.genre);
         }
     })
 });
