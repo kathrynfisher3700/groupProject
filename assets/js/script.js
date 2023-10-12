@@ -139,33 +139,33 @@ $(function () {
 
 
     /*/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\*/
-    //-------------------------------------Youtube----------------------------------------//
+    //------------------------------------------Youtube-------------------------------------------//
     /*\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/*/
     const apiKey = "AIzaSyAi35TA2LU4-0dUTqpU9iXnaZKSVYINmmg";
 
-    let grabYoutube = function(){
-    fetch(`https://www.googleapis.com/youtube/v3/videos?id=${artist}&key=${apiKey}&part=snippet`)
-    .then((result)=>{
-        return result.json();
-        console.log(result);
-    }).then((data)=>{
-        console.log(data)
-        let videos = data.items;
-        let videoContainer = document.querySelector(".videoContainer");
-        for (video of videos){
-            // videoContainer.innerHTML +=  `"<img src="${video.snippet.thumbnails.high.url}">`
-            let videoId = video.id.videoId;
-            const videoLink = `https://youtube.com/embed/${videoId}`;
-            let videoPlacement = document.querySelector(".videoPlacement")
-            videoPlacement.innerHTML = "src="+videoLink;
-            console.log(videoLink);
-        }
+    let grabYoutube = function () {
+        fetch(`https://www.googleapis.com/youtube/v3/videos?id=${artist}&key=${apiKey}&part=snippet`)
+            .then((result) => {
+                return result.json();
+                console.log(result);
+            }).then((data) => {
+                console.log(data)
+                let videos = data.items;
+                let videoContainer = document.querySelector(".videoContainer");
+                for (video of videos) {
+                    // videoContainer.innerHTML +=  `"<img src="${video.snippet.thumbnails.high.url}">`
+                    let videoId = video.id.videoId;
+                    const videoLink = `https://youtube.com/embed/${videoId}`;
+                    let videoPlacement = document.querySelector(".videoPlacement")
+                    videoPlacement.innerHTML = "src=" + videoLink;
+                    console.log(videoLink);
+                }
 
-        
-      
-    })
-};
-grabYoutube();
+
+
+            })
+    };
+
 
 
     // Make the token request
@@ -203,6 +203,58 @@ grabYoutube();
     // e.g. to display all available genres ===> apiSuffix = listGenresSuffix
     function getSpotifyData(apiSuffix) {
         // Spotify API endpoint
+        // console.log(`suffix is ${apiSuffix}`);
+        const spotifyEndpoint = `https://api.spotify.com/v1/${apiSuffix}`;
+
+        // Make the API request to get a list of genres
+        fetch(spotifyEndpoint, {
+            method: 'GET',
+            headers: {
+                'Authorization': `Bearer ${token}`,
+            },
+        })
+            .then(response => {
+                if (response.status === 200) {
+                    return response.json();
+                } else {
+                    throw new Error('Failed to fetch data');
+                }
+            })
+            .then(data => {
+                // console.log(data);
+                spotifyData = data;
+                // console.log(data.artists.items[0]);
+                artists = data.artists.items;
+                // console.log(`Here are the artists who have ${genreName} in their profile:`);
+                // console.log(artists);
+                let subArtists = [];
+                artists.forEach(artist => {
+                    if (artist.genres.includes(subGenre) && !subArtists.includes(artist)) {
+                        subArtists.push(artist);
+                    }
+                    // subGenres = [];
+                    // artists.forEach(artist => {
+                    //     for (let i=0; i<artist.genres.length; i++) {
+                    //         if (!subGenres.includes(artist.genres[i])) {
+                    //             subGenres.push(artist.genres[i]);
+                    //         }
+                    //     }
+                    // });
+                    // console.log('Here is the array of subgenres');
+                    // console.log(subGenres);
+                });
+                // console.log(`Here are the artists who have ${subGenre} in their listed genres`);
+                // console.log(subArtists);
+            })
+            .catch(error => console.error('Error:', error));
+    }
+
+    let testArr = [];
+
+    async function getAllFromGenre(apiSuffix) {
+        // let currArtists = [];
+
+        // Spotify API endpoint
         console.log(`suffix is ${apiSuffix}`);
         const spotifyEndpoint = `https://api.spotify.com/v1/${apiSuffix}`;
 
@@ -221,52 +273,71 @@ grabYoutube();
                 }
             })
             .then(data => {
-                console.log(data);
-                spotifyData = data;
-                // console.log(data.artists.items[0]);
-                artists = data.artists.items;
-                console.log(`Here are the artists who have ${genreName} in their profile:`);
-                console.log(artists);
-                let subArtists = [];
-                artists.forEach(artist => {
-                    if (artist.genres.includes(subGenre) && !subArtists.includes(artist)) {
-                        subArtists.push(artist);
-                    }
-                // subGenres = [];
-                // artists.forEach(artist => {
-                //     for (let i=0; i<artist.genres.length; i++) {
-                //         if (!subGenres.includes(artist.genres[i])) {
-                //             subGenres.push(artist.genres[i]);
-                //         }
-                //     }
-                // });
-                // console.log('Here is the array of subgenres');
-                // console.log(subGenres);
+                data.artists.items.forEach(artist => {
+                    testArr.push(artist);
                 });
-                console.log(`Here are the artists who have ${subGenre} in their listed genres`);
-                console.log(subArtists);
-            })
-            .catch(error => console.error('Error:', error));
+                // console.log(currArtists);
+                if (data.artists.next != null) {
+                    let tempArr = apiSuffix.split('offset=');
+                    let newSuffix = tempArr[0] + 'offset=' + (parseInt(tempArr[1]) + 50);
+                    getAllFromGenre(`${newSuffix}`);
+                    // console.log(moreArtists);
+                    // moreArtists.forEach(artist => {
+                    //     currArtists.push(artist);
+                    // });
+                    // console.log(currArtists);
+                }
+            });
     }
 
-    function getNewSubGenres(genre) {
+
+
+
+
+    async function getNewSubGenres(genre) {
         // TODO: write this
         console.log(`your requested genre is: ${genre}`);
         subGenre = 'dance pop';
         genreName = genre;
         console.log(`genre name is: ${genreName}`);
-        apiSuffix = `search?q=${encodeURIComponent(genreName)}&type=artist&limit=50`;
+        apiSuffix = `search?q=${encodeURIComponent(genreName)}&type=artist&limit=50&offset=0`;
         console.log(apiSuffix);
         getSpotifyData(apiSuffix);
+        await getAllFromGenre(apiSuffix);
+        setTimeout(function () {
+            let subGenres = [];
+            console.log(testArr);
+            testArr.sort(function (a, b) { return a.popularity - b.popularity });
+            console.log(testArr);
+            testArr.forEach(artist => {
+                for (let i = 0; i < artist.genres.length; i++) {
+                    if (!subGenres.includes(artist.genres[i])) {
+                        subGenres.push(artist.genres[i]);
+                    }
+                }
+            });
+            console.log('Here is the array of subgenres');
+            console.log(subGenres);
+        }, 4000);
     }
 
     async function generate() {
         await getToken();
-        getNewSubGenres('pop');
+        getNewSubGenres('praise');
+
+
     }
 
-    generate();
 
+    /*/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\*/
+    //-------------------------------------On page load-------------------------------------------//
+    /*\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/*/
+
+    generate();
+    grabYoutube();
+    console.log(typeof testArr);
+    let newItem = testArr[0];
+    console.log(testArr.length);
 
 
 
@@ -284,7 +355,7 @@ grabYoutube();
     var hiphopBtn = document.querySelector("hiphop-btn")
 
 
-    $('#popular-genres').on("click", function(e) {
+    $('#popular-genres').on("click", function (e) {
         e.preventDefault();
         if (e.target.nodeName == 'BUTTON') {
             let clickedButton = e.target;
