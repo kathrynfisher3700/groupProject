@@ -49745,15 +49745,16 @@ $(function () {
                 subGenreArtists = structuredClone(artistsArray.popArtists);
                 break;
             case 'electronic':
-                subGenreArtists = structuredClone(artistsArray.electronicArtistsArtists);
+                subGenreArtists = structuredClone(artistsArray.electronicArtists);
                 break;
-            case 'r&b':
-                subGenreArtists = structuredClone(artistsArray.hipHopArtistsArtists);
+            case 'hipHop':
+                subGenreArtists = structuredClone(artistsArray.hipHopArtists);
                 break;
         }
 
         // CHANGE THIS TO an internal search, NOT an API call
         // Query API for 50 artists in this sub genre
+        console.log(`current genre: ${currentGenre}`);
         console.log(subGenreArtists);
         console.log(subGenre);
         // Search through artists array for the first 5 artists who have subGenre in their genres array
@@ -49830,11 +49831,12 @@ $(function () {
                 // Set up artist and genre variables to pass to function to populate page
                 let newGenre = clickedButton.dataset.genre;
 
-                // Set global currentGenre variable equal to newGenre
-                currentGenre = newGenre;
                 if (newGenre == 'r&b') {
                     newGenre = 'hipHop';
                 }
+                // Set global currentGenre variable equal to newGenre
+                currentGenre = newGenre;
+
                 let newArtistArr = `${newGenre}Artists`;
                 let newGenresArr = `${newGenre}SubGenres`;
 
