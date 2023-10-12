@@ -7913,17 +7913,17 @@ $(function () {
                 }
             })
             .then(data => {
-                // console.log(data);
+                console.log(data);
                 spotifyData = data;
                 // console.log(data.artists.items[0]);
-                artists = data.artists.items;
+                // artists = data.artists.items;
                 // console.log(`Here are the artists who have ${genreName} in their profile:`);
                 // console.log(artists);
-                let subArtists = [];
-                artists.forEach(artist => {
-                    if (artist.genres.includes(subGenre) && !subArtists.includes(artist)) {
-                        subArtists.push(artist);
-                    }
+                // let subArtists = [];
+                // artists.forEach(artist => {
+                //     if (artist.genres.includes(subGenre) && !subArtists.includes(artist)) {
+                //         subArtists.push(artist);
+                //     }
                     // subGenres = [];
                     // artists.forEach(artist => {
                     //     for (let i=0; i<artist.genres.length; i++) {
@@ -7934,7 +7934,7 @@ $(function () {
                     // });
                     // console.log('Here is the array of subgenres');
                     // console.log(subGenres);
-                });
+                
                 // console.log(`Here are the artists who have ${subGenre} in their listed genres`);
                 // console.log(subArtists);
             })
@@ -8022,12 +8022,12 @@ $(function () {
     }
 
     // Populates the main screen with new subgenre information
-    function populateSubGenres(genre, artists, subGenres) {
+    function populateSubGenres(artists, subGenres) {
         for (let i = 1; i < 5; i++) {
             let currGenre = capitalizeFirstLetter(genresArray[subGenres][Math.floor(Math.random() * genresArray[subGenres].length)]);
             $(`#span_${i}`).text(currGenre);
+            populateArtists(currGenre, artists);
         }
-        populateArtists(genre, artists);
     };
 
     // Performs API calls to collect information about selected artists
@@ -8036,6 +8036,8 @@ $(function () {
         for (let i=0; i<5; i++) {
             let newArtist = artistsArray[artists][Math.floor(Math.random() * artistsArray[artists].length)];
             console.log(newArtist);
+            let newSuffix = `search?q=${newArtist}&type=artist&limit=1`;
+            getSpotifyData(newSuffix);
         }
     }
 
@@ -8105,12 +8107,9 @@ $(function () {
             }
             let newArtistArr = `${newGenre}Artists`;
             let newGenresArr = `${newGenre}SubGenres`;
-            if (newGenre == 'hipHop') {
-                newGenre = 'r&b';
-            }
 
             // Call function to populate screen
-            populateSubGenres(newGenre, newArtistArr, newGenresArr);
+            populateSubGenres(newArtistArr, newGenresArr);
 
             // New function to pull from our existing arrays and populate sub genres
 
