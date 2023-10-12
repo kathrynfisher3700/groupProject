@@ -49706,6 +49706,8 @@ $(function () {
 
     // Populates the main screen with new subgenre information
     function populateSubGenres(subGenres) {
+        // Removes all children from Artists div (where buttons are going)
+        $('#subgenres_artists').empty();
 
         // Loops from 1 to 5 to match up with span tag IDs
         // Populates 4 new subgenres to explore
@@ -49723,12 +49725,13 @@ $(function () {
     // Performs API calls to collect information about selected artists
     function populateArtists(subGenre) {
 
-        console.log(subGenre);
-        console.log(typeof subGenre);
-        // TODO: put ?random? artists into the divs
+        // Removes all children from Artists div (where buttons are going)
+        $('#subgenres_artists').empty();
 
         // FIX THIS
         let subGenreArtists = '';
+        subGenre = unCapitalizeFirstLetter(subGenre);
+        let counter = 0;
 
         // Structured clone of genre artists
         switch (currentGenre) {
@@ -49749,22 +49752,26 @@ $(function () {
                 break;
         }
 
-        console.log(subGenreArtists);
         // CHANGE THIS TO an internal search, NOT an API call
         // Query API for 50 artists in this sub genre
+        console.log(subGenreArtists);
+        console.log(subGenre);
+        // Search through artists array for the first 5 artists who have subGenre in their genres array
+        for (let i = 0; i < subGenreArtists.length; i++) {
+            // If the artist has subGenre in their genres
+            if (subGenreArtists[i].genres.includes(subGenre)) {
+                console.log(subGenreArtists[i]);
+                let newButton = $('<button>').text(subGenreArtists[i].name);
+                newButton.addClass('button is-success');
+                $('#subgenres_artists').append(newButton);
 
-        for (let i = 0; i < 5; i++) {
+            }
+            // Create a button
+            // Add the artist's name
 
+            // Increment a counter
+            // If the counter reaches 5, break the for loop
 
-            // Randomly select 5 of them
-
-
-
-
-            // let newArtist = artistsArray[artists][Math.floor(Math.random() * artistsArray[artists].length)];
-            // console.log(newArtist);
-            // let newSuffix = `search?q=${newArtist}&type=artist&limit=1`;
-            // getSpotifyData(newSuffix);
         }
     }
 
@@ -49784,6 +49791,10 @@ $(function () {
 
     function capitalizeFirstLetter(word) {
         return word.charAt(0).toUpperCase() + word.slice(1);
+    }
+
+    function unCapitalizeFirstLetter(word) {
+        return word.charAt(0).toLowerCase() + word.slice(1);
     }
 
     async function generate() {
@@ -49851,13 +49862,13 @@ $(function () {
         e.preventDefault();
 
         if (e.target.nodeName == 'SPAN') {
-            console.log(e.target.nodeName);
+            // console.log(e.target.nodeName);
 
             let node = e.target;
-            console.log(node);
-            console.log(node.innerHTML);
+            // console.log(node);
+            // console.log(node.innerHTML);
 
-            console.log(currentGenre);
+            // console.log(currentGenre);
 
             // let genreToSearch = this.querySelector(".subgenres");
             // console.log(genreToSearch);
