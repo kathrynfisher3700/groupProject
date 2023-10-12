@@ -49482,23 +49482,23 @@ $(function () {
 
 
 
-let grabYoutube = function() {
-    fetch(`https://www.googleapis.com/youtube/v3/videos?id=${artist}&key=${apiKey}&part=snippet`)
-    .then((result) => {
-        return result.json();
-        console.log(result);
-    }).then((data) => {
-        console.log(data)
-        let videos = data.items;
-        for (video of videos) {
-            let videoId = video.id.videoId;
-            const videoLink = `width="420" height="345" src="https://youtube.com/embed/${videoId}"`; //EMBED YOUTUBE VIDEO
-            let videoPlacement = document.querySelector(".videoPlacement")
-            //NEED A WAY TO GET VIDEOLINK INTO <IFRAME> HTML
-            console.log(videoLink);
-        }
-    })
-};
+    let grabYoutube = function () {
+        fetch(`https://www.googleapis.com/youtube/v3/videos?id=${artist}&key=${apiKey}&part=snippet`)
+            .then((result) => {
+                return result.json();
+                console.log(result);
+            }).then((data) => {
+                console.log(data)
+                let videos = data.items;
+                for (video of videos) {
+                    let videoId = video.id.videoId;
+                    const videoLink = `width="420" height="345" src="https://youtube.com/embed/${videoId}"`; //EMBED YOUTUBE VIDEO
+                    let videoPlacement = document.querySelector(".videoPlacement")
+                    //NEED A WAY TO GET VIDEOLINK INTO <IFRAME> HTML
+                    console.log(videoLink);
+                }
+            })
+    };
 
 
     let grabYoutubeChannel = function () {
@@ -49518,7 +49518,7 @@ let grabYoutube = function() {
                 }
             })
     };
-grabYoutubeChannel();
+    grabYoutubeChannel();
 
     // Make the token request
     // TODO: Eventually, this will need to be wrapped in a function to request a new
@@ -49702,14 +49702,14 @@ grabYoutubeChannel();
     }
 
     // Populates the main screen with new subgenre information
-    function populateSubGenres(artists, subGenres) {
+    function populateSubGenres(subGenres) {
 
         // Loops from 1 to 5 to match up with span tag IDs
         for (let i = 1; i < 5; i++) {
             let currGenre = capitalizeFirstLetter(genresArray[subGenres][Math.floor(Math.random() * genresArray[subGenres].length)]);
             $(`#span_${i}`).text(currGenre);
             console.log(currGenre);
-            populateArtists(currGenre, artists);
+            // populateArtists(currGenre);
         }
     };
 
@@ -49802,13 +49802,14 @@ grabYoutubeChannel();
 
             if (clickedButton.dataset.genre != 'explore') {
                 // Call function to populate screen
-                populateSubGenres(newArtistArr, newGenresArr);
+                populateSubGenres(newGenresArr);
             }
 
             else {
                 // Old way -------
                 // May be used to implement the "Explore!" button if we choose to
-                getNewSubGenres(clickedButton.dataset.genre);
+                // getNewSubGenres(clickedButton.dataset.genre);
+                console.log("Let's Explore!");
             }
 
             // New function to pull from our existing arrays and populate sub genres
@@ -49827,7 +49828,7 @@ grabYoutubeChannel();
 
         if (e.target.nodeName == 'LI') {
             console.log("clickety click clack");
-            
+            populateArtists();
         }
     })
 });
