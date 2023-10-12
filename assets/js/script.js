@@ -7845,18 +7845,15 @@ $(function () {
                 let videos = data.items;
                 let videoContainer = document.querySelector(".videoContainer");
                 for (video of videos) {
-                    // videoContainer.innerHTML +=  `"<img src="${video.snippet.thumbnails.high.url}">`
                     let videoId = video.id.videoId;
-                    const videoLink = `https://youtube.com/embed/${videoId}`;
+                    const videoLink = `width="420" height="345" src="https://youtube.com/embed/${videoId}"`;
                     let videoPlacement = document.querySelector(".videoPlacement")
-                    videoPlacement.innerHTML = "src=" + videoLink;
                     console.log(videoLink);
                 }
-
-
-
             })
     };
+
+    // $("x").click(grabYoutube);
 
 
 
@@ -7913,17 +7910,17 @@ $(function () {
                 }
             })
             .then(data => {
-                // console.log(data);
+                console.log(data);
                 spotifyData = data;
                 // console.log(data.artists.items[0]);
-                artists = data.artists.items;
+                // artists = data.artists.items;
                 // console.log(`Here are the artists who have ${genreName} in their profile:`);
                 // console.log(artists);
-                let subArtists = [];
-                artists.forEach(artist => {
-                    if (artist.genres.includes(subGenre) && !subArtists.includes(artist)) {
-                        subArtists.push(artist);
-                    }
+                // let subArtists = [];
+                // artists.forEach(artist => {
+                //     if (artist.genres.includes(subGenre) && !subArtists.includes(artist)) {
+                //         subArtists.push(artist);
+                //     }
                     // subGenres = [];
                     // artists.forEach(artist => {
                     //     for (let i=0; i<artist.genres.length; i++) {
@@ -7934,7 +7931,7 @@ $(function () {
                     // });
                     // console.log('Here is the array of subgenres');
                     // console.log(subGenres);
-                });
+                
                 // console.log(`Here are the artists who have ${subGenre} in their listed genres`);
                 // console.log(subArtists);
             })
@@ -8021,18 +8018,25 @@ $(function () {
         }, 10000);
     }
 
-    function populateSubGenres(genre, artists, subGenres) {
-        //TODO: write this to populate screen
-        console.log(subGenres);
-        console.log(artists);
-        console.log(genre);
-        console.log(artistsArray[artists]);
+    // Populates the main screen with new subgenre information
+    function populateSubGenres(artists, subGenres) {
         for (let i = 1; i < 5; i++) {
-            $(`#span_${i}`).text(genresArray[subGenres][Math.floor(Math.random() * subGenres.length)]);
+            let currGenre = capitalizeFirstLetter(genresArray[subGenres][Math.floor(Math.random() * genresArray[subGenres].length)]);
+            $(`#span_${i}`).text(currGenre);
+            populateArtists(currGenre, artists);
         }
-
     };
 
+    // Performs API calls to collect information about selected artists
+    function populateArtists(subGenre, artists) {
+        // TODO: put ?random? artists into the divs
+        for (let i=0; i<5; i++) {
+            let newArtist = artistsArray[artists][Math.floor(Math.random() * artistsArray[artists].length)];
+            console.log(newArtist);
+            let newSuffix = `search?q=${newArtist}&type=artist&limit=1`;
+            getSpotifyData(newSuffix);
+        }
+    }
 
     async function getNewSubGenres(genre) {
         // Reset global genre variables to empty arrays
@@ -8046,6 +8050,10 @@ $(function () {
         // getSpotifyData(apiSuffix);
         await getAllFromGenre(apiSuffix);
         sortByPopularity(genresArr);
+    }
+
+    function capitalizeFirstLetter(word) {
+        return word.charAt(0).toUpperCase() + word.slice(1);
     }
 
     async function generate() {
@@ -8096,12 +8104,9 @@ $(function () {
             }
             let newArtistArr = `${newGenre}Artists`;
             let newGenresArr = `${newGenre}SubGenres`;
-            if (newGenre == 'hipHop') {
-                newGenre = 'r&b';
-            }
 
             // Call function to populate screen
-            populateSubGenres(newGenre, newArtistArr, newGenresArr);
+            populateSubGenres(newArtistArr, newGenresArr);
 
             // New function to pull from our existing arrays and populate sub genres
 
