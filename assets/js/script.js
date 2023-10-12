@@ -49431,6 +49431,8 @@ $(function () {
         ]
     }
 
+    let currentGenre = '';
+
     let subGenreArtists = {};
 
     // let nameArr = [];
@@ -49482,8 +49484,8 @@ $(function () {
 
 
 
-    let grabYoutube = function () {
-        fetch(`https://www.googleapis.com/youtube/v3/videos?id=${artist}&key=${apiKey}&part=snippet`)
+    let grabYoutubeVideo = function () {
+        fetch(`https://youtube.googleapis.com/youtube/v3/search?part=snippet&maxResults=1&q=${artist}official&type=video&key=${apiKey}`)
             .then((result) => {
                 return result.json();
                 console.log(result);
@@ -49502,7 +49504,7 @@ $(function () {
 
 
     let grabYoutubeChannel = function () {
-        fetch(`https://youtube.googleapis.com/youtube/v3/search?part=snippet&maxResults=3&q=coldplay&type=channel&chart=mostPopular&key=${apiKey}`)
+        fetch(`https://youtube.googleapis.com/youtube/v3/search?part=snippet&maxResults=1&q=brunomarsofficial&type=channel&chart=mostPopular&key=${apiKey}`) //need to add query that inserts artist name
             .then((result) => {
                 return result.json();
                 console.log(result);
@@ -49518,7 +49520,8 @@ $(function () {
                 }
             })
     };
-    grabYoutubeChannel();
+    // grabYoutubeChannel();
+    // grabYoutubeVideo();
 
     // Make the token request
     // TODO: Eventually, this will need to be wrapped in a function to request a new
@@ -49705,22 +49708,50 @@ $(function () {
     function populateSubGenres(subGenres) {
 
         // Loops from 1 to 5 to match up with span tag IDs
+        // Populates 4 new subgenres to explore
         for (let i = 1; i < 5; i++) {
             let currGenre = capitalizeFirstLetter(genresArray[subGenres][Math.floor(Math.random() * genresArray[subGenres].length)]);
-            $(`#span_${i}`).text(currGenre);
-            console.log(currGenre);
+            let currSpan = $(`#span_${i}`);
+            currSpan.text(currGenre);
+            // currSpan.data("genre", currGenre);
+            // console.log(currSpan[0]);
+            // console.log(currSpan.data("genre"));
             // populateArtists(currGenre);
         }
     };
 
     // Performs API calls to collect information about selected artists
-    function populateArtists(subGenre, artists) {
+    function populateArtists(subGenre) {
+
+        console.log(subGenre);
+        console.log(typeof subGenre);
         // TODO: put ?random? artists into the divs
 
+        // FIX THIS
+        let subGenreArtists = '';
 
+        // Structured clone of genre artists
+        switch (currentGenre) {
+            case 'classical':
+                subGenreArtists = structuredClone(artistsArray.classicalArtists);
+                break;
+            case 'rock':
+                subGenreArtists = structuredClone(artistsArray.rockArtists);
+                break;
+            case 'pop':
+                subGenreArtists = structuredClone(artistsArray.popArtists);
+                break;
+            case 'electronic':
+                subGenreArtists = structuredClone(artistsArray.electronicArtistsArtists);
+                break;
+            case 'r&b':
+                subGenreArtists = structuredClone(artistsArray.hipHopArtistsArtists);
+                break;
+        }
+
+        console.log(subGenreArtists);
         // CHANGE THIS TO an internal search, NOT an API call
         // Query API for 50 artists in this sub genre
-        getSpotifyData(`search?q=genre:${encodeURIComponent(subGenre)}&type=artist&limit=50&offset=0`);
 
         for (let i = 0; i < 5; i++) {
 
@@ -49778,29 +49809,25 @@ $(function () {
     /*\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/*/
     // var genreBtn = document.querySelector("")=======
 
-
-    var classicalBtn = document.querySelector("classical-btn")
-    var rockBtn = document.querySelector("rock-btn")
-    var popBtn = document.querySelector("pop-btn")
-    var electronicBtn = document.querySelector("electronic-btn")
-    var hiphopBtn = document.querySelector("hiphop-btn")
-
-
     // Event listener for genre buttons
     $('#popular-genres').on("click", function (e) {
         e.preventDefault();
         if (e.target.nodeName == 'BUTTON') {
             let clickedButton = e.target;
 
-            // Set up artist and genre variables to pass to function to populate page
-            let newGenre = clickedButton.dataset.genre;
-            if (newGenre == 'r&b') {
-                newGenre = 'hipHop';
-            }
-            let newArtistArr = `${newGenre}Artists`;
-            let newGenresArr = `${newGenre}SubGenres`;
-
             if (clickedButton.dataset.genre != 'explore') {
+                // Set up artist and genre variables to pass to function to populate page
+                let newGenre = clickedButton.dataset.genre;
+
+                // Set global currentGenre variable equal to newGenre
+                currentGenre = newGenre;
+                if (newGenre == 'r&b') {
+                    newGenre = 'hipHop';
+                }
+                let newArtistArr = `${newGenre}Artists`;
+                let newGenresArr = `${newGenre}SubGenres`;
+
+
                 // Call function to populate screen
                 populateSubGenres(newGenresArr);
             }
@@ -49822,13 +49849,20 @@ $(function () {
     // Event listener for subgenre headers
     $('#subgenres_list').on("click", function (e) {
         e.preventDefault();
-        console.log("clickety click clack");
-        console.log(this);
-        console.log(e.target.nodeName);
 
-        if (e.target.nodeName == 'LI') {
-            console.log("clickety click clack");
-            populateArtists();
+        if (e.target.nodeName == 'SPAN') {
+            console.log(e.target.nodeName);
+
+            let node = e.target;
+            console.log(node);
+            console.log(node.innerHTML);
+
+            console.log(currentGenre);
+
+            // let genreToSearch = this.querySelector(".subgenres");
+            // console.log(genreToSearch);
+            // console.log(genreToSearch.data("genre"));
+            populateArtists(node.innerHTML);
         }
     })
 });
