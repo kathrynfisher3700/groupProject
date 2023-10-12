@@ -198,11 +198,11 @@ $(function () {
 
 
     async function getNewSubGenres(genre) {
-        // 
-        // console.log(`your requested genre is: ${genre}`);
-        // subGenre = 'dance pop';
-        // genreName = genre;
-        // console.log(`genre name is: ${genreName}`);
+        // Reset global genre variables to empty arrays
+        genresArr = [];
+        subGenres = [];
+
+
         apiSuffix = `search?q=genre:${encodeURIComponent(genre)}&type=artist&limit=50&offset=0`;
         // console.log(apiSuffix);
         getSpotifyData(apiSuffix);
@@ -220,6 +220,9 @@ $(function () {
             });
             console.log('Here is the array of subgenres');
             console.log(subGenres);
+            for (let i=1; i<5; i++) {
+                $(`#span_${i}`).text(subGenres[Math.floor(Math.random() * subGenres.length)]);
+            }
         }, 10000);
     }
 
@@ -238,8 +241,8 @@ $(function () {
     /*\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/*/
 
     generate();
-    getGenres();
-    grabYoutube();
+    // getGenres();
+    // grabYoutube();
 
 
 
@@ -259,6 +262,7 @@ $(function () {
 
 
     $('#popular-genres').on("click", function (e) {
+        console.log("hello click");
         e.preventDefault();
         if (e.target.nodeName == 'BUTTON') {
             let clickedButton = e.target;
