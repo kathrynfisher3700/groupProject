@@ -13,7 +13,7 @@ body {
     background-color: #EA8CFF;
 }
 
-.tabs {
+ul {
     max-width: 40%;
 }
 
@@ -54,7 +54,7 @@ body {
 
 .wrapper {
     display: flex;
-    width: 40%;
+    width: 30%;
     height: 379px;
     padding-top: 20px;
 }
