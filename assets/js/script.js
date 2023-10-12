@@ -8028,11 +8028,11 @@ $(function () {
         console.log(genre);
         console.log(artistsArray[artists]);
         for (let i = 1; i < 5; i++) {
-            $(`#span_${i}`).text(genresArray[subGenres][Math.floor(Math.random() * subGenres.length)]);
+            let currGenre = capitalizeFirstLetter(genresArray[subGenres][Math.floor(Math.random() * subGenres.length)]);
+            $(`#span_${i}`).text(currGenre);
         }
 
     };
-
 
     async function getNewSubGenres(genre) {
         // Reset global genre variables to empty arrays
@@ -8046,6 +8046,10 @@ $(function () {
         // getSpotifyData(apiSuffix);
         await getAllFromGenre(apiSuffix);
         sortByPopularity(genresArr);
+    }
+
+    function capitalizeFirstLetter(word) {
+        return word.charAt(0).toUpperCase() + word.slice(1);
     }
 
     async function generate() {
