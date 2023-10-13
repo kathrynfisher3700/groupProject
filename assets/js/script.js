@@ -49518,7 +49518,7 @@ $(function () {
                     let channelId = video.id.channelId;
                     const videoLink = `"https://youtube.com/channel/${channelId}"`; //this is video link
                     // let channelPlacement = document.querySelector(".channelPlacement"); //need div to put link to channel 
-                    // channelPlacement.innerHTML = "Check out this artist's Youtube Channel here:" + videoLink; //TEXT to add for channel link
+                    // channelPlacement.innerHTML = "Check out this 's Youtube Channel here:" + videoLink; //TEXT to add for channel link
                     console.log(videoLink);
                 }
             })

@@ -38,6 +38,10 @@ body {
 .videos {
     width: 50%;
     text-align: center;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    align-items: center;
 }
 
  .container {
@@ -109,9 +113,13 @@ footer{
     font-size: 12px;
 }
 
-<<<<<<< HEAD
 #subgenres_list {
     flex-wrap: wrap;
 }
-=======
->>>>>>> 63990cc33f79c48e8ffff27ec8c841d23a7982ce
+
+iframe {
+    height: 200px;
+    width: 280px;
+    display: flex;
+    flex-wrap: wrap;
+}
