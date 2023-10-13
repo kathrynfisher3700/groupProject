@@ -49482,7 +49482,7 @@ $(function () {
     /*/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\*/
     //------------------------------------------Youtube-------------------------------------------//
     /*\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/*/
-    const apiKey = "AIzaSyAi35TA2LU4-0dUTqpU9iXnaZKSVYINmmg";
+    const apiKey = "AIzaSyCIBc4TRa2muRC06BVrTzgkkJjy0GMHYbQ";
     
 
     let grabYoutubeVideo = function (name) {
@@ -49499,7 +49499,7 @@ $(function () {
                 let videos = data.items;
                 for (video of videos) {
                     let videoId = video.id.videoId;
-                    const videoLink = `https://youtube.com/embed/${videoId}?controls=0`; //EMBED YOUTUBE VIDEO LINK
+                    const videoLink = `https://youtube.com/embed/${videoId}`; //EMBED YOUTUBE VIDEO LINK
                     console.log(videoLink);
                     let videoPlacement = $(".videoPlacement") //GRABS <IFRAME> ELEMENT
                     videoPlacement.attr("src", ""); //REMOVES CURRENT SRC
@@ -49509,8 +49509,10 @@ $(function () {
     };
 
 
-    let grabYoutubeChannel = function () {
-        fetch(`https://youtube.googleapis.com/youtube/v3/search?part=snippet&maxResults=1&q=brunomarsofficial&type=channel&chart=mostPopular&key=${apiKey}`) //need to add query that inserts artist name
+    let grabYoutubeChannel = function (name) {
+        let artistName = name.replace(/\s/g,'');
+        let artistSearch = artistName.toLowerCase();
+        fetch(`https://youtube.googleapis.com/youtube/v3/search?part=snippet&maxResults=1&q=${artistsSearch}official&type=channel&chart=mostPopular&key=${apiKey}`) //need to add query that inserts artist name
             .then((result) => {
                 return result.json();
                 console.log(result);
