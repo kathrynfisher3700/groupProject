@@ -49529,8 +49529,8 @@ $(function () {
                 }
             })
     };
-    // grabYoutubeChannel();
-    // grabYoutubeVideo();
+grabYoutubeChannel();
+grabYoutubeVideo();
 
     // Make the token request
     // TODO: Eventually, this will need to be wrapped in a function to request a new
