@@ -146,6 +146,31 @@ footer{
      }
     }
 
+
+
+@media only screen and (max-width: 600px) {
+    h1 {
+        text-align: center;
+        font-size: 30px;
+    }
+    .hero {
+        height: 100px;
+    }
+    }
+
+@media only screen and (max-width: 400px) {
+     h1 {
+            text-align: center;
+            font-size: 20px;
+     }
+     .header {
+        height: 35px;
+     }
+     .hero {
+        height: 50px;
+     }
+    }
+
 iframe {
     height: 200px;
     width: 280px;
@@ -158,4 +183,7 @@ iframe {
     padding-top: 10px;
     font-size: 15px;
 }
+<<<<<<< HEAD
+>>>>>>> 94509f4c050b6efa9b74242ca3fc6fc0237a305e
+=======
 >>>>>>> 94509f4c050b6efa9b74242ca3fc6fc0237a305e
