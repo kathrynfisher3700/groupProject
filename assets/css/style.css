@@ -11,6 +11,7 @@
 
 body {
     background-color: #EA8CFF;
+    max-height: 100%;
 }
 
 #popular-genres {
@@ -126,16 +127,48 @@ footer{
     .hero {
         height: 100px;
     }
-    .tabs .is-centered {
+    .container {
         display: flex;
         flex-direction: column;
+    }
+    .wrapper2 {
+        width: 100%;
+    }
+
+    .wrapper {
+        display: flex;
+        justify-content: center;
+        width: 100%;
+    }
+    .Vcontainer {
+        display: flex;
+        flex-direction: column;
+    }
+    
+    u {
+        width: 100%;
+    }
+
+    .artists {
+        height: auto;
+        width: 100%;
+        display: flex;
+        flex-wrap: wrap;
+    }
+    .videos {
+        height: auto;
+        width: 100%;
+    }
+    .videos {
+        height: auto;
+        width: 100%;
     }
     }
 
 @media only screen and (max-width: 400px) {
      h1 {
-            text-align: center;
-            font-size: 20px;
+        text-align: center;
+        font-size: 20px;
      }
      .header {
         height: 35px;
