@@ -29,7 +29,33 @@
             <button class="button is-link" data-genre="pop" id="pop-btn">Pop</button>
             <button class="button is-link" data-genre="electronic" id="electronic">Electronic</button>
             <button class="button is-link" data-genre="r&b" id="hiphop-btn">Hip-Hop/R&B</button>
-            <button type="submit" class="button is-link" data-genre="explore" id="explore-btn">Explore!</button>
+            <!-- <button type="submit" class="button is-link" data-genre="explore" id="explore-btn">Explore!</button> -->
+
+            <div class="dropdown is-up" id="prev_artists_dropdown">
+              <div class="dropdown-trigger">
+                <button class="button" aria-haspopup="true" aria-controls="dropdown-menu2">
+                  <span>Content</span>
+                  <span class="icon is-small">
+                    <i class="fas fa-angle-down" aria-hidden="true"></i>
+                  </span>
+                </button>
+              </div>
+              <div class="dropdown-menu" id="dropdown-menu2" role="menu">
+                <div class="dropdown-content">
+                  <div class="dropdown-item">
+                    <p>You can insert <strong>any type of content</strong> within the dropdown menu.</p>
+                  </div>
+                  <hr class="dropdown-divider">
+                  <div class="dropdown-item">
+                    <p>You simply need to use a <code>&lt;div&gt;</code> instead.</p>
+                  </div>
+                  <hr class="dropdown-divider">
+                  <a href="#" class="dropdown-item">
+                    This is a link
+                  </a>
+                </div>
+              </div>
+            </div>
 
           </div>
         </aside>
@@ -48,9 +74,9 @@
               </a>
             </li>
             <li>
-                <a>
-                  <span class="subgenres" id="span_3">genre</span>
-                </a>
+              <a>
+                <span class="subgenres" id="span_3">genre</span>
+              </a>
             </li>
             <li>
               <a>

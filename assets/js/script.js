@@ -49486,7 +49486,7 @@ $(function () {
 
 
 
-    let grabYoutubeVideo = function () {
+    let grabYoutubeVideo = function (name) {
         fetch(`https://youtube.googleapis.com/youtube/v3/search?part=snippet&maxResults=1&q=${artist}official&type=video&key=${apiKey}`)
             .then((result) => {
                 return result.json();
@@ -49808,11 +49808,11 @@ $(function () {
                 if (viewedArtists.length == 0) {
                     viewedArtists.push(artistObj);
                 }
-                for (let i=0; i<viewedArtists.length; i++) {
+                for (let i = 0; i < viewedArtists.length; i++) {
                     if (viewedArtists[i].name == artistObj.name) {
                         break;
                     }
-                    else if (i == viewedArtists.length-1) {
+                    else if (i == viewedArtists.length - 1) {
                         viewedArtists.push(artistObj);
                     }
                     else continue;
@@ -49827,7 +49827,7 @@ $(function () {
                 let bioBox = $('#artist_bio');
                 bioBox.empty();
                 bioBox.append($('<u>About</u>'));
-            
+
                 // Set the background of the div to a picture of his
                 // THIS WILL CHANGE
                 // Placeholder of image for now
@@ -49842,6 +49842,9 @@ $(function () {
                 bioBox.append(followersInfo);
                 let artistImage = $(`<img src=${imageURL}>`);
                 bioBox.append(artistImage);
+
+                // Add youtube video
+                grabYoutubeVideo(artistName);
 
             })
             .catch(error => console.error('Error:', error));
@@ -49943,6 +49946,15 @@ $(function () {
 
 
 
+        }
+        else {
+            let dropdownButton = $('#prev_artists_dropdown');
+            if (dropdownButton.hasClass('is-active')) {
+                dropdownButton.removeClass('is-active');
+            }
+            else {
+                dropdownButton.addClass('is-active');
+            }
         }
     })
 
