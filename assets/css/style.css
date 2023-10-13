@@ -38,6 +38,10 @@ body {
 .videos {
     width: 50%;
     text-align: center;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    align-items: center;
 }
 
  .container {
@@ -90,6 +94,7 @@ body {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    border-radius: 5px;
 }
 
 aside {
@@ -111,6 +116,7 @@ footer{
 #subgenres_list {
     flex-wrap: wrap;
 }
+
 
 
 @media only screen and (max-width: 600px) {
@@ -135,3 +141,11 @@ footer{
         height: 50px;
      }
     }
+
+iframe {
+    height: 200px;
+    width: 280px;
+    display: flex;
+    flex-wrap: wrap;
+}
+
