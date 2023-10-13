@@ -49897,6 +49897,7 @@ $(function () {
         console.log(viewedArtists);
         for (let i=0; i<viewedArtists.length; i++) {
             let artistButton = $('<button>').text(viewedArtists[i].name);
+            artistButton.addClass('button is-success is-responsive');
             $('#dropdown_buttons').append(artistButton);
         }
     }
@@ -50024,6 +50025,15 @@ $(function () {
 
         if (e.target.nodeName == 'BUTTON') {
             addToViewedArtists();
+        }
+    })
+
+    // Event listener for dropdown of your artists
+    $('#dropdown_buttons').on("click", function (e) {
+        e.preventDefault();
+
+        if (e.target.nodeName == 'BUTTON') {
+            let nextArtist = e.target.text();
         }
     })
 });
