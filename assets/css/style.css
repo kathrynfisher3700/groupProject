@@ -105,3 +105,7 @@ section {
 footer{
     font-size: 12px;
 }
+
+#subgenres_list {
+    flex-wrap: wrap;
+}

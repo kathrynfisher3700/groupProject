@@ -49443,6 +49443,8 @@ $(function () {
     let genres = [];
     let artists = [];
 
+    let viewedArtists = [];
+
     // Variables for querying Spotify API
     let token = '';
     let genreNeeded = 'classical';
@@ -49748,7 +49750,8 @@ $(function () {
 
                 // Create a button with artist's name and append it to the Artists div
                 let newButton = $('<button>').text(subGenreArtists[i].name);
-                newButton.addClass('button is-success');
+                newButton.addClass('button is-success is-responsive');
+                newButton.css('padding', '1px');
                 newButton.data('id', subGenreArtists[i].id);
                 $('#subgenres_artists').append(newButton);
 
@@ -49787,6 +49790,34 @@ $(function () {
             })
             .then(data => {
                 console.log(data);
+
+                // Local storage implementation
+                // Local storage will have an array of objects
+                // Each will be named by the artist name
+                // Create an artist object:
+                // let artistName = {
+                //     name: String,
+                //     id: String
+                // };
+                // Store that into local storage
+
+                let artistObj = {
+                    name: data.name,
+                    id: artistID
+                };
+                if (viewedArtists.length == 0) {
+                    viewedArtists.push(artistObj);
+                }
+                for (let i=0; i<viewedArtists.length; i++) {
+                    if (viewedArtists[i].name == artistObj.name) {
+                        break;
+                    }
+                    else if (i == viewedArtists.length-1) {
+                        viewedArtists.push(artistObj);
+                    }
+                    else continue;
+                }
+                console.log(viewedArtists);
 
                 // Grab the image url
                 let imageURL = data.images[0].url;
@@ -49837,7 +49868,9 @@ $(function () {
 
     async function generate() {
         await getToken();
-        $('#artist_info').addClass('is-hidden');
+        // $('#artist_info').addClass('is-hidden');
+
+        // On page load, populate Explore dropdown with previously searched artists
 
     }
 
@@ -49905,7 +49938,11 @@ $(function () {
     $('#subgenres_list').on("click", function (e) {
         e.preventDefault();
 
+        // Show the artist pane
         $('#artist_info').removeClass('is-hidden');
+        // Remove the previous info from 'About'
+        $('#artist_bio').empty();
+        $('#artist_bio').append($('<u>About</u>'));
 
 
         if (e.target.nodeName == 'SPAN') {
