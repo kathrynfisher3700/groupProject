@@ -49500,6 +49500,7 @@ $(function () {
                     const videoLink = `"https://youtube.com/embed/${videoId}"`; //EMBED YOUTUBE VIDEO LINK
                     console.log(videoLink);
                     let videoPlacement = document.querySelector(".videoPlacement") //GRABS <IFRAME> ELEMENT
+                    videoPlacement.attr("src", "") //REMOVES CURRENT SRC
                     videoPlacement.attr("src",videoLink);  //GET VIDEOLINK INTO <IFRAME> HTML
                 }
             })
@@ -49516,10 +49517,10 @@ $(function () {
                 let videos = data.items;
                 for (video of videos) {
                     let channelId = video.id.channelId;
-                    const videoLink = `"https://youtube.com/channel/${channelId}"`; //this is video link
-                    // let channelPlacement = document.querySelector(".channelPlacement"); //need div to put link to channel 
-                    // channelPlacement.innerHTML = "Check out this 's Youtube Channel here:" + videoLink; //TEXT to add for channel link
-                    console.log(videoLink);
+                    const channelLink = `"https://youtube.com/channel/${channelId}"`; //this is video link
+                    let channelPlacement = document.querySelector(".channel_link"); 
+                    channelPlacement.attr("href", channelLink)
+                    console.log(channelLink);
                 }
             })
     };
