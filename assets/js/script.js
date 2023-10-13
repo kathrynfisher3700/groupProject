@@ -49691,6 +49691,9 @@ $(function () {
         // Removes all children from Artists div (where buttons are going)
         $('#subgenres_artists').empty();
         $('#subgenres_artists').append($('<u>Artists</u>'));
+        $('#artist_bio').empty();
+        $('#artist_bio').append($('<u>About</u>'));
+
 
         let tempGenresArr = [];
         // Loops from 1 to 5 to match up with span tag IDs
@@ -49829,7 +49832,7 @@ $(function () {
                 bioBox.append(followersInfo);
                 let artistImage = $(`<img src=${imageURL}>`);
                 bioBox.append(artistImage);
-                let followButton = $(`<button>Click to follow!</button>`);
+                let followButton = $(`<button>Click to follow! (5 max)</button>`);
                 followButton.addClass('button is-info');
                 followButton.attr('id', 'follow_here');
                 bioBox.append(followButton);
@@ -49970,17 +49973,6 @@ $(function () {
                 // Call function to populate screen
                 populateSubGenres(newGenresArr);
             }
-
-            else {
-                // Old way -------
-                // May be used to implement the "Explore!" button if we choose to
-                // getNewSubGenres(clickedButton.dataset.genre);
-                // console.log("Let's Explore!");
-            }
-
-            // New function to pull from our existing arrays and populate sub genres
-
-
 
         }
         else {
