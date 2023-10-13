@@ -49819,6 +49819,9 @@ $(function () {
                 }
                 console.log(viewedArtists);
 
+                // Update local storage
+                updateLocalStorage();
+
                 // Grab the image url
                 let imageURL = data.images[0].url;
                 let bioBox = $('#artist_bio');
@@ -49858,6 +49861,14 @@ $(function () {
         sortByPopularity(genresArr);
     }
 
+    function updateLocalStorage() {
+        localStorage.setItem('artists', JSON.stringify(viewedArtists));
+    }
+
+    function retrieveFromLocalStorage() {
+        viewedArtists = JSON.parse(localStorage.getItem('artists'));
+    }
+
     function capitalizeFirstLetter(word) {
         return word.charAt(0).toUpperCase() + word.slice(1);
     }
@@ -49868,8 +49879,9 @@ $(function () {
 
     async function generate() {
         await getToken();
+        retrieveFromLocalStorage();
         // $('#artist_info').addClass('is-hidden');
-
+        console.log(viewedArtists);
         // On page load, populate Explore dropdown with previously searched artists
 
     }
