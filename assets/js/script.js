@@ -50036,6 +50036,11 @@ $(function () {
 
         if (e.target.nodeName == 'BUTTON') {
             let nextArtist = e.target.text();
+
+            // When a cached artist is clicked, it should repopulate the artist pane with information about this artist
+            
+            // Search through viewedArtists
+            // When name matches, 
         }
     })
 });
