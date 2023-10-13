@@ -49695,6 +49695,8 @@ $(function () {
         $('#artist_bio').append($('<u>About</u>'));
 
 
+
+
         let tempGenresArr = [];
         // Loops from 1 to 5 to match up with span tag IDs
         // Populates 4 new subgenres to explore
@@ -49722,6 +49724,8 @@ $(function () {
         $('#subgenres_artists').empty();
         $('#subgenres_artists').append($('<u>Artists</u>'));
 
+        console.log(`current genre is: ${currentGenre}`);
+        console.log(`sub genre is: ${subGenre}`);
 
         // FIX THIS
         let subGenreArtists = '';
@@ -49832,7 +49836,7 @@ $(function () {
                 bioBox.append(followersInfo);
                 let artistImage = $(`<img src=${imageURL}>`);
                 bioBox.append(artistImage);
-                let followButton = $(`<button>Click to follow! (5 max)</button>`);
+                let followButton = $(`<button>Click to save!</button>`);
                 followButton.addClass('button is-info');
                 followButton.attr('id', 'follow_here');
                 bioBox.append(followButton);
@@ -49866,7 +49870,7 @@ $(function () {
         if (viewedArtists.length == 0) {
             viewedArtists.push(artistObj);
         }
-        if (viewedArtists.length == 5) {
+        if (viewedArtists.length == 5 && viewedArtists[i].name != artistObj.name) {
             viewedArtists.shift();
         }
         for (let i = 0; i < viewedArtists.length; i++) {
@@ -49956,7 +49960,8 @@ $(function () {
         if (e.target.nodeName == 'BUTTON') {
             let clickedButton = e.target;
 
-            if (clickedButton.dataset.genre != 'explore') {
+            if (clickedButton.dataset.genre != undefined) {
+                // console.log(clickedButton.dataset.genre);
                 // Set up artist and genre variables to pass to function to populate page
                 let newGenre = clickedButton.dataset.genre;
 
@@ -49983,6 +49988,11 @@ $(function () {
     // Event listener for subgenre headers
     $('#subgenres_list').on("click", function (e) {
         e.preventDefault();
+
+        // Show aside, if hidden
+        if ($('#popular-genres').hasClass('is-hidden')) {
+            $('#popular-genres').toggleClass('is-hidden');
+        }
 
         // Show the artist pane
         $('#artist_info').removeClass('is-hidden');

@@ -20,7 +20,7 @@
   <body>
     <div class="container">
       <div class="wrapper">
-          <div class="genres" id="popular-genres">Popular Genres
+          <div class="genres is-hidden" id="popular-genres">Popular Genres
 
             <button class="button is-link" data-genre="classical" id="classical-btn">Classical</button>
             <button class="button is-link" data-genre="rock" id="rock-btn">Rock</button>
@@ -32,7 +32,7 @@
             <div class="dropdown" id="prev_artists_dropdown">
               <div class="dropdown-trigger">
                 <button class="button" aria-haspopup="true" aria-controls="dropdown-menu2">
-                  <span>Your artists \/</span>
+                  <span>Last 5 saved artists</span>
                   <span class="icon is-small">
                     <i class="fas fa-angle-down" aria-hidden="true"></i>
                   </span>
@@ -52,17 +52,19 @@
           <ul id="subgenres_list">
             <li>
               <a>
-                <span class="subgenres" id="span_1">Choose</span>
+                <span class="subgenres" id="span_1">CLICK</span>
               </a>
             </li>
             <li>
               <a>
-                <span class="subgenres" id="span_2">a</span>
+                <span class="subgenres" id="span_2">to 
+                  &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp choose</span>
               </a>
             </li>
             <li>
               <a>
-                <span class="subgenres" id="span_3">genre</span>
+                <span class="subgenres" id="span_3">a 
+                  &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp genre!</span>
               </a>
             </li>
             <li>
@@ -73,7 +75,7 @@
           </ul>
         </div>
 
-        <div class="Vcontainer is-hidden" id="artist_info">
+        <div class="Vcontainer" id="artist_info">
           <div class="artists genres" id="subgenres_artists"><u>Artists</u></div>
           <div class="videos"><u>Videos</u>
               <!-- <iframe class="videoPlacement" src="https://youtube.com/embed/tgbNymZ7vqY" allow="accelermoter; autoplay;encrypted-media; gyroscope; picture-in-picture"></iframe> -->
