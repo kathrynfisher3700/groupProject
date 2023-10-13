@@ -49483,11 +49483,11 @@ $(function () {
     //------------------------------------------Youtube-------------------------------------------//
     /*\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/*/
     const apiKey = "AIzaSyAi35TA2LU4-0dUTqpU9iXnaZKSVYINmmg";
-    artist = "coldplay"
-
-
+    
 
     let grabYoutubeVideo = function (name) {
+        let artistName = str.replace(/\s/g,'');
+        let artistSearch = artistName.toLowerCase;
         fetch(`https://youtube.googleapis.com/youtube/v3/search?part=snippet&maxResults=1&q=${artist}official&type=video&key=${apiKey}`)
             .then((result) => {
                 return result.json();
@@ -49497,10 +49497,11 @@ $(function () {
                 let videos = data.items;
                 for (video of videos) {
                     let videoId = video.id.videoId;
-                    const videoLink = `width="420" height="345" src="https://youtube.com/embed/${videoId}"`; //EMBED YOUTUBE VIDEO
-                    let videoPlacement = document.querySelector(".videoPlacement")
-                    //NEED A WAY TO GET VIDEOLINK INTO <IFRAME> HTML
+                    const videoLink = `"https://youtube.com/embed/${videoId}"`; //EMBED YOUTUBE VIDEO LINK
                     console.log(videoLink);
+                    let videoPlacement = document.querySelector(".videoPlacement") //GRABS <IFRAME> ELEMENT
+                    videoPlacement.attr("src", "") //REMOVES CURRENT SRC
+                    videoPlacement.attr("src",videoLink);  //GET VIDEOLINK INTO <IFRAME> HTML
                 }
             })
     };
@@ -49516,10 +49517,11 @@ $(function () {
                 let videos = data.items;
                 for (video of videos) {
                     let channelId = video.id.channelId;
-                    const videoLink = `"https://youtube.com/channel/${channelId}"`; //this is video link
-                    // let channelPlacement = document.querySelector(".channelPlacement"); //need div to put link to channel 
-                    // channelPlacement.innerHTML = "Check out this artist's Youtube Channel here:" + videoLink; //TEXT to add for channel link
-                    console.log(videoLink);
+                    const channelLink = `"https://youtube.com/channel/${channelId}"`; //this is video link
+                    let channelPlacement = document.querySelector(".channel_link"); 
+                    channelPlacement.attr("href", '')
+                    channelPlacement.attr("href", channelLink)
+                    console.log(channelLink);
                 }
             })
     };
