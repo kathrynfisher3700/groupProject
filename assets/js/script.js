@@ -49431,6 +49431,8 @@ $(function () {
         ]
     }
 
+    let currentGenre = '';
+
     let subGenreArtists = {};
 
     // let nameArr = [];
@@ -49440,6 +49442,9 @@ $(function () {
     let spotifyData;
     let genres = [];
     let artists = [];
+
+    let artistObj = {};
+    let viewedArtists = [];
 
     // Variables for querying Spotify API
     let token = '';
@@ -49478,27 +49483,30 @@ $(function () {
     //------------------------------------------Youtube-------------------------------------------//
     /*\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/*/
     const apiKey = "AIzaSyAi35TA2LU4-0dUTqpU9iXnaZKSVYINmmg";
-    artist = "coldplay"
 
 
-
-let grabYoutubeVideo = function() {
-    fetch(`https://youtube.googleapis.com/youtube/v3/search?part=snippet&maxResults=1&q=${artist}official&type=video&key=${apiKey}`)
-    .then((result) => {
-        return result.json();
-        console.log(result);
-    }).then((data) => {
-        console.log(data)
-        let videos = data.items;
-        for (video of videos) {
-            let videoId = video.id.videoId;
-            const videoLink = `width="420" height="345" src="https://youtube.com/embed/${videoId}"`; //EMBED YOUTUBE VIDEO
-            let videoPlacement = document.querySelector(".videoPlacement")
-            //NEED A WAY TO GET VIDEOLINK INTO <IFRAME> HTML
-            console.log(videoLink);
-        }
-    })
-};
+    let grabYoutubeVideo = function (name) {
+        console.log(name);
+        let artistName = name.replace(/\s/g, '');
+        let artistSearch = artistName.toLowerCase();
+        console.log(artistSearch);
+        fetch(`https://youtube.googleapis.com/youtube/v3/search?part=snippet&maxResults=1&q=${artistSearch}official&type=video&key=${apiKey}`)
+            .then((result) => {
+                return result.json();
+                console.log(result);
+            }).then((data) => {
+                console.log(data)
+                let videos = data.items;
+                for (video of videos) {
+                    let videoId = video.id.videoId;
+                    const videoLink = `https://youtube.com/embed/${videoId}?controls=0`; //EMBED YOUTUBE VIDEO LINK
+                    console.log(videoLink);
+                    let videoPlacement = $(".videoPlacement") //GRABS <IFRAME> ELEMENT
+                    videoPlacement.attr("src", ""); //REMOVES CURRENT SRC
+                    videoPlacement.attr("src", videoLink);  //GET VIDEOLINK INTO <IFRAME> HTML
+                }
+            })
+    };
 
 
     let grabYoutubeChannel = function () {
@@ -49511,10 +49519,11 @@ let grabYoutubeVideo = function() {
                 let videos = data.items;
                 for (video of videos) {
                     let channelId = video.id.channelId;
-                    const videoLink = `"https://youtube.com/channel/${channelId}"`; //this is video link
-                    // let channelPlacement = document.querySelector(".channelPlacement"); //need div to put link to channel 
-                    // channelPlacement.innerHTML = "Check out this artist's Youtube Channel here:" + videoLink; //TEXT to add for channel link
-                    console.log(videoLink);
+                    const channelLink = `"https://youtube.com/channel/${channelId}"`; //this is video link
+                    let channelPlacement = document.querySelector(".channel_link");
+                    channelPlacement.attr("href", '')
+                    channelPlacement.attr("href", channelLink)
+                    console.log(channelLink);
                 }
             })
     };
@@ -49574,34 +49583,7 @@ grabYoutubeVideo();
                 }
             })
             .then(data => {
-
-                // Push to a global object
                 console.log(data);
-
-                // console.log(data);
-                // spotifyData = data;
-                // console.log(data.artists.items[0]);
-                // artists = data.artists.items;
-                // console.log(`Here are the artists who have ${genreName} in their profile:`);
-                // console.log(artists);
-                // let subArtists = [];
-                // artists.forEach(artist => {
-                //     if (artist.genres.includes(subGenre) && !subArtists.includes(artist)) {
-                //         subArtists.push(artist);
-                //     }
-                // subGenres = [];
-                // artists.forEach(artist => {
-                //     for (let i=0; i<artist.genres.length; i++) {
-                //         if (!subGenres.includes(artist.genres[i])) {
-                //             subGenres.push(artist.genres[i]);
-                //         }
-                //     }
-                // });
-                // console.log('Here is the array of subgenres');
-                // console.log(subGenres);
-
-                // console.log(`Here are the artists who have ${subGenre} in their listed genres`);
-                // console.log(subArtists);
             })
             .catch(error => console.error('Error:', error));
     }
@@ -49704,38 +49686,157 @@ grabYoutubeVideo();
 
     // Populates the main screen with new subgenre information
     function populateSubGenres(subGenres) {
+        // Removes all children from Artists div (where buttons are going)
+        $('#subgenres_artists').empty();
+        $('#subgenres_artists').append($('<u>Artists</u>'));
 
+        let tempGenresArr = [];
         // Loops from 1 to 5 to match up with span tag IDs
+        // Populates 4 new subgenres to explore
         for (let i = 1; i < 5; i++) {
             let currGenre = capitalizeFirstLetter(genresArray[subGenres][Math.floor(Math.random() * genresArray[subGenres].length)]);
-            $(`#span_${i}`).text(currGenre);
-            console.log(currGenre);
+
+            // Checks for duplicates
+            while (tempGenresArr.includes(currGenre)) {
+                currGenre = capitalizeFirstLetter(genresArray[subGenres][Math.floor(Math.random() * genresArray[subGenres].length)]);
+            }
+            tempGenresArr.push(currGenre);
+            let currSpan = $(`#span_${i}`);
+            currSpan.text(currGenre);
+            // currSpan.data("genre", currGenre);
+            // console.log(currSpan[0]);
+            // console.log(currSpan.data("genre"));
             // populateArtists(currGenre);
         }
     };
 
     // Performs API calls to collect information about selected artists
-    function populateArtists(subGenre, artists) {
-        // TODO: put ?random? artists into the divs
+    function populateArtists(subGenre) {
 
+        // Removes all children from Artists div (where buttons are going)
+        $('#subgenres_artists').empty();
+        $('#subgenres_artists').append($('<u>Artists</u>'));
+
+
+        // FIX THIS
+        let subGenreArtists = '';
+        subGenre = unCapitalizeFirstLetter(subGenre);
+        let counter = 0;
+
+        // Structured clone of genre artists
+        switch (currentGenre) {
+            case 'classical':
+                subGenreArtists = structuredClone(artistsArray.classicalArtists);
+                break;
+            case 'rock':
+                subGenreArtists = structuredClone(artistsArray.rockArtists);
+                break;
+            case 'pop':
+                subGenreArtists = structuredClone(artistsArray.popArtists);
+                break;
+            case 'electronic':
+                subGenreArtists = structuredClone(artistsArray.electronicArtists);
+                break;
+            case 'hipHop':
+                subGenreArtists = structuredClone(artistsArray.hipHopArtists);
+                break;
+        }
 
         // CHANGE THIS TO an internal search, NOT an API call
         // Query API for 50 artists in this sub genre
-        getSpotifyData(`search?q=genre:${encodeURIComponent(subGenre)}&type=artist&limit=50&offset=0`);
+        // console.log(`current genre: ${currentGenre}`);
+        // console.log(subGenreArtists);
+        // console.log(subGenre);
+        // // Search through artists array for the first 5 artists who have subGenre in their genres array
+        for (let i = 0; i < subGenreArtists.length; i++) {
+            // If the artist has subGenre in their genres
+            if (subGenreArtists[i].genres.includes(subGenre)) {
+                // console.log(subGenreArtists[i]);
 
-        for (let i = 0; i < 5; i++) {
+                // Create a button with artist's name and append it to the Artists div
+                let newButton = $('<button>').text(subGenreArtists[i].name);
+                newButton.addClass('button is-success is-responsive');
+                newButton.css('padding', '1px');
+                newButton.data('id', subGenreArtists[i].id);
+                $('#subgenres_artists').append(newButton);
+
+                // Increment a counter
+                counter++
+                // If the counter reaches 3, break the for loop
+                if (counter == 3) {
+                    break;
+                }
+            }
 
 
-            // Randomly select 5 of them
-
-
-
-
-            // let newArtist = artistsArray[artists][Math.floor(Math.random() * artistsArray[artists].length)];
-            // console.log(newArtist);
-            // let newSuffix = `search?q=${newArtist}&type=artist&limit=1`;
-            // getSpotifyData(newSuffix);
         }
+    }
+
+    // Gets info about the artist with a spotify API call
+    function getArtistInfo(artistID) {
+        // console.log(artistID);
+
+        // Get Spotify artist object
+        const spotifyEndpoint = `https://api.spotify.com/v1/artists/${artistID}`;
+
+        // Make the API request to get a list of genres
+        fetch(spotifyEndpoint, {
+            method: 'GET',
+            headers: {
+                'Authorization': `Bearer ${token}`,
+            },
+        })
+            .then(response => {
+                if (response.status === 200) {
+                    return response.json();
+                } else {
+                    throw new Error('Failed to fetch data');
+                }
+            })
+            .then(data => {
+                console.log(data);
+
+                // Local storage implementation
+                // Local storage will have an array of objects
+                // Each will be named by the artist name
+                // Create an artist object:
+                // let artistName = {
+                //     name: String,
+                //     id: String
+                // };
+                // Store that into local storage
+
+                artistObj = {
+                    name: data.name,
+                    id: artistID
+                };
+
+                // Update local storage
+                // updateLocalStorage();
+
+                // Grab the image url
+                let imageURL = data.images[0].url;
+                let bioBox = $('#artist_bio');
+                bioBox.empty();
+                bioBox.append($('<u>About</u>'));
+
+                // Add info to this section
+                let artistName = $('<p>').text(data.name);
+                bioBox.append(artistName);
+                let followersInfo = $('<p>').text(`Followers on Spotify: ${data.followers.total.toLocaleString()}`);
+                bioBox.append(followersInfo);
+                let artistImage = $(`<img src=${imageURL}>`);
+                bioBox.append(artistImage);
+                let followButton = $(`<button>Click to follow!</button>`);
+                followButton.addClass('button is-info');
+                followButton.attr('id', 'follow_here');
+                bioBox.append(followButton);
+
+                // Add youtube video
+                grabYoutubeVideo(data.name);
+
+            })
+            .catch(error => console.error('Error:', error));
     }
 
     async function getNewSubGenres(genre) {
@@ -49752,12 +49853,73 @@ grabYoutubeVideo();
         sortByPopularity(genresArr);
     }
 
+    // Called when new "add to my list" button is clicked
+    // Adds the currently viewed artist to viewed artists array and to local storage
+    function addToViewedArtists() {
+        console.log(viewedArtists);
+
+        if (viewedArtists.length == 0) {
+            viewedArtists.push(artistObj);
+        }
+        if (viewedArtists.length == 5) {
+            viewedArtists.shift();
+        }
+        for (let i = 0; i < viewedArtists.length; i++) {
+            if (viewedArtists[i].name == artistObj.name) {
+                break;
+            }
+            else if (i == viewedArtists.length - 1) {
+                viewedArtists.push(artistObj);
+            }
+            else continue;
+        }
+        // console.log(viewedArtists);
+
+        updateLocalStorage();
+        populateDropdown();
+    }
+
+    // Sets global 'viewedArtists' variable into local storage
+    function updateLocalStorage() {
+        localStorage.setItem('artists', JSON.stringify(viewedArtists));
+    }
+
+    // Gets out the artists object from local storage
+    // If artists doesn't exist, creates on empty array
+    function retrieveFromLocalStorage() {
+        viewedArtists = JSON.parse(localStorage.getItem('artists'));
+        if (viewedArtists == null) {
+            viewedArtists = [];
+        }
+        // populateDropdown();
+    }
+
+    function populateDropdown() {
+        $('#dropdown_buttons').empty();
+        console.log(viewedArtists);
+        for (let i = 0; i < viewedArtists.length; i++) {
+            let artistButton = $('<button>').text(viewedArtists[i].name);
+            artistButton.addClass('button is-success is-responsive');
+            $('#dropdown_buttons').append(artistButton);
+        }
+    }
+
     function capitalizeFirstLetter(word) {
         return word.charAt(0).toUpperCase() + word.slice(1);
     }
 
+    function unCapitalizeFirstLetter(word) {
+        return word.charAt(0).toLowerCase() + word.slice(1);
+    }
+
     async function generate() {
         await getToken();
+        await retrieveFromLocalStorage();
+        populateDropdown();
+        // $('#artist_info').addClass('is-hidden');
+        // console.log(viewedArtists);
+        // On page load, populate Explore dropdown with previously searched artists
+
     }
 
 
@@ -49779,29 +49941,29 @@ grabYoutubeVideo();
     /*\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/*/
     // var genreBtn = document.querySelector("")=======
 
-
-    var classicalBtn = document.querySelector("classical-btn")
-    var rockBtn = document.querySelector("rock-btn")
-    var popBtn = document.querySelector("pop-btn")
-    var electronicBtn = document.querySelector("electronic-btn")
-    var hiphopBtn = document.querySelector("hiphop-btn")
-
-
     // Event listener for genre buttons
     $('#popular-genres').on("click", function (e) {
         e.preventDefault();
+
+        $('#artist_info').addClass('is-hidden');
+
         if (e.target.nodeName == 'BUTTON') {
             let clickedButton = e.target;
 
-            // Set up artist and genre variables to pass to function to populate page
-            let newGenre = clickedButton.dataset.genre;
-            if (newGenre == 'r&b') {
-                newGenre = 'hipHop';
-            }
-            let newArtistArr = `${newGenre}Artists`;
-            let newGenresArr = `${newGenre}SubGenres`;
-
             if (clickedButton.dataset.genre != 'explore') {
+                // Set up artist and genre variables to pass to function to populate page
+                let newGenre = clickedButton.dataset.genre;
+
+                if (newGenre == 'r&b') {
+                    newGenre = 'hipHop';
+                }
+                // Set global currentGenre variable equal to newGenre
+                currentGenre = newGenre;
+
+                let newArtistArr = `${newGenre}Artists`;
+                let newGenresArr = `${newGenre}SubGenres`;
+
+
                 // Call function to populate screen
                 populateSubGenres(newGenresArr);
             }
@@ -49818,18 +49980,76 @@ grabYoutubeVideo();
 
 
         }
+        else {
+            let dropdownButton = $('#prev_artists_dropdown');
+            if (dropdownButton.hasClass('is-active')) {
+                dropdownButton.removeClass('is-active');
+            }
+            else {
+                dropdownButton.addClass('is-active');
+            }
+        }
     })
 
     // Event listener for subgenre headers
     $('#subgenres_list').on("click", function (e) {
         e.preventDefault();
-        console.log("clickety click clack");
-        console.log(this);
-        console.log(e.target.nodeName);
 
-        if (e.target.nodeName == 'LI') {
-            console.log("clickety click clack");
-            populateArtists();
+        // Show the artist pane
+        $('#artist_info').removeClass('is-hidden');
+        // Remove the previous info from 'About'
+        $('#artist_bio').empty();
+        $('#artist_bio').append($('<u>About</u>'));
+
+
+        if (e.target.nodeName == 'SPAN') {
+            let node = e.target;
+            populateArtists(node.innerHTML);
+        }
+    })
+
+    // Event listener for subgenre artists
+    $('#subgenres_artists').on("click", function (e) {
+        e.preventDefault();
+
+
+        if (e.target.nodeName == 'BUTTON') {
+            let clickedButton = e.target;
+            // console.log(clickedButton);
+            // console.log($(clickedButton).data('id'));
+            getArtistInfo($(clickedButton).data('id'));
+        }
+    })
+
+    // Event listener for artist bio section
+    $('#artist_bio').on("click", function (e) {
+        e.preventDefault();
+
+        if (e.target.nodeName == 'BUTTON') {
+            addToViewedArtists();
+        }
+    })
+
+    // Event listener for dropdown of your artists
+    $('#dropdown_buttons').on("click", function (e) {
+        e.preventDefault();
+
+        if (e.target.nodeName == 'BUTTON') {
+            let nextArtist = e.target.text();
+            let nextID = '';
+
+            // When a cached artist is clicked, it should repopulate the artist pane with information about this artist
+
+            // Search through viewedArtists
+            // When name matches, grab id and send it to populate artists function
+
+            for (let i = 0; i < viewedArtists.length; i++) {
+                if (viewedArtists[i].name == nextArtist) {
+                    nextID = viewedArtists[i].name;
+                }
+            }
+            getArtistInfo(nextID);
+            $('#artist_info').removeClass('is-hidden');
         }
     })
 });

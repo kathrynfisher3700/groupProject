@@ -12,8 +12,7 @@
 
 <body>
   <header class="header">
-    <h1>Welcome to Song Safari!</h1>
-    <input class="input is-rounded is-small" type="text" placeholder="Search by artist, genre, or subgenre" />
+    <h1>Welcome to SongSafari!</h1>
   </header>
 
   <div class="hero"></div>
@@ -29,7 +28,24 @@
             <button class="button is-link" data-genre="pop" id="pop-btn">Pop</button>
             <button class="button is-link" data-genre="electronic" id="electronic">Electronic</button>
             <button class="button is-link" data-genre="r&b" id="hiphop-btn">Hip-Hop/R&B</button>
-            <button type="submit" class="button is-link" data-genre="explore" id="explore-btn">Explore!</button>
+
+            <!-- <button type="submit" class="button is-link" data-genre="explore" id="explore-btn">Explore!</button> -->
+
+            <div class="dropdown is-up" id="prev_artists_dropdown">
+              <div class="dropdown-trigger">
+                <button class="button" aria-haspopup="true" aria-controls="dropdown-menu2">
+                  <span>Your artists</span>
+                  <span class="icon is-small">
+                    <i class="fas fa-angle-down" aria-hidden="true"></i>
+                  </span>
+                </button>
+              </div>
+              <div class="dropdown-menu" id="dropdown-menu2" role="menu">
+                <div class="dropdown-content" id="dropdown_buttons">
+
+                </div>
+              </div>
+            </div>
 
           </div>
         </aside>
@@ -37,59 +53,40 @@
       <div class="wrapper2">
         <div class="tabs is-centered">
           <ul id="subgenres_list">
-            <li class="is-active">
-              <a id="genre_li_1">
-          <ul>
             <li>
-            <div class="tabs">
               <a>
-                <span class="icon is-small"><i class="fas fa-image" aria-hidden="true"></i></span>
-                <span id="span_1">Choose</span>
+                <span class="subgenres" id="span_1">Choose</span>
               </a>
-            </div>
             </li>
             <li>
-              <a id="genre_li_2">
-            <div class="tabs">
-
               <a>
-                <span class="icon is-small"><i class="fas fa-music" aria-hidden="true"></i></span>
-                <span id="span_2">a</span>
+                <span class="subgenres" id="span_2">a</span>
               </a>
-            </div>
             </li>
             <li>
-              <a id="genre_li_3">
-            <div class="tabs">
               <a>
-                <span class="icon is-small"><i class="fas fa-film" aria-hidden="true"></i></span>
-                <span id="span_3">genre</span>
+                <span class="subgenres" id="span_3">genre</span>
               </a>
-            </div>
             </li>
             <li>
-              <a id="genre_li_4">
-            <div class="tabs">
-
               <a>
-                <span class="icon is-small"><i class="far fa-file-alt" aria-hidden="true"></i></span>
-                <span id="span_4">🎵</span>
+                <span class="subgenres" id="span_4">🎵</span>
               </a>
-            </div>
             </li>
           </ul>
         </div>
-        <div class="Vcontainer">
-          <div class="artists"><u>Artists</u>
-            <h2>a</h2>
-            <h2>a</h2>
-            <h2>a</h2>
+
+        <div class="Vcontainer is-hidden" id="artist_info">
+          <div class="artists genres" id="subgenres_artists"><u>Artists</u></div>
+          <div class="videos"><u>Videos</u>
+              <iframe class="videoPlacement" src="https://youtube.com/embed/tgbNymZ7vqY" allow="accelermoter; autoplay;encrypted-media; gyroscope; picture-in-picture"></iframe>
+              <a class="channel_link" href="">Click Here for Artist Youtube Channel</a>
           </div>
-          <div class="videos"><u>Videos</u></div>
+          <div class="artists" id="artist_bio"><u>About</u></div>
         </div>
       </div>
     </div>
-    
+
 
 
   </body>
@@ -102,7 +99,7 @@
                     SongSafari is not just an app; it's your ticket to explore the vast landscape of music!
                 </p>
             </div>
-            <div class="subgenres">More Info
+            <div cpulllass="subgenres">More Info
                     
             </div>
         </section>
