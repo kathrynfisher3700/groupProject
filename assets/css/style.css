@@ -36,6 +36,12 @@ body {
 }
 
 .artists {
+    width: 30%;
+    height: 300px;
+    text-align: center;
+}
+
+.about{
     width: 20%;
     height: 300px;
     text-align: center;
@@ -126,6 +132,10 @@ footer{
 
 #subgenres_list {
     flex-wrap: wrap;
+}
+
+#dropdown_buttons {
+    background-color: #EA8CFF;
 }
 
 @media only screen and (max-width: 1100px) {

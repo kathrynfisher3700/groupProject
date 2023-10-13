@@ -46667,7 +46667,6 @@ $(function () {
             "hip hop",
             "pop rap",
             "rap",
-            "canadian contemporary r&b",
             "art pop",
             "colombian pop",
             "pop reggaeton",
@@ -46676,7 +46675,6 @@ $(function () {
             "urbano latino",
             "classic oklahoma country",
             "modern country pop",
-            "r&b",
             "dance pop",
             "dfw rap",
             "melodic rap",
@@ -46711,7 +46709,6 @@ $(function () {
             "k-pop girl group",
             "east coast hip hop",
             "gangster rap",
-            "pop r&b",
             "modern alternative rock",
             "pov: indie",
             "post-teen pop",
@@ -46744,7 +46741,6 @@ $(function () {
             "bachata",
             "latin hip hop",
             "latin viral pop",
-            "r&b en espanol",
             "afrobeats",
             "azontobeats",
             "dancehall",
@@ -46764,7 +46760,6 @@ $(function () {
             "ohio hip hop",
             "emo",
             "atl hip hop",
-            "contemporary r&b",
             "south carolina hip hop",
             "trap soul",
             "alternative metal",
@@ -46776,7 +46771,6 @@ $(function () {
             "indie rock italiano",
             "italian pop",
             "panamanian pop",
-            "uk contemporary r&b",
             "funk carioca",
             "pop nacional",
             "indie pop",
@@ -46808,7 +46802,6 @@ $(function () {
             "trap queen",
             "alternative pop rock",
             "moombahton",
-            "bedroom r&b",
             "bachata dominicana",
             "tropical",
             "seattle hip hop",
@@ -46850,7 +46843,6 @@ $(function () {
             "chill pop",
             "neo-singer-songwriter",
             "drill francais",
-            "r&b francais",
             "rap francais",
             "underground hip hop",
             "old school atlanta hip hop",
@@ -46883,7 +46875,6 @@ $(function () {
             "conscious hip hop",
             "philly rap",
             "st louis rap",
-            "afro r&b",
             "alte",
             "gauze pop",
             "shiver pop",
@@ -47036,7 +47027,6 @@ $(function () {
             "australian country",
             "portland hip hop",
             "australian indie folk",
-            "alternative r&b",
             "chicago indie",
             "album rock",
             "dance rock",
@@ -47084,7 +47074,6 @@ $(function () {
             "indie electropop",
             "rage rap",
             "vapor twitch",
-            "korean r&b",
             "funk metal",
             "scottish new wave",
             "downtempo",
@@ -47324,7 +47313,6 @@ $(function () {
             "british modern classical",
             "victorian britain",
             "canadian classical piano",
-            "canadian contemporary r&b",
             "turkish classical performance",
             "galante era",
             "russian classical piano",
@@ -48281,7 +48269,6 @@ $(function () {
             "electropop",
             "microhouse",
             "lithuanian edm",
-            "alternative r&b",
             "escape room",
             "persian electronic",
             "melodic dubstep",
@@ -48537,7 +48524,6 @@ $(function () {
             "russian experimental electronic",
             "spanish indie pop",
             "polish indie",
-            "r&b argentino",
             "south african electronic",
             "neo-classical",
             "j-indie",
@@ -48706,7 +48692,6 @@ $(function () {
             "hypertrance",
             "new isolationism",
             "weightless",
-            "neo r&b",
             "synthetic classical",
             "finnish electronic",
             "grimewave",
@@ -48763,10 +48748,8 @@ $(function () {
             "nu-metalcore"
         ],
         "hipHopSubGenres": [
-            "canadian contemporary r&b",
             "canadian pop",
             "pop",
-            "r&b",
             "rap",
             "reggaeton",
             "reggaeton flow",
@@ -48778,7 +48761,6 @@ $(function () {
             "edm",
             "pop dance",
             "pop rap",
-            "pop r&b",
             "brostep",
             "dutch edm",
             "house",
@@ -48791,7 +48773,6 @@ $(function () {
             "merseybeat",
             "psychedelic rock",
             "rock",
-            "r&b en espanol",
             "spanish hip hop",
             "urbano espanol",
             "soul",
@@ -48803,17 +48784,13 @@ $(function () {
             "brooklyn drill",
             "nyc rap",
             "atl hip hop",
-            "contemporary r&b",
             "south carolina hip hop",
             "urban contemporary",
             "hip hop",
             "southern hip hop",
             "trap soul",
-            "alternative r&b",
-            "uk contemporary r&b",
             "uk pop",
             "argentine hip hop",
-            "r&b argentino",
             "trap argentino",
             "kentucky hip hop",
             "album rock",
@@ -48826,7 +48803,6 @@ $(function () {
             "houston rap",
             "trap queen",
             "bedroom pop",
-            "bedroom r&b",
             "arrocha",
             "batidao romantico",
             "funk mtg",
@@ -48842,7 +48818,6 @@ $(function () {
             "drill francais",
             "french hip hop",
             "pop urbaine",
-            "r&b francais",
             "rap francais",
             "chicago bop",
             "chicago drill",
@@ -48855,18 +48830,14 @@ $(function () {
             "britpop",
             "madchester",
             "permanent wave",
-            "indonesian r&b",
-            "afro r&b",
             "alte",
             "nigerian pop",
-            "chill r&b",
             "boom bap espanol",
             "rap conciencia",
             "rap politico",
             "venezuelan hip hop",
             "bolero",
             "cancion melodica",
-            "r&b brasileiro",
             "rap cearense",
             "trap brasileiro",
             "pop rap brasileiro",
@@ -48876,7 +48847,6 @@ $(function () {
             "country road",
             "indie soul",
             "indietronica",
-            "dark r&b",
             "hyperpop",
             "sped up",
             "belgian hip hop",
@@ -48951,25 +48921,21 @@ $(function () {
             "latin hip hop",
             "rap boricua",
             "basshall",
-            "experimental r&b",
             "boston hip hop",
             "gruperas inmortales",
             "grupero romantico",
             "british folk",
             "folk",
-            "indie r&b",
             "latin pop",
             "belgian dance",
             "belgian edm",
             "opm",
             "pinoy alternative rap",
             "pinoy hip hop",
-            "pinoy r&b",
             "pinoy trap",
             "afrofuturismo brasileiro",
             "rap mineiro",
             "german hip hop",
-            "german r&b",
             "new york drill",
             "modern hard rock",
             "afrofuturism",
@@ -49011,7 +48977,6 @@ $(function () {
             "philly rap",
             "singer-songwriter pop",
             "k-pop",
-            "korean r&b",
             "brighton indie",
             "progressive house",
             "british soul",
@@ -49033,7 +48998,6 @@ $(function () {
             "bc underground hip hop",
             "country rap",
             "maga rap",
-            "scandinavian r&b",
             "swedish soul",
             "protopunk",
             "tejano",
@@ -49098,7 +49062,6 @@ $(function () {
             "progressive bluegrass",
             "stomp and holler",
             "gospel",
-            "gospel r&b",
             "atlanta bass",
             "crunk",
             "old school atlanta hip hop",
@@ -49184,7 +49147,6 @@ $(function () {
             "indie hip hop",
             "alabama indie",
             "underground hip hop",
-            "australian r&b",
             "barbadian pop",
             "reggae fusion",
             "korean pop",
@@ -49216,7 +49178,6 @@ $(function () {
             "new orleans rap",
             "contemporary jazz",
             "modern jazz piano",
-            "neo r&b",
             "classic girl group",
             "russian edm",
             "flute rock",
@@ -49262,7 +49223,6 @@ $(function () {
             "emo rap",
             "bristol indie",
             "crank wave",
-            "chinese r&b",
             "mandopop",
             "taiwan pop",
             "taiwan singer-songwriter",
@@ -49336,7 +49296,6 @@ $(function () {
             "ska punk",
             "skate punk",
             "jangle pop",
-            "dutch r&b",
             "south african rock",
             "bay area indie",
             "neo-psychedelic",
@@ -49764,8 +49723,10 @@ $(function () {
 
                 // Create a button with artist's name and append it to the Artists div
                 let newButton = $('<button>').text(subGenreArtists[i].name);
-                newButton.addClass('button is-success is-responsive');
+                newButton.addClass('button is-success is-responsive button-wrap-text');
                 newButton.css('padding', '1px');
+                newButton.css('height', '4em');
+                newButton.css('white-space', 'normal');
                 newButton.data('id', subGenreArtists[i].id);
                 $('#subgenres_artists').append(newButton);
 
@@ -49831,6 +49792,8 @@ $(function () {
 
                 // Add info to this section
                 let artistName = $('<p>').text(data.name);
+                artistName.css('font-weight', 'bold');
+                artistName.css('color', '#485FC7');
                 bioBox.append(artistName);
                 let followersInfo = $('<p>').text(`Followers on Spotify: ${data.followers.total.toLocaleString()}`);
                 bioBox.append(followersInfo);
@@ -49870,9 +49833,7 @@ $(function () {
         if (viewedArtists.length == 0) {
             viewedArtists.push(artistObj);
         }
-        if (viewedArtists.length == 5 && viewedArtists[i].name != artistObj.name) {
-            viewedArtists.shift();
-        }
+
         for (let i = 0; i < viewedArtists.length; i++) {
             if (viewedArtists[i].name == artistObj.name) {
                 break;
@@ -49881,6 +49842,10 @@ $(function () {
                 viewedArtists.push(artistObj);
             }
             else continue;
+        }
+
+        if (viewedArtists.length == 6) {
+            viewedArtists.shift();
         }
         // console.log(viewedArtists);
 
@@ -50078,6 +50043,15 @@ $(function () {
 
 
             getArtistInfo(nextID);
+        }
+    })
+
+    // Event listener to close dropdown when out of focus
+    $('prev_artists_dropdown').on("focus", function (e) {
+        e.preventDefault();
+
+        if (dropdownButton.hasClass('is-active')) {
+            dropdownButton.removeClass('is-active');
         }
     })
 });
