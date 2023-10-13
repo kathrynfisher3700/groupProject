@@ -49496,10 +49496,11 @@ $(function () {
                 let videos = data.items;
                 for (video of videos) {
                     let videoId = video.id.videoId;
-                    const videoLink = `width="420" height="345" src="https://youtube.com/embed/${videoId}"`; //EMBED YOUTUBE VIDEO
+                    const videoLink = "https://youtube.com/embed/${videoId}"; //EMBED YOUTUBE VIDEO
                     let videoPlacement = document.querySelector(".videoPlacement")
                     //NEED A WAY TO GET VIDEOLINK INTO <IFRAME> HTML
                     console.log(videoLink);
+                    videoPlacement.attr("src",videoLink);
                 }
             })
     };
