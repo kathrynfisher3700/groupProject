@@ -49519,6 +49519,7 @@ $(function () {
                     let channelId = video.id.channelId;
                     const channelLink = `"https://youtube.com/channel/${channelId}"`; //this is video link
                     let channelPlacement = document.querySelector(".channel_link"); 
+                    channelPlacement.attr("href", '')
                     channelPlacement.attr("href", channelLink)
                     console.log(channelLink);
                 }
