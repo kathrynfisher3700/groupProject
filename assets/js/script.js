@@ -49482,11 +49482,11 @@ $(function () {
     //------------------------------------------Youtube-------------------------------------------//
     /*\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/*/
     const apiKey = "AIzaSyAi35TA2LU4-0dUTqpU9iXnaZKSVYINmmg";
-    artist = "taylorswift"
-
-
+    
 
     let grabYoutubeVideo = function (name) {
+        let artistName = str.replace(/\s/g,'');
+        let artistSearch = artistName.toLowerCase;
         fetch(`https://youtube.googleapis.com/youtube/v3/search?part=snippet&maxResults=1&q=${artist}official&type=video&key=${apiKey}`)
             .then((result) => {
                 return result.json();
@@ -49496,11 +49496,10 @@ $(function () {
                 let videos = data.items;
                 for (video of videos) {
                     let videoId = video.id.videoId;
-                    const videoLink = "https://youtube.com/embed/${videoId}"; //EMBED YOUTUBE VIDEO
-                    let videoPlacement = document.querySelector(".videoPlacement")
-                    //NEED A WAY TO GET VIDEOLINK INTO <IFRAME> HTML
+                    const videoLink = `"https://youtube.com/embed/${videoId}"`; //EMBED YOUTUBE VIDEO LINK
                     console.log(videoLink);
-                    videoPlacement.attr("src",videoLink);
+                    let videoPlacement = document.querySelector(".videoPlacement") //GRABS <IFRAME> ELEMENT
+                    videoPlacement.attr("src",videoLink);  //GET VIDEOLINK INTO <IFRAME> HTML
                 }
             })
     };
