@@ -147,5 +147,10 @@ iframe {
     width: 280px;
     display: flex;
     flex-wrap: wrap;
+    padding-top: 15px;
 }
 
+.channel_link {
+    padding-top: 10px;
+    font-size: 15px;
+}
