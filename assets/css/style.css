@@ -14,6 +14,7 @@ body {
 }
 
 #popular-genres {
+    display: flex;
     background-color: lightskyblue;
 }
 
@@ -117,8 +118,6 @@ footer{
     flex-wrap: wrap;
 }
 
-
-
 @media only screen and (max-width: 600px) {
     h1 {
         text-align: center;
@@ -126,6 +125,10 @@ footer{
     }
     .hero {
         height: 100px;
+    }
+    .tabs .is-centered {
+        display: flex;
+        flex-direction: column;
     }
     }
 
