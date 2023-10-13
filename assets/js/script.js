@@ -49487,7 +49487,7 @@ $(function () {
 
     let grabYoutubeVideo = function (name) {
         console.log(name);
-        let artistName = name.replace(/\s/g,'');
+        let artistName = name.replace(/\s/g, '');
         let artistSearch = artistName.toLowerCase();
         console.log(artistSearch);
         fetch(`https://youtube.googleapis.com/youtube/v3/search?part=snippet&maxResults=1&q=${artistSearch}official&type=video&key=${apiKey}`)
@@ -49503,7 +49503,7 @@ $(function () {
                     console.log(videoLink);
                     let videoPlacement = $(".videoPlacement") //GRABS <IFRAME> ELEMENT
                     videoPlacement.attr("src", ""); //REMOVES CURRENT SRC
-                    videoPlacement.attr("src",videoLink);  //GET VIDEOLINK INTO <IFRAME> HTML
+                    videoPlacement.attr("src", videoLink);  //GET VIDEOLINK INTO <IFRAME> HTML
                 }
             })
     };
@@ -49522,15 +49522,15 @@ $(function () {
                 for (video of videos) {
                     let channelId = video.id.channelId;
                     const channelLink = `"https://youtube.com/channel/${channelId}"`; //this is video link
-                    let channelPlacement = document.querySelector(".channel_link"); 
+                    let channelPlacement = document.querySelector(".channel_link");
                     channelPlacement.attr("href", '')
                     channelPlacement.attr("href", channelLink)
                     console.log(channelLink);
                 }
             })
     };
-    // grabYoutubeChannel();
-    // grabYoutubeVideo();
+grabYoutubeChannel();
+grabYoutubeVideo();
 
     // Make the token request
     // TODO: Eventually, this will need to be wrapped in a function to request a new
@@ -49881,10 +49881,13 @@ $(function () {
         populateDropdown();
     }
 
+    // Sets global 'viewedArtists' variable into local storage
     function updateLocalStorage() {
         localStorage.setItem('artists', JSON.stringify(viewedArtists));
     }
 
+    // Gets out the artists object from local storage
+    // If artists doesn't exist, creates on empty array
     function retrieveFromLocalStorage() {
         viewedArtists = JSON.parse(localStorage.getItem('artists'));
         if (viewedArtists == null) {
@@ -49896,8 +49899,9 @@ $(function () {
     function populateDropdown() {
         $('#dropdown_buttons').empty();
         console.log(viewedArtists);
-        for (let i=0; i<viewedArtists.length; i++) {
+        for (let i = 0; i < viewedArtists.length; i++) {
             let artistButton = $('<button>').text(viewedArtists[i].name);
+            artistButton.addClass('button is-success is-responsive');
             $('#dropdown_buttons').append(artistButton);
         }
     }
@@ -50025,6 +50029,29 @@ $(function () {
 
         if (e.target.nodeName == 'BUTTON') {
             addToViewedArtists();
+        }
+    })
+
+    // Event listener for dropdown of your artists
+    $('#dropdown_buttons').on("click", function (e) {
+        e.preventDefault();
+
+        if (e.target.nodeName == 'BUTTON') {
+            let nextArtist = e.target.text();
+            let nextID = '';
+
+            // When a cached artist is clicked, it should repopulate the artist pane with information about this artist
+
+            // Search through viewedArtists
+            // When name matches, grab id and send it to populate artists function
+
+            for (let i = 0; i < viewedArtists.length; i++) {
+                if (viewedArtists[i].name == nextArtist) {
+                    nextID = viewedArtists[i].name;
+                }
+            }
+            getArtistInfo(nextID);
+            $('#artist_info').removeClass('is-hidden');
         }
     })
 });
