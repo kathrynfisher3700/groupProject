@@ -49486,9 +49486,11 @@ $(function () {
     
 
     let grabYoutubeVideo = function (name) {
-        let artistName = str.replace(/\s/g,'');
-        let artistSearch = artistName.toLowerCase;
-        fetch(`https://youtube.googleapis.com/youtube/v3/search?part=snippet&maxResults=1&q=${artist}official&type=video&key=${apiKey}`)
+        console.log(name);
+        let artistName = name.replace(/\s/g,'');
+        let artistSearch = artistName.toLowerCase();
+        console.log(artistSearch);
+        fetch(`https://youtube.googleapis.com/youtube/v3/search?part=snippet&maxResults=1&q=${artistSearch}official&type=video&key=${apiKey}`)
             .then((result) => {
                 return result.json();
                 console.log(result);
@@ -49497,10 +49499,10 @@ $(function () {
                 let videos = data.items;
                 for (video of videos) {
                     let videoId = video.id.videoId;
-                    const videoLink = `"https://youtube.com/embed/${videoId}"`; //EMBED YOUTUBE VIDEO LINK
+                    const videoLink = `https://youtube.com/embed/${videoId}`; //EMBED YOUTUBE VIDEO LINK
                     console.log(videoLink);
-                    let videoPlacement = document.querySelector(".videoPlacement") //GRABS <IFRAME> ELEMENT
-                    videoPlacement.attr("src", "") //REMOVES CURRENT SRC
+                    let videoPlacement = $(".videoPlacement") //GRABS <IFRAME> ELEMENT
+                    videoPlacement.attr("src", ""); //REMOVES CURRENT SRC
                     videoPlacement.attr("src",videoLink);  //GET VIDEOLINK INTO <IFRAME> HTML
                 }
             })
@@ -49831,7 +49833,7 @@ $(function () {
                 bioBox.append(followButton);
 
                 // Add youtube video
-                grabYoutubeVideo(artistName);
+                grabYoutubeVideo(data.name);
 
             })
             .catch(error => console.error('Error:', error));
