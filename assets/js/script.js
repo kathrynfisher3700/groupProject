@@ -49499,7 +49499,7 @@ $(function () {
                 let videos = data.items;
                 for (video of videos) {
                     let videoId = video.id.videoId;
-                    const videoLink = `https://youtube.com/embed/${videoId}`; //EMBED YOUTUBE VIDEO LINK
+                    const videoLink = `https://youtube.com/embed/${videoId}?controls=0`; //EMBED YOUTUBE VIDEO LINK
                     console.log(videoLink);
                     let videoPlacement = $(".videoPlacement") //GRABS <IFRAME> ELEMENT
                     videoPlacement.attr("src", ""); //REMOVES CURRENT SRC
