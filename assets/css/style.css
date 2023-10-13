@@ -38,6 +38,10 @@ body {
 .videos {
     width: 50%;
     text-align: center;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    align-items: center;
 }
 
  .container {
@@ -114,5 +118,8 @@ footer{
 }
 
 iframe {
-    display:flex;
+    height: 200px;
+    width: 280px;
+    display: flex;
+    flex-wrap: wrap;
 }
