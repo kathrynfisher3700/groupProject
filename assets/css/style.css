@@ -9,9 +9,14 @@
     margin: 0;
 }
 
+html {
+    background-color: #EA8CFF;
+}
+
 body {
     background-color: #EA8CFF;
     height: 100%;
+
 }
 
 #popular-genres {
