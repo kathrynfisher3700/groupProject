@@ -49482,8 +49482,8 @@ $(function () {
 
 
 
-let grabYoutube = function() {
-    fetch(`https://www.googleapis.com/youtube/v3/videos?id=${artist}&key=${apiKey}&part=snippet`)
+let grabYoutubeVideo = function() {
+    fetch(`https://youtube.googleapis.com/youtube/v3/search?part=snippet&maxResults=1&q=${artist}official&type=video&key=${apiKey}`)
     .then((result) => {
         return result.json();
         console.log(result);
@@ -49502,7 +49502,7 @@ let grabYoutube = function() {
 
 
     let grabYoutubeChannel = function () {
-        fetch(`https://youtube.googleapis.com/youtube/v3/search?part=snippet&maxResults=3&q=coldplay&type=channel&chart=mostPopular&key=${apiKey}`)
+        fetch(`https://youtube.googleapis.com/youtube/v3/search?part=snippet&maxResults=1&q=brunomarsofficial&type=channel&chart=mostPopular&key=${apiKey}`) //need to add query that inserts artist name
             .then((result) => {
                 return result.json();
                 console.log(result);
@@ -49519,6 +49519,7 @@ let grabYoutube = function() {
             })
     };
 grabYoutubeChannel();
+grabYoutubeVideo();
 
     // Make the token request
     // TODO: Eventually, this will need to be wrapped in a function to request a new

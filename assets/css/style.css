@@ -13,7 +13,9 @@ body {
     background-color: #EA8CFF;
 }
 
-
+#popular-genres {
+    background-color: lightskyblue;
+}
 
 .wrapper2 {
     width: 75%;
