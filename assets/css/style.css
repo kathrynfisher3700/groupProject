@@ -99,11 +99,15 @@ body {
     border-radius: 5px;
 }
 
-aside {
+/* aside {
     display: flex;
     width: 40%;
     justify-content: center;
-}
+} */
+
+/* .ytp-cued-thumbnail-overlay-image {
+    max-width: 200px;
+} */
 
 section {
     display: flex;
@@ -117,6 +121,39 @@ footer{
 
 #subgenres_list {
     flex-wrap: wrap;
+}
+
+@media only screen and (max-width: 1100px) {
+    .wrapper {
+        width: 25%;
+    }
+
+    /* .container {
+        display: flex;
+        flex-direction: column;
+    } */
+
+    .Vcontainer {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .artists {
+        height: auto;
+        width: 75%;
+    }
+
+    .videos {
+        height: auto;
+        width: 75%
+    }
+}
+
+@media only screen and (max-width: 800px) {
+    .wrapper {
+        width: auto;
+    }
 }
 
 @media only screen and (max-width: 600px) {
@@ -154,10 +191,6 @@ footer{
         width: 100%;
         display: flex;
         flex-wrap: wrap;
-    }
-    .videos {
-        height: auto;
-        width: 100%;
     }
     .videos {
         height: auto;
