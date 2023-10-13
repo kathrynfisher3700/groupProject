@@ -49831,7 +49831,7 @@ $(function () {
                 bioBox.append(followButton);
 
                 // Add youtube video
-                grabYoutubeVideo(artistName);
+                grabYoutubeVideo(data.name);
 
             })
             .catch(error => console.error('Error:', error));
@@ -49877,10 +49877,13 @@ $(function () {
         populateDropdown();
     }
 
+    // Sets global 'viewedArtists' variable into local storage
     function updateLocalStorage() {
         localStorage.setItem('artists', JSON.stringify(viewedArtists));
     }
 
+    // Gets out the artists object from local storage
+    // If artists doesn't exist, creates on empty array
     function retrieveFromLocalStorage() {
         viewedArtists = JSON.parse(localStorage.getItem('artists'));
         if (viewedArtists == null) {
