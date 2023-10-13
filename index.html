@@ -12,7 +12,7 @@
 
 <body>
   <header class="header">
-    <h1>Welcome to Song Safari!</h1>
+    <h1>Welcome to SongSafari!</h1>
     <input class="input is-rounded is-small" type="text" placeholder="Search by artist, genre, or subgenre" />
   </header>
 
@@ -29,51 +29,76 @@
             <button class="button is-link" data-genre="pop" id="pop-btn">Pop</button>
             <button class="button is-link" data-genre="electronic" id="electronic">Electronic</button>
             <button class="button is-link" data-genre="r&b" id="hiphop-btn">Hip-Hop/R&B</button>
-            <button type="submit" class="button is-link is-loading" data-genre="explore" id="explore-btn">Explore!</button>
+<<<<<<< HEAD
+<<<<<<< HEAD
+            <!-- <button type="submit" class="button is-link" data-genre="explore" id="explore-btn">Explore!</button> -->
 
+            <div class="dropdown is-up" id="prev_artists_dropdown">
+              <div class="dropdown-trigger">
+                <button class="button" aria-haspopup="true" aria-controls="dropdown-menu2">
+                  <span>Content</span>
+                  <span class="icon is-small">
+                    <i class="fas fa-angle-down" aria-hidden="true"></i>
+                  </span>
+                </button>
+              </div>
+              <div class="dropdown-menu" id="dropdown-menu2" role="menu">
+                <div class="dropdown-content">
+                  <div class="dropdown-item">
+                    <p>You can insert <strong>any type of content</strong> within the dropdown menu.</p>
+                  </div>
+                  <hr class="dropdown-divider">
+                  <div class="dropdown-item">
+                    <p>You simply need to use a <code>&lt;div&gt;</code> instead.</p>
+                  </div>
+                  <hr class="dropdown-divider">
+                  <a href="#" class="dropdown-item">
+                    This is a link
+                  </a>
+                </div>
+              </div>
+            </div>
+=======
+            <button type="submit" class="button is-link is-loading" data-genre="explore" id="explore-btn">Explore!</button>
+=======
+            <button type="submit" class="button is-link is-loading" data-genre="explore" id="">Explore!</button>
+>>>>>>> de600213085d2353b56c4f2a1cd01f2cc3e22eb3
+
+>>>>>>> 63990cc33f79c48e8ffff27ec8c841d23a7982ce
 
           </div>
         </aside>
       </div>
       <div class="wrapper2">
         <div class="tabs is-centered">
-          <ul>
+          <ul id="subgenres_list">
             <li>
-            <div class="tabs">
               <a>
-                <span class="icon is-small"><i class="fas fa-image" aria-hidden="true"></i></span>
-                <span id="span_1">Choose</span>
+                <span class="subgenres" id="span_1">Choose</span>
               </a>
-            </div>
             </li>
             <li>
-            <div class="tabs">
-
               <a>
-                <span class="icon is-small"><i class="fas fa-music" aria-hidden="true"></i></span>
-                <span id="span_2">a</span>
+                <span class="subgenres" id="span_2">a</span>
               </a>
-            </div>
             </li>
             <li>
-            <div class="tabs">
               <a>
-                <span class="icon is-small"><i class="fas fa-film" aria-hidden="true"></i></span>
-                <span id="span_3">genre</span>
+                <span class="subgenres" id="span_3">genre</span>
               </a>
-            </div>
             </li>
             <li>
-            <div class="tabs">
-
               <a>
-                <span class="icon is-small"><i class="far fa-file-alt" aria-hidden="true"></i></span>
-                <span id="span_4">🎵</span>
+                <span class="subgenres" id="span_4">🎵</span>
               </a>
-            </div>
             </li>
           </ul>
         </div>
+<<<<<<< HEAD
+        <div class="Vcontainer is-hidden" id="artist_info">
+          <div class="artists genres" id="subgenres_artists"><u>Artists</u>
+
+=======
         <div class="Vcontainer">
           <div class="artists columns "><u>Artists</u>
             <button>Yo mama</button>
@@ -81,12 +106,14 @@
             <button>la flaca</button>
             <button>happytoes</button>
             <button>ponytail</button>
+>>>>>>> 63990cc33f79c48e8ffff27ec8c841d23a7982ce
           </div>
           <div class="videos"><u>Videos</u></div>
+          <div class="artists" id="artist_bio"><u>About</u></div>
         </div>
       </div>
     </div>
-    
+
 
 
   </body>
@@ -129,4 +156,4 @@ g
 |  _  | | | | |  | | |___  |  _| (_) | |      \ V /  | || |_| | |__| |_| |
 |_| |_| |_| |_|  |_|_____| |_|  \___/|_|       \_/  |___|____/|_____\___/ 
 -->
-<iframe width="420" height="345" src="https://youtube.com/embed/tgbNymZ7vqY"></iframe>
+<!-- <iframe width="420" height="345" src="https://youtube.com/embed/tgbNymZ7vqY"></iframe> -->
