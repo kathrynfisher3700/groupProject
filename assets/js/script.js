@@ -49576,34 +49576,7 @@ $(function () {
                 }
             })
             .then(data => {
-
-                // Push to a global object
                 console.log(data);
-
-                // console.log(data);
-                // spotifyData = data;
-                // console.log(data.artists.items[0]);
-                // artists = data.artists.items;
-                // console.log(`Here are the artists who have ${genreName} in their profile:`);
-                // console.log(artists);
-                // let subArtists = [];
-                // artists.forEach(artist => {
-                //     if (artist.genres.includes(subGenre) && !subArtists.includes(artist)) {
-                //         subArtists.push(artist);
-                //     }
-                // subGenres = [];
-                // artists.forEach(artist => {
-                //     for (let i=0; i<artist.genres.length; i++) {
-                //         if (!subGenres.includes(artist.genres[i])) {
-                //             subGenres.push(artist.genres[i]);
-                //         }
-                //     }
-                // });
-                // console.log('Here is the array of subgenres');
-                // console.log(subGenres);
-
-                // console.log(`Here are the artists who have ${subGenre} in their listed genres`);
-                // console.log(subArtists);
             })
             .catch(error => console.error('Error:', error));
     }
@@ -49708,11 +49681,19 @@ $(function () {
     function populateSubGenres(subGenres) {
         // Removes all children from Artists div (where buttons are going)
         $('#subgenres_artists').empty();
+        $('#subgenres_artists').append($('<u>Artists</u>'));
 
+        let tempGenresArr = [];
         // Loops from 1 to 5 to match up with span tag IDs
         // Populates 4 new subgenres to explore
         for (let i = 1; i < 5; i++) {
             let currGenre = capitalizeFirstLetter(genresArray[subGenres][Math.floor(Math.random() * genresArray[subGenres].length)]);
+
+            // Checks for duplicates
+            while (tempGenresArr.includes(currGenre)) {
+                currGenre = capitalizeFirstLetter(genresArray[subGenres][Math.floor(Math.random() * genresArray[subGenres].length)]);
+            }
+            tempGenresArr.push(currGenre);
             let currSpan = $(`#span_${i}`);
             currSpan.text(currGenre);
             // currSpan.data("genre", currGenre);
@@ -49727,6 +49708,8 @@ $(function () {
 
         // Removes all children from Artists div (where buttons are going)
         $('#subgenres_artists').empty();
+        $('#subgenres_artists').append($('<u>Artists</u>'));
+
 
         // FIX THIS
         let subGenreArtists = '';
@@ -49762,18 +49745,59 @@ $(function () {
             // If the artist has subGenre in their genres
             if (subGenreArtists[i].genres.includes(subGenre)) {
                 console.log(subGenreArtists[i]);
+
+                // Create a button with artist's name and append it to the Artists div
                 let newButton = $('<button>').text(subGenreArtists[i].name);
                 newButton.addClass('button is-success');
+                newButton.data('id', subGenreArtists[i].id);
                 $('#subgenres_artists').append(newButton);
 
+                // Increment a counter
+                counter++
+                // If the counter reaches 3, break the for loop
+                if (counter == 3) {
+                    break;
+                }
             }
-            // Create a button
-            // Add the artist's name
 
-            // Increment a counter
-            // If the counter reaches 5, break the for loop
 
         }
+    }
+
+    // Gets info about the artist with a spotify API call
+    function getArtistInfo(artistID) {
+        // console.log(artistID);
+
+        // Get Spotify artist object
+        const spotifyEndpoint = `https://api.spotify.com/v1/artists/${artistID}`;
+
+        // Make the API request to get a list of genres
+        fetch(spotifyEndpoint, {
+            method: 'GET',
+            headers: {
+                'Authorization': `Bearer ${token}`,
+            },
+        })
+            .then(response => {
+                if (response.status === 200) {
+                    return response.json();
+                } else {
+                    throw new Error('Failed to fetch data');
+                }
+            })
+            .then(data => {
+                console.log(data);
+
+                // Grab the image url
+                let imageURL = data.images[0].url;
+                
+                // Set the background of the div to a picture of his
+                $('#subgenres_artists').css(`background-image`, `url('${imageURL}')`);
+                $('#subgenres_artists').css('background-size', 'contain');
+                $('#subgenres_artists').css('background-repeat', 'no-repeat');
+
+            })
+            .catch(error => console.error('Error:', error));
     }
 
     async function getNewSubGenres(genre) {
@@ -49864,18 +49888,20 @@ $(function () {
         e.preventDefault();
 
         if (e.target.nodeName == 'SPAN') {
-            // console.log(e.target.nodeName);
-
             let node = e.target;
-            // console.log(node);
-            // console.log(node.innerHTML);
-
-            // console.log(currentGenre);
-
-            // let genreToSearch = this.querySelector(".subgenres");
-            // console.log(genreToSearch);
-            // console.log(genreToSearch.data("genre"));
             populateArtists(node.innerHTML);
+        }
+    })
+
+    // Event listener for subgenre artists
+    $('#subgenres_artists').on("click", function (e) {
+        e.preventDefault();
+
+        if (e.target.nodeName == 'BUTTON') {
+            let clickedButton = e.target;
+            // console.log(clickedButton);
+            // console.log($(clickedButton).data('id'));
+            getArtistInfo($(clickedButton).data('id'));
         }
     })
 });
