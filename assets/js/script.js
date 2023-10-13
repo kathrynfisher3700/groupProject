@@ -49790,11 +49790,24 @@ $(function () {
 
                 // Grab the image url
                 let imageURL = data.images[0].url;
-                
+                let bioBox = $('#artist_bio');
+                bioBox.empty();
+                bioBox.append($('<u>About</u>'));
+            
                 // Set the background of the div to a picture of his
-                $('#subgenres_artists').css(`background-image`, `url('${imageURL}')`);
-                $('#subgenres_artists').css('background-size', 'contain');
-                $('#subgenres_artists').css('background-repeat', 'no-repeat');
+                // THIS WILL CHANGE
+                // Placeholder of image for now
+                // bioBox.css(`background-image`, `url('${imageURL}')`);
+                // bioBox.css('background-size', 'contain');
+                // bioBox.css('background-repeat', 'no-repeat');
+
+                // Add info to this section
+                let artistName = $('<p>').text(data.name);
+                bioBox.append(artistName);
+                let followersInfo = $('<p>').text(`Followers on Spotify: ${data.followers.total.toLocaleString()}`);
+                bioBox.append(followersInfo);
+                let artistImage = $(`<img src=${imageURL}>`);
+                bioBox.append(artistImage);
 
             })
             .catch(error => console.error('Error:', error));
@@ -49824,6 +49837,8 @@ $(function () {
 
     async function generate() {
         await getToken();
+        $('#artist_info').addClass('is-hidden');
+
     }
 
 
@@ -49848,6 +49863,9 @@ $(function () {
     // Event listener for genre buttons
     $('#popular-genres').on("click", function (e) {
         e.preventDefault();
+
+        $('#artist_info').addClass('is-hidden');
+
         if (e.target.nodeName == 'BUTTON') {
             let clickedButton = e.target;
 
@@ -49887,6 +49905,9 @@ $(function () {
     $('#subgenres_list').on("click", function (e) {
         e.preventDefault();
 
+        $('#artist_info').removeClass('is-hidden');
+
+
         if (e.target.nodeName == 'SPAN') {
             let node = e.target;
             populateArtists(node.innerHTML);
@@ -49896,6 +49917,7 @@ $(function () {
     // Event listener for subgenre artists
     $('#subgenres_artists').on("click", function (e) {
         e.preventDefault();
+
 
         if (e.target.nodeName == 'BUTTON') {
             let clickedButton = e.target;
