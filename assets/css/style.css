@@ -68,7 +68,7 @@ body {
     flex-flow: row wrap;
     justify-content: center;
     width: 100%;
-    max-width: auto;
+    width: auto;
     font-size: 40px;
     color: #35363A;
     padding-bottom: 8px;
@@ -190,3 +190,4 @@ video {
     padding-top: 10px;
     font-size: 15px;
 }
+
