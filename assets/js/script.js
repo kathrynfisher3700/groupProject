@@ -49483,7 +49483,7 @@ $(function () {
     //------------------------------------------Youtube-------------------------------------------//
     /*\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/*/
     const apiKey = "AIzaSyCIBc4TRa2muRC06BVrTzgkkJjy0GMHYbQ";
-    
+
 
     let grabYoutubeVideo = function (name) {
         console.log(name);
@@ -49510,7 +49510,7 @@ $(function () {
 
 
     let grabYoutubeChannel = function (name) {
-        let artistName = name.replace(/\s/g,'');
+        let artistName = name.replace(/\s/g, '');
         let artistSearch = artistName.toLowerCase();
         fetch(`https://youtube.googleapis.com/youtube/v3/search?part=snippet&maxResults=1&q=${artistsSearch}official&type=channel&chart=mostPopular&key=${apiKey}`) //need to add query that inserts artist name
             .then((result) => {
@@ -49529,8 +49529,8 @@ $(function () {
                 }
             })
     };
-grabYoutubeChannel();
-grabYoutubeVideo();
+    // grabYoutubeChannel();
+    // grabYoutubeVideo();
 
     // Make the token request
     // TODO: Eventually, this will need to be wrapped in a function to request a new
@@ -49946,8 +49946,9 @@ grabYoutubeVideo();
     // Event listener for genre buttons
     $('#popular-genres').on("click", function (e) {
         e.preventDefault();
+        console.log("omg");
 
-        $('#artist_info').addClass('is-hidden');
+        // $('#artist_info').addClass('is-hidden');
 
         if (e.target.nodeName == 'BUTTON') {
             let clickedButton = e.target;
@@ -49974,7 +49975,7 @@ grabYoutubeVideo();
                 // Old way -------
                 // May be used to implement the "Explore!" button if we choose to
                 // getNewSubGenres(clickedButton.dataset.genre);
-                console.log("Let's Explore!");
+                // console.log("Let's Explore!");
             }
 
             // New function to pull from our existing arrays and populate sub genres
@@ -49983,13 +49984,7 @@ grabYoutubeVideo();
 
         }
         else {
-            let dropdownButton = $('#prev_artists_dropdown');
-            if (dropdownButton.hasClass('is-active')) {
-                dropdownButton.removeClass('is-active');
-            }
-            else {
-                dropdownButton.addClass('is-active');
-            }
+
         }
     })
 
@@ -50033,11 +50028,34 @@ grabYoutubeVideo();
     })
 
     // Event listener for dropdown of your artists
-    $('#dropdown_buttons').on("click", function (e) {
+    $('#prev_artists_dropdown').on("click", function (e) {
         e.preventDefault();
 
-        if (e.target.nodeName == 'BUTTON') {
-            let nextArtist = e.target.text();
+
+        // Any button clicked should open or close the dropdown
+        // if (e.target.nodeName == 'BUTTON') {
+        // If the dropdown is hidden, show it
+        // If it's shown, hide it
+        let dropdownButton = $('#prev_artists_dropdown');
+
+        if (dropdownButton.hasClass('is-active')) {
+            dropdownButton.removeClass('is-active');
+        }
+        else {
+            dropdownButton.addClass('is-active');
+        }
+        // }
+
+        // If the button clicked is not the 'Your artists' dropdown, populate the page with artist info
+        if (e.target.nodeName == 'BUTTON' &&
+            $(e.target).text() != 'Your artists' &&
+            $(e.target).text() != 'Classical' &&
+            $(e.target).text() != 'Rock' &&
+            $(e.target).text() != 'Pop' &&
+            $(e.target).text() != 'Electronic' &&
+            $(e.target).text() != 'HipHop/R&B') {
+            console.log("hELLEOEiaETPOAEIHT");
+            let nextArtist = $(e.target).text();
             let nextID = '';
 
             // When a cached artist is clicked, it should repopulate the artist pane with information about this artist
@@ -50047,11 +50065,17 @@ grabYoutubeVideo();
 
             for (let i = 0; i < viewedArtists.length; i++) {
                 if (viewedArtists[i].name == nextArtist) {
-                    nextID = viewedArtists[i].name;
+                    nextID = viewedArtists[i].id;
                 }
             }
+            console.log("hello you there");
+            let artistInfo = $('#artist_info');
+            if (artistInfo.hasClass('is-hidden')) {
+                artistInfo.toggleClass('is-hidden');
+            }
+
+
             getArtistInfo(nextID);
-            $('#artist_info').removeClass('is-hidden');
         }
     })
 });
