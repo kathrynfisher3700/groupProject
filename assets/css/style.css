@@ -30,7 +30,7 @@ body {
 }
 
 .artists {
-    width: 35%;
+    width: 20%;
     height: 300px;
     text-align: center;
 }
@@ -92,8 +92,6 @@ body {
     justify-content: space-between;
 }
 
-
-
 aside {
     display: flex;
     width: 40%;
@@ -110,3 +108,9 @@ footer{
     font-size: 12px;
 }
 
+<<<<<<< HEAD
+#subgenres_list {
+    flex-wrap: wrap;
+}
+=======
+>>>>>>> 63990cc33f79c48e8ffff27ec8c841d23a7982ce
