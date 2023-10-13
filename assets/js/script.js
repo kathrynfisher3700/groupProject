@@ -49443,6 +49443,7 @@ $(function () {
     let genres = [];
     let artists = [];
 
+    let artistObj = {};
     let viewedArtists = [];
 
     // Variables for querying Spotify API
@@ -49801,23 +49802,10 @@ $(function () {
                 // };
                 // Store that into local storage
 
-                let artistObj = {
+                artistObj = {
                     name: data.name,
                     id: artistID
                 };
-                if (viewedArtists.length == 0) {
-                    viewedArtists.push(artistObj);
-                }
-                for (let i = 0; i < viewedArtists.length; i++) {
-                    if (viewedArtists[i].name == artistObj.name) {
-                        break;
-                    }
-                    else if (i == viewedArtists.length - 1) {
-                        viewedArtists.push(artistObj);
-                    }
-                    else continue;
-                }
-                console.log(viewedArtists);
 
                 // Update local storage
                 updateLocalStorage();
@@ -49864,12 +49852,38 @@ $(function () {
         sortByPopularity(genresArr);
     }
 
+    function addToViewedArtists() {
+        
+        if (viewedArtists.length == 0) {
+            viewedArtists.push(artistObj);
+        }
+        for (let i = 0; i < viewedArtists.length; i++) {
+            if (viewedArtists[i].name == artistObj.name) {
+                break;
+            }
+            else if (i == viewedArtists.length - 1) {
+                viewedArtists.push(artistObj);
+            }
+            else continue;
+        }
+        console.log(viewedArtists);
+    }
+
     function updateLocalStorage() {
         localStorage.setItem('artists', JSON.stringify(viewedArtists));
     }
 
     function retrieveFromLocalStorage() {
         viewedArtists = JSON.parse(localStorage.getItem('artists'));
+        populateDropdown();
+    }
+
+    function populateDropdown() {
+        console.log(viewedArtists);
+        for (let i=0; i<viewedArtists.length; i++) {
+            let artistButton = $('<button>').text(viewedArtists[i].name);
+            $('#dropdown_buttons').append(artistButton);
+        }
     }
 
     function capitalizeFirstLetter(word) {
@@ -49884,7 +49898,7 @@ $(function () {
         await getToken();
         retrieveFromLocalStorage();
         // $('#artist_info').addClass('is-hidden');
-        console.log(viewedArtists);
+        // console.log(viewedArtists);
         // On page load, populate Explore dropdown with previously searched artists
 
     }
