@@ -49500,6 +49500,7 @@ $(function () {
                     const videoLink = `"https://youtube.com/embed/${videoId}"`; //EMBED YOUTUBE VIDEO LINK
                     console.log(videoLink);
                     let videoPlacement = document.querySelector(".videoPlacement") //GRABS <IFRAME> ELEMENT
+                    videoPlacement.attr("src", "") //REMOVES CURRENT SRC
                     videoPlacement.attr("src",videoLink);  //GET VIDEOLINK INTO <IFRAME> HTML
                 }
             })
@@ -49516,10 +49517,11 @@ $(function () {
                 let videos = data.items;
                 for (video of videos) {
                     let channelId = video.id.channelId;
-                    const videoLink = `"https://youtube.com/channel/${channelId}"`; //this is video link
-                    // let channelPlacement = document.querySelector(".channelPlacement"); //need div to put link to channel 
-                    // channelPlacement.innerHTML = "Check out this 's Youtube Channel here:" + videoLink; //TEXT to add for channel link
-                    console.log(videoLink);
+                    const channelLink = `"https://youtube.com/channel/${channelId}"`; //this is video link
+                    let channelPlacement = document.querySelector(".channel_link"); 
+                    channelPlacement.attr("href", '')
+                    channelPlacement.attr("href", channelLink)
+                    console.log(channelLink);
                 }
             })
     };
@@ -49740,14 +49742,14 @@ $(function () {
 
         // CHANGE THIS TO an internal search, NOT an API call
         // Query API for 50 artists in this sub genre
-        console.log(`current genre: ${currentGenre}`);
-        console.log(subGenreArtists);
-        console.log(subGenre);
-        // Search through artists array for the first 5 artists who have subGenre in their genres array
+        // console.log(`current genre: ${currentGenre}`);
+        // console.log(subGenreArtists);
+        // console.log(subGenre);
+        // // Search through artists array for the first 5 artists who have subGenre in their genres array
         for (let i = 0; i < subGenreArtists.length; i++) {
             // If the artist has subGenre in their genres
             if (subGenreArtists[i].genres.includes(subGenre)) {
-                console.log(subGenreArtists[i]);
+                // console.log(subGenreArtists[i]);
 
                 // Create a button with artist's name and append it to the Artists div
                 let newButton = $('<button>').text(subGenreArtists[i].name);
@@ -49808,20 +49810,13 @@ $(function () {
                 };
 
                 // Update local storage
-                updateLocalStorage();
+                // updateLocalStorage();
 
                 // Grab the image url
                 let imageURL = data.images[0].url;
                 let bioBox = $('#artist_bio');
                 bioBox.empty();
                 bioBox.append($('<u>About</u>'));
-
-                // Set the background of the div to a picture of his
-                // THIS WILL CHANGE
-                // Placeholder of image for now
-                // bioBox.css(`background-image`, `url('${imageURL}')`);
-                // bioBox.css('background-size', 'contain');
-                // bioBox.css('background-repeat', 'no-repeat');
 
                 // Add info to this section
                 let artistName = $('<p>').text(data.name);
@@ -49830,6 +49825,10 @@ $(function () {
                 bioBox.append(followersInfo);
                 let artistImage = $(`<img src=${imageURL}>`);
                 bioBox.append(artistImage);
+                let followButton = $(`<button>Click to follow!</button>`);
+                followButton.addClass('button is-info');
+                followButton.attr('id', 'follow_here');
+                bioBox.append(followButton);
 
                 // Add youtube video
                 grabYoutubeVideo(artistName);
@@ -49852,10 +49851,16 @@ $(function () {
         sortByPopularity(genresArr);
     }
 
+    // Called when new "add to my list" button is clicked
+    // Adds the currently viewed artist to viewed artists array and to local storage
     function addToViewedArtists() {
-        
+        console.log(viewedArtists);
+
         if (viewedArtists.length == 0) {
             viewedArtists.push(artistObj);
+        }
+        if (viewedArtists.length == 5) {
+            viewedArtists.shift();
         }
         for (let i = 0; i < viewedArtists.length; i++) {
             if (viewedArtists[i].name == artistObj.name) {
@@ -49866,7 +49871,10 @@ $(function () {
             }
             else continue;
         }
-        console.log(viewedArtists);
+        // console.log(viewedArtists);
+
+        updateLocalStorage();
+        populateDropdown();
     }
 
     function updateLocalStorage() {
@@ -49875,10 +49883,14 @@ $(function () {
 
     function retrieveFromLocalStorage() {
         viewedArtists = JSON.parse(localStorage.getItem('artists'));
-        populateDropdown();
+        if (viewedArtists == null) {
+            viewedArtists = [];
+        }
+        // populateDropdown();
     }
 
     function populateDropdown() {
+        $('#dropdown_buttons').empty();
         console.log(viewedArtists);
         for (let i=0; i<viewedArtists.length; i++) {
             let artistButton = $('<button>').text(viewedArtists[i].name);
@@ -49896,7 +49908,8 @@ $(function () {
 
     async function generate() {
         await getToken();
-        retrieveFromLocalStorage();
+        await retrieveFromLocalStorage();
+        populateDropdown();
         // $('#artist_info').addClass('is-hidden');
         // console.log(viewedArtists);
         // On page load, populate Explore dropdown with previously searched artists
@@ -49999,6 +50012,15 @@ $(function () {
             // console.log(clickedButton);
             // console.log($(clickedButton).data('id'));
             getArtistInfo($(clickedButton).data('id'));
+        }
+    })
+
+    // Event listener for artist bio section
+    $('#artist_bio').on("click", function (e) {
+        e.preventDefault();
+
+        if (e.target.nodeName == 'BUTTON') {
+            addToViewedArtists();
         }
     })
 });
