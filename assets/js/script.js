@@ -49482,27 +49482,27 @@ $(function () {
 
 
 
-    let grabYoutube = function () {
-        fetch(`https://www.googleapis.com/youtube/v3/videos?id=${artist}&key=${apiKey}&part=snippet`)
-            .then((result) => {
-                return result.json();
-                console.log(result);
-            }).then((data) => {
-                console.log(data)
-                let videos = data.items;
-                for (video of videos) {
-                    let videoId = video.id.videoId;
-                    const videoLink = `width="420" height="345" src="https://youtube.com/embed/${videoId}"`; //EMBED YOUTUBE VIDEO
-                    let videoPlacement = document.querySelector(".videoPlacement")
-                    //NEED A WAY TO GET VIDEOLINK INTO <IFRAME> HTML
-                    console.log(videoLink);
-                }
-            })
-    };
+let grabYoutubeVideo = function() {
+    fetch(`https://youtube.googleapis.com/youtube/v3/search?part=snippet&maxResults=1&q=${artist}official&type=video&key=${apiKey}`)
+    .then((result) => {
+        return result.json();
+        console.log(result);
+    }).then((data) => {
+        console.log(data)
+        let videos = data.items;
+        for (video of videos) {
+            let videoId = video.id.videoId;
+            const videoLink = `width="420" height="345" src="https://youtube.com/embed/${videoId}"`; //EMBED YOUTUBE VIDEO
+            let videoPlacement = document.querySelector(".videoPlacement")
+            //NEED A WAY TO GET VIDEOLINK INTO <IFRAME> HTML
+            console.log(videoLink);
+        }
+    })
+};
 
 
     let grabYoutubeChannel = function () {
-        fetch(`https://youtube.googleapis.com/youtube/v3/search?part=snippet&maxResults=3&q=coldplay&type=channel&chart=mostPopular&key=${apiKey}`)
+        fetch(`https://youtube.googleapis.com/youtube/v3/search?part=snippet&maxResults=1&q=brunomarsofficial&type=channel&chart=mostPopular&key=${apiKey}`) //need to add query that inserts artist name
             .then((result) => {
                 return result.json();
                 console.log(result);
@@ -49518,7 +49518,8 @@ $(function () {
                 }
             })
     };
-    grabYoutubeChannel();
+grabYoutubeChannel();
+grabYoutubeVideo();
 
     // Make the token request
     // TODO: Eventually, this will need to be wrapped in a function to request a new
