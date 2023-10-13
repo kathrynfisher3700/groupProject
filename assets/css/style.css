@@ -13,7 +13,9 @@ body {
     background-color: #EA8CFF;
 }
 
-
+#popular-genres {
+    background-color: lightskyblue;
+}
 
 .wrapper2 {
     width: 75%;
@@ -106,6 +108,9 @@ footer{
     font-size: 12px;
 }
 
+<<<<<<< HEAD
 #subgenres_list {
     flex-wrap: wrap;
 }
+=======
+>>>>>>> 63990cc33f79c48e8ffff27ec8c841d23a7982ce

@@ -49921,6 +49921,7 @@ $(function () {
                 // Set up artist and genre variables to pass to function to populate page
                 let newGenre = clickedButton.dataset.genre;
 
+<<<<<<< HEAD
                 if (newGenre == 'r&b') {
                     newGenre = 'hipHop';
                 }
@@ -49941,10 +49942,15 @@ $(function () {
                 // getNewSubGenres(clickedButton.dataset.genre);
                 console.log("Let's Explore!");
             }
+=======
+            // Call function to populate screen
+            populateSubGenres(newArtistArr, newGenresArr);
+>>>>>>> 63990cc33f79c48e8ffff27ec8c841d23a7982ce
 
             // New function to pull from our existing arrays and populate sub genres
 
 
+<<<<<<< HEAD
 
         }
         else {
@@ -49985,6 +49991,11 @@ $(function () {
             // console.log(clickedButton);
             // console.log($(clickedButton).data('id'));
             getArtistInfo($(clickedButton).data('id'));
+=======
+            // Old way -------
+            // May be used to implement the "Explore!" button if we choose to
+            //getNewSubGenres(clickedButton.dataset.genre);
+>>>>>>> 63990cc33f79c48e8ffff27ec8c841d23a7982ce
         }
     })
 });
