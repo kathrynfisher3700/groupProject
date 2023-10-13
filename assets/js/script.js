@@ -49443,6 +49443,7 @@ $(function () {
     let genres = [];
     let artists = [];
 
+    let artistObj = {};
     let viewedArtists = [];
 
     // Variables for querying Spotify API
@@ -49482,11 +49483,11 @@ $(function () {
     //------------------------------------------Youtube-------------------------------------------//
     /*\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/*/
     const apiKey = "AIzaSyAi35TA2LU4-0dUTqpU9iXnaZKSVYINmmg";
-    artist = "coldplay"
-
-
+    
 
     let grabYoutubeVideo = function (name) {
+        let artistName = str.replace(/\s/g,'');
+        let artistSearch = artistName.toLowerCase;
         fetch(`https://youtube.googleapis.com/youtube/v3/search?part=snippet&maxResults=1&q=${artist}official&type=video&key=${apiKey}`)
             .then((result) => {
                 return result.json();
@@ -49496,10 +49497,10 @@ $(function () {
                 let videos = data.items;
                 for (video of videos) {
                     let videoId = video.id.videoId;
-                    const videoLink = `width="420" height="345" src="https://youtube.com/embed/${videoId}"`; //EMBED YOUTUBE VIDEO
-                    let videoPlacement = document.querySelector(".videoPlacement")
-                    //NEED A WAY TO GET VIDEOLINK INTO <IFRAME> HTML
+                    const videoLink = `"https://youtube.com/embed/${videoId}"`; //EMBED YOUTUBE VIDEO LINK
                     console.log(videoLink);
+                    let videoPlacement = document.querySelector(".videoPlacement") //GRABS <IFRAME> ELEMENT
+                    videoPlacement.attr("src",videoLink);  //GET VIDEOLINK INTO <IFRAME> HTML
                 }
             })
     };
@@ -49517,7 +49518,7 @@ $(function () {
                     let channelId = video.id.channelId;
                     const videoLink = `"https://youtube.com/channel/${channelId}"`; //this is video link
                     // let channelPlacement = document.querySelector(".channelPlacement"); //need div to put link to channel 
-                    // channelPlacement.innerHTML = "Check out this artist's Youtube Channel here:" + videoLink; //TEXT to add for channel link
+                    // channelPlacement.innerHTML = "Check out this 's Youtube Channel here:" + videoLink; //TEXT to add for channel link
                     console.log(videoLink);
                 }
             })
@@ -49801,23 +49802,10 @@ $(function () {
                 // };
                 // Store that into local storage
 
-                let artistObj = {
+                artistObj = {
                     name: data.name,
                     id: artistID
                 };
-                if (viewedArtists.length == 0) {
-                    viewedArtists.push(artistObj);
-                }
-                for (let i = 0; i < viewedArtists.length; i++) {
-                    if (viewedArtists[i].name == artistObj.name) {
-                        break;
-                    }
-                    else if (i == viewedArtists.length - 1) {
-                        viewedArtists.push(artistObj);
-                    }
-                    else continue;
-                }
-                console.log(viewedArtists);
 
                 // Update local storage
                 updateLocalStorage();
@@ -49864,12 +49852,38 @@ $(function () {
         sortByPopularity(genresArr);
     }
 
+    function addToViewedArtists() {
+        
+        if (viewedArtists.length == 0) {
+            viewedArtists.push(artistObj);
+        }
+        for (let i = 0; i < viewedArtists.length; i++) {
+            if (viewedArtists[i].name == artistObj.name) {
+                break;
+            }
+            else if (i == viewedArtists.length - 1) {
+                viewedArtists.push(artistObj);
+            }
+            else continue;
+        }
+        console.log(viewedArtists);
+    }
+
     function updateLocalStorage() {
         localStorage.setItem('artists', JSON.stringify(viewedArtists));
     }
 
     function retrieveFromLocalStorage() {
         viewedArtists = JSON.parse(localStorage.getItem('artists'));
+        populateDropdown();
+    }
+
+    function populateDropdown() {
+        console.log(viewedArtists);
+        for (let i=0; i<viewedArtists.length; i++) {
+            let artistButton = $('<button>').text(viewedArtists[i].name);
+            $('#dropdown_buttons').append(artistButton);
+        }
     }
 
     function capitalizeFirstLetter(word) {
@@ -49884,7 +49898,7 @@ $(function () {
         await getToken();
         retrieveFromLocalStorage();
         // $('#artist_info').addClass('is-hidden');
-        console.log(viewedArtists);
+        // console.log(viewedArtists);
         // On page load, populate Explore dropdown with previously searched artists
 
     }
