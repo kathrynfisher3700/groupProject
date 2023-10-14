@@ -47136,7 +47136,6 @@ $(function () {
             "reading indie",
             "bow pop",
             "pop violin",
-            "deep pop edm",
             "viral trap",
             "liverpool indie",
             "dark pop",
@@ -49468,7 +49467,7 @@ $(function () {
 
     let grabYoutubeChannel = function (name) {
         let artistName = name.replace(/\s/g, '');
-        let artistSearch = artistName.toLowerCase();
+        let artistsSearch = artistName.toLowerCase();
         fetch(`https://youtube.googleapis.com/youtube/v3/search?part=snippet&maxResults=1&q=${artistsSearch}official&type=channel&chart=mostPopular&key=${apiKey}`) //need to add query that inserts artist name
             .then((result) => {
                 return result.json();
@@ -49764,7 +49763,8 @@ $(function () {
             })
             .then(data => {
                 console.log(data);
-
+                grabYoutubeChannel(data.name);
+                
                 // Local storage implementation
                 // Local storage will have an array of objects
                 // Each will be named by the artist name
