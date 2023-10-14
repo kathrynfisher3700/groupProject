@@ -1,6 +1,12 @@
 @import "https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css";
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap');
 
+:root {
+    --spotify-green: #1DB954;
+    --spotify-black: #191414;
+    --main-background: #a189fd;
+}
+
 * {
     box-sizing: border-box;
     padding: 5px;
@@ -9,13 +15,23 @@
     margin: 0;
 }
 
+html {
+    /* background-color: #EA8CFF; */
+    background-color: var(--main-background);
+}
+
 body {
-    background-color: #EA8CFF;
+    /* background-color: #EA8CFF; */
+    background-color:var(--main-background);
     height: 100%;
+
 }
 
 #popular-genres {
-    background-color: lightskyblue;
+    /* background-color: lightskyblue; */
+    background-color: var(--main-background);
+    color: var(--spotify-black);
+
 }
 
 .wrapper2 {
@@ -31,6 +47,12 @@ body {
 }
 
 .artists {
+    width: 30%;
+    height: 300px;
+    text-align: center;
+}
+
+.about{
     width: 20%;
     height: 300px;
     text-align: center;
@@ -99,6 +121,10 @@ body {
     border-radius: 5px;
 }
 
+.modal-card-body {
+    width: 100%;
+}
+
 /* aside {
     display: flex;
     width: 40%;
@@ -123,15 +149,35 @@ footer{
     flex-wrap: wrap;
 }
 
+/* #dropdown_buttons {
+    background-color: #65C5F5;
+} */
+
+#drop_button, #dropdown_buttons, .modal-card, .modal-card-foot {
+    background-color: var(--spotify-green)
+}
+
+#li_0 {
+    background-color: var(--spotify-green);
+}
+
+#span_0 {
+    color: var(--spotify-black);
+}
+
 @media only screen and (max-width: 1100px) {
     .wrapper {
         width: 25%;
     }
 
-    /* .container {
+    #popular-genres {
+        width: 100%;
+    }
+
+    .container {
         display: flex;
         flex-direction: column;
-    } */
+    }
 
     .Vcontainer {
         display: flex;
@@ -190,8 +236,15 @@ footer{
         height: auto;
         width: 100%;
         display: flex;
+        flex-direction: column;
         flex-wrap: wrap;
+        justify-content: center;
     }
+
+    .about button{
+        align-self: center;
+    }
+
     .videos {
         height: auto;
         width: 100%;

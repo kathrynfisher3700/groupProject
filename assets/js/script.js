@@ -46667,7 +46667,6 @@ $(function () {
             "hip hop",
             "pop rap",
             "rap",
-            "canadian contemporary r&b",
             "art pop",
             "colombian pop",
             "pop reggaeton",
@@ -46676,7 +46675,6 @@ $(function () {
             "urbano latino",
             "classic oklahoma country",
             "modern country pop",
-            "r&b",
             "dance pop",
             "dfw rap",
             "melodic rap",
@@ -46711,7 +46709,6 @@ $(function () {
             "k-pop girl group",
             "east coast hip hop",
             "gangster rap",
-            "pop r&b",
             "modern alternative rock",
             "pov: indie",
             "post-teen pop",
@@ -46744,7 +46741,6 @@ $(function () {
             "bachata",
             "latin hip hop",
             "latin viral pop",
-            "r&b en espanol",
             "afrobeats",
             "azontobeats",
             "dancehall",
@@ -46764,7 +46760,6 @@ $(function () {
             "ohio hip hop",
             "emo",
             "atl hip hop",
-            "contemporary r&b",
             "south carolina hip hop",
             "trap soul",
             "alternative metal",
@@ -46776,7 +46771,6 @@ $(function () {
             "indie rock italiano",
             "italian pop",
             "panamanian pop",
-            "uk contemporary r&b",
             "funk carioca",
             "pop nacional",
             "indie pop",
@@ -46808,7 +46802,6 @@ $(function () {
             "trap queen",
             "alternative pop rock",
             "moombahton",
-            "bedroom r&b",
             "bachata dominicana",
             "tropical",
             "seattle hip hop",
@@ -46850,7 +46843,6 @@ $(function () {
             "chill pop",
             "neo-singer-songwriter",
             "drill francais",
-            "r&b francais",
             "rap francais",
             "underground hip hop",
             "old school atlanta hip hop",
@@ -46883,7 +46875,6 @@ $(function () {
             "conscious hip hop",
             "philly rap",
             "st louis rap",
-            "afro r&b",
             "alte",
             "gauze pop",
             "shiver pop",
@@ -47036,7 +47027,6 @@ $(function () {
             "australian country",
             "portland hip hop",
             "australian indie folk",
-            "alternative r&b",
             "chicago indie",
             "album rock",
             "dance rock",
@@ -47084,7 +47074,6 @@ $(function () {
             "indie electropop",
             "rage rap",
             "vapor twitch",
-            "korean r&b",
             "funk metal",
             "scottish new wave",
             "downtempo",
@@ -47103,7 +47092,6 @@ $(function () {
             "melbourne bounce international",
             "australian rock",
             "korean talent show",
-            "cantopop",
             "texas country",
             "ccm",
             "christian alternative rock",
@@ -47324,7 +47312,6 @@ $(function () {
             "british modern classical",
             "victorian britain",
             "canadian classical piano",
-            "canadian contemporary r&b",
             "turkish classical performance",
             "galante era",
             "russian classical piano",
@@ -48001,7 +47988,6 @@ $(function () {
             "south african pop",
             "south african pop dance",
             "french indie pop",
-            "french rock",
             "honky tonk",
             "texas pop punk",
             "canadian country",
@@ -48281,7 +48267,6 @@ $(function () {
             "electropop",
             "microhouse",
             "lithuanian edm",
-            "alternative r&b",
             "escape room",
             "persian electronic",
             "melodic dubstep",
@@ -48537,7 +48522,6 @@ $(function () {
             "russian experimental electronic",
             "spanish indie pop",
             "polish indie",
-            "r&b argentino",
             "south african electronic",
             "neo-classical",
             "j-indie",
@@ -48706,7 +48690,6 @@ $(function () {
             "hypertrance",
             "new isolationism",
             "weightless",
-            "neo r&b",
             "synthetic classical",
             "finnish electronic",
             "grimewave",
@@ -48763,10 +48746,8 @@ $(function () {
             "nu-metalcore"
         ],
         "hipHopSubGenres": [
-            "canadian contemporary r&b",
             "canadian pop",
             "pop",
-            "r&b",
             "rap",
             "reggaeton",
             "reggaeton flow",
@@ -48778,7 +48759,6 @@ $(function () {
             "edm",
             "pop dance",
             "pop rap",
-            "pop r&b",
             "brostep",
             "dutch edm",
             "house",
@@ -48791,7 +48771,6 @@ $(function () {
             "merseybeat",
             "psychedelic rock",
             "rock",
-            "r&b en espanol",
             "spanish hip hop",
             "urbano espanol",
             "soul",
@@ -48803,17 +48782,13 @@ $(function () {
             "brooklyn drill",
             "nyc rap",
             "atl hip hop",
-            "contemporary r&b",
             "south carolina hip hop",
             "urban contemporary",
             "hip hop",
             "southern hip hop",
             "trap soul",
-            "alternative r&b",
-            "uk contemporary r&b",
             "uk pop",
             "argentine hip hop",
-            "r&b argentino",
             "trap argentino",
             "kentucky hip hop",
             "album rock",
@@ -48826,7 +48801,6 @@ $(function () {
             "houston rap",
             "trap queen",
             "bedroom pop",
-            "bedroom r&b",
             "arrocha",
             "batidao romantico",
             "funk mtg",
@@ -48842,7 +48816,6 @@ $(function () {
             "drill francais",
             "french hip hop",
             "pop urbaine",
-            "r&b francais",
             "rap francais",
             "chicago bop",
             "chicago drill",
@@ -48855,18 +48828,14 @@ $(function () {
             "britpop",
             "madchester",
             "permanent wave",
-            "indonesian r&b",
-            "afro r&b",
             "alte",
             "nigerian pop",
-            "chill r&b",
             "boom bap espanol",
             "rap conciencia",
             "rap politico",
             "venezuelan hip hop",
             "bolero",
             "cancion melodica",
-            "r&b brasileiro",
             "rap cearense",
             "trap brasileiro",
             "pop rap brasileiro",
@@ -48876,7 +48845,6 @@ $(function () {
             "country road",
             "indie soul",
             "indietronica",
-            "dark r&b",
             "hyperpop",
             "sped up",
             "belgian hip hop",
@@ -48951,25 +48919,21 @@ $(function () {
             "latin hip hop",
             "rap boricua",
             "basshall",
-            "experimental r&b",
             "boston hip hop",
             "gruperas inmortales",
             "grupero romantico",
             "british folk",
             "folk",
-            "indie r&b",
             "latin pop",
             "belgian dance",
             "belgian edm",
             "opm",
             "pinoy alternative rap",
             "pinoy hip hop",
-            "pinoy r&b",
             "pinoy trap",
             "afrofuturismo brasileiro",
             "rap mineiro",
             "german hip hop",
-            "german r&b",
             "new york drill",
             "modern hard rock",
             "afrofuturism",
@@ -49011,7 +48975,6 @@ $(function () {
             "philly rap",
             "singer-songwriter pop",
             "k-pop",
-            "korean r&b",
             "brighton indie",
             "progressive house",
             "british soul",
@@ -49033,7 +48996,6 @@ $(function () {
             "bc underground hip hop",
             "country rap",
             "maga rap",
-            "scandinavian r&b",
             "swedish soul",
             "protopunk",
             "tejano",
@@ -49098,7 +49060,6 @@ $(function () {
             "progressive bluegrass",
             "stomp and holler",
             "gospel",
-            "gospel r&b",
             "atlanta bass",
             "crunk",
             "old school atlanta hip hop",
@@ -49184,7 +49145,6 @@ $(function () {
             "indie hip hop",
             "alabama indie",
             "underground hip hop",
-            "australian r&b",
             "barbadian pop",
             "reggae fusion",
             "korean pop",
@@ -49216,7 +49176,6 @@ $(function () {
             "new orleans rap",
             "contemporary jazz",
             "modern jazz piano",
-            "neo r&b",
             "classic girl group",
             "russian edm",
             "flute rock",
@@ -49262,7 +49221,6 @@ $(function () {
             "emo rap",
             "bristol indie",
             "crank wave",
-            "chinese r&b",
             "mandopop",
             "taiwan pop",
             "taiwan singer-songwriter",
@@ -49336,7 +49294,6 @@ $(function () {
             "ska punk",
             "skate punk",
             "jangle pop",
-            "dutch r&b",
             "south african rock",
             "bay area indie",
             "neo-psychedelic",
@@ -49510,7 +49467,7 @@ $(function () {
 
 
     let grabYoutubeChannel = function (name) {
-        let artistName = name.replace(/\s/g,'');
+        let artistName = name.replace(/\s/g, '');
         let artistSearch = artistName.toLowerCase();
         fetch(`https://youtube.googleapis.com/youtube/v3/search?part=snippet&maxResults=1&q=${artistsSearch}official&type=channel&chart=mostPopular&key=${apiKey}`) //need to add query that inserts artist name
             .then((result) => {
@@ -49529,8 +49486,8 @@ $(function () {
                 }
             })
     };
-// grabYoutubeChannel();
-// grabYoutubeVideo();
+    // grabYoutubeChannel();
+    // grabYoutubeVideo();
 
     // Make the token request
     // TODO: Eventually, this will need to be wrapped in a function to request a new
@@ -49691,6 +49648,11 @@ $(function () {
         // Removes all children from Artists div (where buttons are going)
         $('#subgenres_artists').empty();
         $('#subgenres_artists').append($('<u>Artists</u>'));
+        $('#artist_bio').empty();
+        $('#artist_bio').append($('<u>More info</u>'));
+
+
+
 
         let tempGenresArr = [];
         // Loops from 1 to 5 to match up with span tag IDs
@@ -49719,6 +49681,8 @@ $(function () {
         $('#subgenres_artists').empty();
         $('#subgenres_artists').append($('<u>Artists</u>'));
 
+        console.log(`current genre is: ${currentGenre}`);
+        console.log(`sub genre is: ${subGenre}`);
 
         // FIX THIS
         let subGenreArtists = '';
@@ -49757,8 +49721,11 @@ $(function () {
 
                 // Create a button with artist's name and append it to the Artists div
                 let newButton = $('<button>').text(subGenreArtists[i].name);
-                newButton.addClass('button is-success is-responsive');
+                newButton.addClass('button is-responsive button-wrap-text');
                 newButton.css('padding', '1px');
+                newButton.css('height', '4em');
+                newButton.css('white-space', 'normal');
+                newButton.css('background-color', '#1DB954');
                 newButton.data('id', subGenreArtists[i].id);
                 $('#subgenres_artists').append(newButton);
 
@@ -49776,7 +49743,7 @@ $(function () {
 
     // Gets info about the artist with a spotify API call
     function getArtistInfo(artistID) {
-        // console.log(artistID);
+        console.log(artistID);
 
         // Get Spotify artist object
         const spotifyEndpoint = `https://api.spotify.com/v1/artists/${artistID}`;
@@ -49820,18 +49787,22 @@ $(function () {
                 let imageURL = data.images[0].url;
                 let bioBox = $('#artist_bio');
                 bioBox.empty();
-                bioBox.append($('<u>About</u>'));
+                bioBox.append($('<u>More info</u>'));
 
                 // Add info to this section
                 let artistName = $('<p>').text(data.name);
+                artistName.css('font-weight', 'bold');
+                artistName.css('color', '#485FC7');
                 bioBox.append(artistName);
                 let followersInfo = $('<p>').text(`Followers on Spotify: ${data.followers.total.toLocaleString()}`);
                 bioBox.append(followersInfo);
                 let artistImage = $(`<img src=${imageURL}>`);
                 bioBox.append(artistImage);
-                let followButton = $(`<button>Click to follow!</button>`);
-                followButton.addClass('button is-info');
+                let followButton = $(`<button>Click to save!</button>`);
+                followButton.addClass('button is-link');
+                followButton.addClass('js-modal-trigger');
                 followButton.attr('id', 'follow_here');
+                followButton.css('background-color', 'var(--spotify-green)');
                 bioBox.append(followButton);
 
                 // Add youtube video
@@ -49863,17 +49834,23 @@ $(function () {
         if (viewedArtists.length == 0) {
             viewedArtists.push(artistObj);
         }
-        if (viewedArtists.length == 5) {
-            viewedArtists.shift();
-        }
+
         for (let i = 0; i < viewedArtists.length; i++) {
             if (viewedArtists[i].name == artistObj.name) {
+                // console.log("artist in list already");
+                // $('#modal_text').text("Artist already in your list!");
                 break;
             }
             else if (i == viewedArtists.length - 1) {
+                // console.log("at end of list, not found here, let's add them");
                 viewedArtists.push(artistObj);
+                // $('#modal_text').text("Artist added!");
             }
             else continue;
+        }
+
+        if (viewedArtists.length == 6) {
+            viewedArtists.shift();
         }
         // console.log(viewedArtists);
 
@@ -49896,14 +49873,37 @@ $(function () {
         // populateDropdown();
     }
 
+    function clearLocalStorage() {
+        viewedArtists = [];
+        localStorage.setItem('artists', JSON.stringify(viewedArtists));
+        $('#dropdown_buttons').empty();
+        if (viewedArtists.length == 0) {
+            populateDropdownPlaceholder();
+        }
+    }
+
     function populateDropdown() {
         $('#dropdown_buttons').empty();
         console.log(viewedArtists);
         for (let i = 0; i < viewedArtists.length; i++) {
             let artistButton = $('<button>').text(viewedArtists[i].name);
-            artistButton.addClass('button is-success is-responsive');
+            artistButton.addClass('button is-responsive');
+            artistButton.css('background-color', 'var(--spotify-green');
+            artistButton.css('color', 'var(--spotify-black)');
             $('#dropdown_buttons').append(artistButton);
         }
+        if (viewedArtists.length == 0) {
+            populateDropdownPlaceholder();
+        }
+    }
+
+    function populateDropdownPlaceholder() {
+        let tempPTag = $('<p>').text('(Saved artists will appear here)');
+        tempPTag.addClass('is-italic');
+        tempPTag.addClass('has-text-centered');
+        tempPTag.addClass('has-text-weight-light');
+        tempPTag.css('background-color', 'var(--spotify-green');
+        $('#dropdown_buttons').append(tempPTag);
     }
 
     function capitalizeFirstLetter(word) {
@@ -49946,13 +49946,15 @@ $(function () {
     // Event listener for genre buttons
     $('#popular-genres').on("click", function (e) {
         e.preventDefault();
+        // console.log("omg");
 
-        $('#artist_info').addClass('is-hidden');
+        // $('#artist_info').addClass('is-hidden');
 
         if (e.target.nodeName == 'BUTTON') {
             let clickedButton = e.target;
 
-            if (clickedButton.dataset.genre != 'explore') {
+            if (clickedButton.dataset.genre != undefined) {
+                // console.log(clickedButton.dataset.genre);
                 // Set up artist and genre variables to pass to function to populate page
                 let newGenre = clickedButton.dataset.genre;
 
@@ -49965,31 +49967,31 @@ $(function () {
                 let newArtistArr = `${newGenre}Artists`;
                 let newGenresArr = `${newGenre}SubGenres`;
 
+                // Handle the reset button
+                if (newGenre == 'reset') {
+                    // Call the reset function
+                    console.log("reset button clicked!");
+                    clearLocalStorage();
+                }
+                else {
+                    // Set sub genres display tab to shown
+                    $('#li_0').removeClass('is-hidden');
 
-                // Call function to populate screen
-                populateSubGenres(newGenresArr);
+                    // Set all colors of buttons back to normal
+                    console.log($('#popular-genres > button'));
+                    $('#popular-genres > button').removeClass('is-inverted');
+
+                    // Invert the colors on the button to show it was clicked
+                    $(clickedButton).addClass('is-inverted');
+
+                    // Call function to populate screen
+                    populateSubGenres(newGenresArr);
+                }
             }
-
-            else {
-                // Old way -------
-                // May be used to implement the "Explore!" button if we choose to
-                // getNewSubGenres(clickedButton.dataset.genre);
-                console.log("Let's Explore!");
-            }
-
-            // New function to pull from our existing arrays and populate sub genres
-
-
 
         }
         else {
-            let dropdownButton = $('#prev_artists_dropdown');
-            if (dropdownButton.hasClass('is-active')) {
-                dropdownButton.removeClass('is-active');
-            }
-            else {
-                dropdownButton.addClass('is-active');
-            }
+
         }
     })
 
@@ -49997,11 +49999,16 @@ $(function () {
     $('#subgenres_list').on("click", function (e) {
         e.preventDefault();
 
+        // Show aside, if hidden
+        if ($('#popular-genres').hasClass('is-hidden')) {
+            $('#popular-genres').toggleClass('is-hidden');
+        }
+
         // Show the artist pane
         $('#artist_info').removeClass('is-hidden');
         // Remove the previous info from 'About'
         $('#artist_bio').empty();
-        $('#artist_bio').append($('<u>About</u>'));
+        $('#artist_bio').append($('<u>More info</u>'));
 
 
         if (e.target.nodeName == 'SPAN') {
@@ -50029,15 +50036,39 @@ $(function () {
 
         if (e.target.nodeName == 'BUTTON') {
             addToViewedArtists();
+            $('#modal_div').addClass('is-active');
         }
     })
 
     // Event listener for dropdown of your artists
-    $('#dropdown_buttons').on("click", function (e) {
+    $('#prev_artists_dropdown').on("click", function (e) {
         e.preventDefault();
 
-        if (e.target.nodeName == 'BUTTON') {
-            let nextArtist = e.target.text();
+
+        // Any button clicked should open or close the dropdown
+        // if (e.target.nodeName == 'BUTTON') {
+        // If the dropdown is hidden, show it
+        // If it's shown, hide it
+        let dropdownButton = $('#prev_artists_dropdown');
+
+        if (dropdownButton.hasClass('is-active')) {
+            dropdownButton.removeClass('is-active');
+        }
+        else {
+            dropdownButton.addClass('is-active');
+        }
+        // }
+
+        // If the button clicked is not the 'Your artists' dropdown, populate the page with artist info
+        if (e.target.nodeName == 'BUTTON' &&
+            $(e.target).text() != 'Your artists' &&
+            $(e.target).text() != 'Classical' &&
+            $(e.target).text() != 'Rock' &&
+            $(e.target).text() != 'Pop' &&
+            $(e.target).text() != 'Electronic' &&
+            $(e.target).text() != 'HipHop/R&B') {
+            console.log("hELLEOEiaETPOAEIHT");
+            let nextArtist = $(e.target).text();
             let nextID = '';
 
             // When a cached artist is clicked, it should repopulate the artist pane with information about this artist
@@ -50047,12 +50078,78 @@ $(function () {
 
             for (let i = 0; i < viewedArtists.length; i++) {
                 if (viewedArtists[i].name == nextArtist) {
-                    nextID = viewedArtists[i].name;
+                    nextID = viewedArtists[i].id;
                 }
             }
+            console.log("hello you there");
+            let artistInfo = $('#artist_info');
+            if (artistInfo.hasClass('is-hidden')) {
+                artistInfo.toggleClass('is-hidden');
+            }
+
+
             getArtistInfo(nextID);
-            $('#artist_info').removeClass('is-hidden');
         }
     })
+
+    // Event listener to close dropdown when out of focus
+    $('prev_artists_dropdown').on("focus", function (e) {
+        e.preventDefault();
+
+        if (dropdownButton.hasClass('is-active')) {
+            dropdownButton.removeClass('is-active');
+        }
+    })
+
+    // Modal close button event listener
+    $('#modal_button').on("click", function (e) {
+        e.preventDefault();
+
+        $('#modal_div').removeClass('is-active');
+    })
+
+    // Modal event listener functionality directly from Bulma
+    document.addEventListener('DOMContentLoaded', () => {
+        // Functions to open and close a modal
+        function openModal($el) {
+            $el.classList.add('is-active');
+        }
+
+        function closeModal($el) {
+            $el.classList.remove('is-active');
+        }
+
+        function closeAllModals() {
+            (document.querySelectorAll('.modal') || []).forEach(($modal) => {
+                closeModal($modal);
+            });
+        }
+
+        // Add a click event on buttons to open a specific modal
+        (document.querySelectorAll('.js-modal-trigger') || []).forEach(($trigger) => {
+            const modal = $trigger.dataset.target;
+            const $target = document.getElementById(modal);
+
+            $trigger.addEventListener('click', () => {
+                openModal($target);
+            });
+        });
+
+        // Add a click event on various child elements to close the parent modal
+        (document.querySelectorAll('.modal-background, .modal-close, .modal-card-head .delete, .modal-card-foot .button') || []).forEach(($close) => {
+            const $target = $close.closest('.modal');
+
+            $close.addEventListener('click', () => {
+                closeModal($target);
+            });
+        });
+
+        // Add a keyboard event to close all modals
+        document.addEventListener('keydown', (event) => {
+            if (event.code === 'Escape') {
+                closeAllModals();
+            }
+        });
+    });
 });
 
