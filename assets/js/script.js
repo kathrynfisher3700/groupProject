@@ -49438,13 +49438,13 @@ $(function () {
     /*/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\*/
     //------------------------------------------Youtube-------------------------------------------//
     /*\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/*/
-    const apiKey = "AIzaSyDCCW8k7NdVWe99k3IFAgS6qvaoQa3TrDc";
+    const apiKey = "AIzaSyAhS40znT9wLb9VnQiKz4eqdEiGM2xGYi4";
     
 
     let grabYoutubeVideo = function (name) {
         console.log(name);
-        let artistName = name.replace(/\s/g, '');
-        let artistSearch = artistName.toLowerCase();
+        let artistName = name.replace(/\s/g, ''); //REMOVES SPACES
+        let artistSearch = artistName.toLowerCase(); //ALL LOWERCASE
         console.log(artistSearch);
         fetch(`https://youtube.googleapis.com/youtube/v3/search?part=snippet&maxResults=1&q=${artistSearch}official&type=video&key=${apiKey}`)
             .then((result) => {
@@ -49455,7 +49455,7 @@ $(function () {
                 let videos = data.items;
                 for (video of videos) {
                     let videoId = video.id.videoId;
-                    const videoLink = "https://www.youtube.com/embed/"+videoId; //EMBED YOUTUBE VIDEO LINK
+                    const videoLink = "https://cdpn.io/pen/debug/oNPzxKo?v="+videoId; //EMBED YOUTUBE VIDEO LINK
                     console.log(videoLink);
                     let videoPlacement = document.querySelector(".videoPlacement"); //GRABS <IFRAME> ELEMENT
                     videoPlacement.setAttribute("src", ""); //REMOVES CURRENT SRC
@@ -49466,8 +49466,8 @@ $(function () {
 
 
     let grabYoutubeChannel = function (name) {
-        let artistName = name.replace(/\s/g, '');
-        let channelSearch = artistName.toLowerCase();
+        let artistName = name.replace(/\s/g, ''); //REMOVES SPACES
+        let channelSearch = artistName.toLowerCase(); //ALL LOWERCASE
         fetch(`https://youtube.googleapis.com/youtube/v3/search?part=snippet&maxResults=1&q=${channelSearch}official&type=channel&chart=mostPopular&key=${apiKey}`) //need to add query that inserts artist name
             .then((result) => {
                 return result.json();
@@ -49477,16 +49477,14 @@ $(function () {
                 let videos = data.items;
                 for (video of videos) {
                     let channelId = video.id.channelId;
-                    const channelLink = "https://www.youtube.com/channel/" +channelId; //this is video link
-                    let channelPlacement = document.querySelector(".channel_link");
-                    channelPlacement.setAttribute("href", "");
-                    channelPlacement.setAttribute("href", channelLink);
+                    const channelLink = "https://www.youtube.com/channel/" +channelId; //CREATES CHANNEL LINK
+                    let channelPlacement = document.querySelector(".channel_link"); //GRABS <A> ELEMENT
+                    channelPlacement.setAttribute("href", ""); //REMOVES PREVIOUS LINK
+                    channelPlacement.setAttribute("href", channelLink); //ADDS NEW LINK
                     console.log(channelLink);
                 }
             })
     };
-    // grabYoutubeChannel();
-    // grabYoutubeVideo();
 
     // Make the token request
     // TODO: Eventually, this will need to be wrapped in a function to request a new

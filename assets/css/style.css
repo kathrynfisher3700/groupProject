@@ -267,7 +267,8 @@ footer{
      }
     }
 
-video {
+
+video { 
     height: 200px;
     width: 280px;
     display: flex;
