@@ -49870,6 +49870,12 @@ $(function () {
         // populateDropdown();
     }
 
+    function clearLocalStorage() {
+        viewedArtists  = [];
+        localStorage.setItem('artists', JSON.stringify(viewedArtists));
+        $('#dropdown_buttons').empty();
+    }
+
     function populateDropdown() {
         $('#dropdown_buttons').empty();
         console.log(viewedArtists);
@@ -49947,6 +49953,7 @@ $(function () {
                 if (newGenre == 'reset') {
                     // Call the reset function
                     console.log("reset button clicked!");
+                    clearLocalStorage();
                 }
                 else {
 
