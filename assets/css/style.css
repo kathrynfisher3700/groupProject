@@ -147,6 +147,14 @@ footer{
     background-color: #1DB954;
 }
 
+#li_0 {
+    background-color: #1DB954;
+}
+
+#span_0 {
+    color: #191414;
+}
+
 @media only screen and (max-width: 1100px) {
     .wrapper {
         width: 25%;

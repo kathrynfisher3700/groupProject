@@ -49956,6 +49956,8 @@ $(function () {
                     clearLocalStorage();
                 }
                 else {
+                    // Set sub genres display tab to shown
+                    $('#li_0').removeClass('is-hidden');
 
                     // Set all colors of buttons back to normal
                     console.log($('#popular-genres > button'));
