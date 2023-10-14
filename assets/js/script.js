@@ -47092,7 +47092,6 @@ $(function () {
             "melbourne bounce international",
             "australian rock",
             "korean talent show",
-            "cantopop",
             "texas country",
             "ccm",
             "christian alternative rock",
@@ -49873,6 +49872,13 @@ $(function () {
         viewedArtists  = [];
         localStorage.setItem('artists', JSON.stringify(viewedArtists));
         $('#dropdown_buttons').empty();
+        if (viewedArtists.length == 0) {
+            let tempPTag = $('<p>').text('(Saved artists will appear here)');
+            tempPTag.addClass('is-italic');
+            tempPTag.addClass('has-text-weight-light');
+            tempPTag.css('background-color', 'var(--spotify-green');
+            $('#dropdown_buttons').append(tempPTag);
+        }
     }
 
     function populateDropdown() {
@@ -49884,6 +49890,13 @@ $(function () {
             artistButton.css('background-color', 'var(--spotify-green');
             artistButton.css('color', 'var(--spotify-black)');
             $('#dropdown_buttons').append(artistButton);
+        }
+        if (viewedArtists.length == 0) {
+            let tempPTag = $('<p>').text('(Saved artists will appear here)');
+            tempPTag.addClass('is-italic');
+            tempPTag.addClass('has-text-weight-light');
+            tempPTag.css('background-color', 'var(--spotify-green');
+            $('#dropdown_buttons').append(tempPTag);
         }
     }
 
