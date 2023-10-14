@@ -1,6 +1,12 @@
 @import "https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css";
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap');
 
+:root {
+    --spotify-green: #1DB954;
+    --spotify-black: #191414;
+    --main-background: rgb(168, 188, 208);
+}
+
 * {
     box-sizing: border-box;
     padding: 5px;
@@ -11,12 +17,12 @@
 
 html {
     /* background-color: #EA8CFF; */
-    background-color: rgb(168, 188, 208);
+    background-color: var(--main-background);
 }
 
 body {
     /* background-color: #EA8CFF; */
-    background-color: rgb(168, 188, 208);
+    background-color:var(--main-background);
 
     height: 100%;
 
@@ -24,7 +30,7 @@ body {
 
 #popular-genres {
     /* background-color: lightskyblue; */
-    background-color: rgb(168, 188, 208);
+    background-color: var(--main-background);
 
 }
 
@@ -144,15 +150,15 @@ footer{
 } */
 
 #drop_button, #dropdown_buttons {
-    background-color: #1DB954;
+    background-color: var(--spotify-green)
 }
 
 #li_0 {
-    background-color: #1DB954;
+    background-color: var(--spotify-green);
 }
 
 #span_0 {
-    color: #191414;
+    color: var(--spotify-black);
 }
 
 @media only screen and (max-width: 1100px) {

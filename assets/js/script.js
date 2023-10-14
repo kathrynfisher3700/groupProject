@@ -47989,7 +47989,6 @@ $(function () {
             "south african pop",
             "south african pop dance",
             "french indie pop",
-            "french rock",
             "honky tonk",
             "texas pop punk",
             "canadian country",
@@ -49803,7 +49802,7 @@ $(function () {
                 let followButton = $(`<button>Click to save!</button>`);
                 followButton.addClass('button is-link');
                 followButton.attr('id', 'follow_here');
-                followButton.css('background-color', '#1DB954');
+                followButton.css('background-color', 'var(--spotify-green)');
                 bioBox.append(followButton);
 
                 // Add youtube video
@@ -49882,8 +49881,8 @@ $(function () {
         for (let i = 0; i < viewedArtists.length; i++) {
             let artistButton = $('<button>').text(viewedArtists[i].name);
             artistButton.addClass('button is-responsive');
-            artistButton.css('background-color', '#1DB954');
-            artistButton.css('color', '#191414');
+            artistButton.css('background-color', 'var(--spotify-green');
+            artistButton.css('color', 'var(--spotify-black)');
             $('#dropdown_buttons').append(artistButton);
         }
     }
