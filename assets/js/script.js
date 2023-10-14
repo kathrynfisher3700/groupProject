@@ -9145,7 +9145,7 @@ $(function () {
                 ]
             },
             {
-                "name": "Howard Shore",
+                "name": "Howard Shore",             //DONE
                 "id": "0OcclcP5o8VKH2TRqSY2A7",
                 "genres": [
                     "canadian classical",
@@ -14614,7 +14614,7 @@ $(function () {
                 ]
             },
             {
-                "name": "Vadim Chaimovich",
+                "name": "Vadim Chaimovich",             //DONE
                 "id": "5EfeuEtilmCk8J49T35rqb",
                 "genres": [
                     "baltic classical piano"
@@ -17095,7 +17095,7 @@ $(function () {
                 ]
             },
             {
-                "name": "Michael Harrison",
+                "name": "Michael Harrison",                  
                 "id": "09b9oXw3X9LhhKA8GJsMDT",
                 "genres": [
                     "american 21st century classical",
@@ -49439,8 +49439,8 @@ $(function () {
     /*/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\*/
     //------------------------------------------Youtube-------------------------------------------//
     /*\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/*/
-    const apiKey = "AIzaSyCIBc4TRa2muRC06BVrTzgkkJjy0GMHYbQ";
-
+    const apiKey = "AIzaSyDCCW8k7NdVWe99k3IFAgS6qvaoQa3TrDc";
+    
 
     let grabYoutubeVideo = function (name) {
         console.log(name);
@@ -49468,8 +49468,8 @@ $(function () {
 
     let grabYoutubeChannel = function (name) {
         let artistName = name.replace(/\s/g, '');
-        let artistSearch = artistName.toLowerCase();
-        fetch(`https://youtube.googleapis.com/youtube/v3/search?part=snippet&maxResults=1&q=${artistsSearch}official&type=channel&chart=mostPopular&key=${apiKey}`) //need to add query that inserts artist name
+        let channelSearch = artistName.toLowerCase();
+        fetch(`https://youtube.googleapis.com/youtube/v3/search?part=snippet&maxResults=1&q=${channelSearch}official&type=channel&chart=mostPopular&key=${apiKey}`) //need to add query that inserts artist name
             .then((result) => {
                 return result.json();
                 console.log(result);
@@ -49479,7 +49479,7 @@ $(function () {
                 for (video of videos) {
                     let channelId = video.id.channelId;
                     const channelLink = `"https://youtube.com/channel/${channelId}"`; //this is video link
-                    let channelPlacement = document.querySelector(".channel_link");
+                    let channelPlacement = $(".channel_link");
                     channelPlacement.attr("href", '')
                     channelPlacement.attr("href", channelLink)
                     console.log(channelLink);
@@ -49764,7 +49764,7 @@ $(function () {
             })
             .then(data => {
                 console.log(data);
-
+                grabYoutubeChannel(data.name);
                 // Local storage implementation
                 // Local storage will have an array of objects
                 // Each will be named by the artist name
