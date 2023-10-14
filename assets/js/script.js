@@ -49649,7 +49649,7 @@ $(function () {
         $('#subgenres_artists').empty();
         $('#subgenres_artists').append($('<u>Artists</u>'));
         $('#artist_bio').empty();
-        $('#artist_bio').append($('<u>About</u>'));
+        $('#artist_bio').append($('<u>More info</u>'));
 
 
 
@@ -49787,7 +49787,7 @@ $(function () {
                 let imageURL = data.images[0].url;
                 let bioBox = $('#artist_bio');
                 bioBox.empty();
-                bioBox.append($('<u>About</u>'));
+                bioBox.append($('<u>More info</u>'));
 
                 // Add info to this section
                 let artistName = $('<p>').text(data.name);
@@ -50002,7 +50002,7 @@ $(function () {
         $('#artist_info').removeClass('is-hidden');
         // Remove the previous info from 'About'
         $('#artist_bio').empty();
-        $('#artist_bio').append($('<u>About</u>'));
+        $('#artist_bio').append($('<u>More info</u>'));
 
 
         if (e.target.nodeName == 'SPAN') {
