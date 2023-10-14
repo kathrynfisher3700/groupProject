@@ -49874,15 +49874,11 @@ $(function () {
     }
 
     function clearLocalStorage() {
-        viewedArtists  = [];
+        viewedArtists = [];
         localStorage.setItem('artists', JSON.stringify(viewedArtists));
         $('#dropdown_buttons').empty();
         if (viewedArtists.length == 0) {
-            let tempPTag = $('<p>').text('(Saved artists will appear here)');
-            tempPTag.addClass('is-italic');
-            tempPTag.addClass('has-text-weight-light');
-            tempPTag.css('background-color', 'var(--spotify-green');
-            $('#dropdown_buttons').append(tempPTag);
+            populateDropdownPlaceholder();
         }
     }
 
@@ -49897,12 +49893,17 @@ $(function () {
             $('#dropdown_buttons').append(artistButton);
         }
         if (viewedArtists.length == 0) {
-            let tempPTag = $('<p>').text('(Saved artists will appear here)');
-            tempPTag.addClass('is-italic');
-            tempPTag.addClass('has-text-weight-light');
-            tempPTag.css('background-color', 'var(--spotify-green');
-            $('#dropdown_buttons').append(tempPTag);
+            populateDropdownPlaceholder();
         }
+    }
+
+    function populateDropdownPlaceholder() {
+        let tempPTag = $('<p>').text('(Saved artists will appear here)');
+        tempPTag.addClass('is-italic');
+        tempPTag.addClass('has-text-centered');
+        tempPTag.addClass('has-text-weight-light');
+        tempPTag.css('background-color', 'var(--spotify-green');
+        $('#dropdown_buttons').append(tempPTag);
     }
 
     function capitalizeFirstLetter(word) {
@@ -50101,7 +50102,7 @@ $(function () {
     })
 
     // Modal close button event listener
-    $('#modal_button').on("click", function(e) {
+    $('#modal_button').on("click", function (e) {
         e.preventDefault();
 
         $('#modal_div').removeClass('is-active');
@@ -50111,44 +50112,44 @@ $(function () {
     document.addEventListener('DOMContentLoaded', () => {
         // Functions to open and close a modal
         function openModal($el) {
-          $el.classList.add('is-active');
+            $el.classList.add('is-active');
         }
-      
+
         function closeModal($el) {
-          $el.classList.remove('is-active');
+            $el.classList.remove('is-active');
         }
-      
+
         function closeAllModals() {
-          (document.querySelectorAll('.modal') || []).forEach(($modal) => {
-            closeModal($modal);
-          });
+            (document.querySelectorAll('.modal') || []).forEach(($modal) => {
+                closeModal($modal);
+            });
         }
-      
+
         // Add a click event on buttons to open a specific modal
         (document.querySelectorAll('.js-modal-trigger') || []).forEach(($trigger) => {
-          const modal = $trigger.dataset.target;
-          const $target = document.getElementById(modal);
-      
-          $trigger.addEventListener('click', () => {
-            openModal($target);
-          });
+            const modal = $trigger.dataset.target;
+            const $target = document.getElementById(modal);
+
+            $trigger.addEventListener('click', () => {
+                openModal($target);
+            });
         });
-      
+
         // Add a click event on various child elements to close the parent modal
         (document.querySelectorAll('.modal-background, .modal-close, .modal-card-head .delete, .modal-card-foot .button') || []).forEach(($close) => {
-          const $target = $close.closest('.modal');
-      
-          $close.addEventListener('click', () => {
-            closeModal($target);
-          });
+            const $target = $close.closest('.modal');
+
+            $close.addEventListener('click', () => {
+                closeModal($target);
+            });
         });
-      
+
         // Add a keyboard event to close all modals
         document.addEventListener('keydown', (event) => {
-          if (event.code === 'Escape') {
-            closeAllModals();
-          }
+            if (event.code === 'Escape') {
+                closeAllModals();
+            }
         });
-      });
+    });
 });
 
