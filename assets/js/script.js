@@ -49456,7 +49456,7 @@ $(function () {
                 let videos = data.items;
                 for (video of videos) {
                     let videoId = video.id.videoId;
-                    const videoLink = `https://youtube.com/embed/${videoId}`; //EMBED YOUTUBE VIDEO LINK
+                    const videoLink = `https://www.youtube.com/embed/${videoId}`; //EMBED YOUTUBE VIDEO LINK
                     console.log(videoLink);
                     let videoPlacement = $(".videoPlacement") //GRABS <IFRAME> ELEMENT
                     videoPlacement.attr("src", ""); //REMOVES CURRENT SRC
@@ -49478,10 +49478,10 @@ $(function () {
                 let videos = data.items;
                 for (video of videos) {
                     let channelId = video.id.channelId;
-                    const channelLink = `"https://youtube.com/channel/${channelId}"`; //this is video link
-                    let channelPlacement = $(".channel_link");
-                    channelPlacement.attr("href", '')
-                    channelPlacement.attr("href", channelLink)
+                    const channelLink = "https://www.youtube.com/channel/" +channelId; //this is video link
+                    let channelPlacement = document.querySelector(".channel_link");
+                    channelPlacement.setAttribute("href", "");
+                    channelPlacement.setAttribute("href", channelLink);
                     console.log(channelLink);
                 }
             })
