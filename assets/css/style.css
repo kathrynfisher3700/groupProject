@@ -72,7 +72,10 @@ body {
     height: 100%;
     display: flex;
     /* justify-content: space-between; */
+}
 
+.Vcontainer {
+    color: var(--spotify-black);
 }
  /*
 .content{

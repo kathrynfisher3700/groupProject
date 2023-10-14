@@ -47136,7 +47136,6 @@ $(function () {
             "reading indie",
             "bow pop",
             "pop violin",
-            "deep pop edm",
             "viral trap",
             "liverpool indie",
             "dark pop",
