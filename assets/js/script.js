@@ -49723,10 +49723,11 @@ $(function () {
 
                 // Create a button with artist's name and append it to the Artists div
                 let newButton = $('<button>').text(subGenreArtists[i].name);
-                newButton.addClass('button is-success is-responsive button-wrap-text');
+                newButton.addClass('button is-responsive button-wrap-text');
                 newButton.css('padding', '1px');
                 newButton.css('height', '4em');
                 newButton.css('white-space', 'normal');
+                newButton.css('background-color', '#1DB954');
                 newButton.data('id', subGenreArtists[i].id);
                 $('#subgenres_artists').append(newButton);
 
@@ -49800,8 +49801,9 @@ $(function () {
                 let artistImage = $(`<img src=${imageURL}>`);
                 bioBox.append(artistImage);
                 let followButton = $(`<button>Click to save!</button>`);
-                followButton.addClass('button is-info');
+                followButton.addClass('button is-link');
                 followButton.attr('id', 'follow_here');
+                followButton.css('background-color', '#1DB954');
                 bioBox.append(followButton);
 
                 // Add youtube video
@@ -49873,7 +49875,9 @@ $(function () {
         console.log(viewedArtists);
         for (let i = 0; i < viewedArtists.length; i++) {
             let artistButton = $('<button>').text(viewedArtists[i].name);
-            artistButton.addClass('button is-success is-responsive');
+            artistButton.addClass('button is-responsive');
+            artistButton.css('background-color', '#1DB954');
+            artistButton.css('color', '#191414');
             $('#dropdown_buttons').append(artistButton);
         }
     }
@@ -49938,6 +49942,13 @@ $(function () {
 
                 let newArtistArr = `${newGenre}Artists`;
                 let newGenresArr = `${newGenre}SubGenres`;
+
+                // Set all colors of buttons back to normal
+                 console.log($('#popular-genres > button'));
+                $('#popular-genres > button').removeClass('is-inverted');
+
+                // Invert the colors on the button to show it was clicked
+                $(clickedButton).addClass('is-inverted');
 
 
                 // Call function to populate screen

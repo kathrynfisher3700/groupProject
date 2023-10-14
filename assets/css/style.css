@@ -10,17 +10,22 @@
 }
 
 html {
-    background-color: #EA8CFF;
+    /* background-color: #EA8CFF; */
+    background-color: rgb(168, 188, 208);
 }
 
 body {
-    background-color: #EA8CFF;
+    /* background-color: #EA8CFF; */
+    background-color: rgb(168, 188, 208);
+
     height: 100%;
 
 }
 
 #popular-genres {
-    background-color: lightskyblue;
+    /* background-color: lightskyblue; */
+    background-color: rgb(168, 188, 208);
+
 }
 
 .wrapper2 {
@@ -134,8 +139,12 @@ footer{
     flex-wrap: wrap;
 }
 
-#dropdown_buttons {
-    background-color: #EA8CFF;
+/* #dropdown_buttons {
+    background-color: #65C5F5;
+} */
+
+#drop_button, #dropdown_buttons {
+    background-color: #1DB954;
 }
 
 @media only screen and (max-width: 1100px) {
