@@ -121,6 +121,10 @@ body {
     border-radius: 5px;
 }
 
+.modal-card-body {
+    width: 100%;
+}
+
 /* aside {
     display: flex;
     width: 40%;
@@ -149,7 +153,7 @@ footer{
     background-color: #65C5F5;
 } */
 
-#drop_button, #dropdown_buttons {
+#drop_button, #dropdown_buttons, .modal-card, .modal-card-foot {
     background-color: var(--spotify-green)
 }
 

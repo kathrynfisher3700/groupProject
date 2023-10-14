@@ -6,11 +6,30 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="assets/css/style.css" />
   <link rel="icon" type="image/x-icon" href="assets/css/background-music.jpeg" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <link rel="icon" type="image/x-icon" href="/projects/songSafari/assets/css/background-music.jpeg" />
   <title>Song Safari</title>
 </head>
 
 <body>
+  <div class="modal has-text-centered" id="modal_div">
+    <div class="modal-background"></div>
+    <div class="modal-card">
+      <header class="modal-card-head">
+        <p class="modal-card-title" id="modal_text">Artist added!</p>
+        <button class="delete" id="modal_button" aria-label="close"></button>
+      </header>
+      <section class="modal-card-body">
+        Keep in mind, only your five most recent artists will be saved. 
+        <br>---Explore genres, find your groove!---
+        
+      </section>
+      <footer class="modal-card-foot has-text-centered">
+        <p class="has-text-centered">Brought to you by the <i style="font-size:24px" class="fa">&#xf1bc;</i>Spotify  public API</p>
+      </footer>
+    </div>
+  </div>
+
   <header class="header">
     <h1>Welcome to SongSafari!</h1>
   </header>

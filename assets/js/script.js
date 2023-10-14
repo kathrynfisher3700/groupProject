@@ -49800,6 +49800,7 @@ $(function () {
                 bioBox.append(artistImage);
                 let followButton = $(`<button>Click to save!</button>`);
                 followButton.addClass('button is-link');
+                followButton.addClass('js-modal-trigger');
                 followButton.attr('id', 'follow_here');
                 followButton.css('background-color', 'var(--spotify-green)');
                 bioBox.append(followButton);
@@ -49836,10 +49837,14 @@ $(function () {
 
         for (let i = 0; i < viewedArtists.length; i++) {
             if (viewedArtists[i].name == artistObj.name) {
+                // console.log("artist in list already");
+                // $('#modal_text').text("Artist already in your list!");
                 break;
             }
             else if (i == viewedArtists.length - 1) {
+                // console.log("at end of list, not found here, let's add them");
                 viewedArtists.push(artistObj);
+                // $('#modal_text').text("Artist added!");
             }
             else continue;
         }
@@ -50030,6 +50035,7 @@ $(function () {
 
         if (e.target.nodeName == 'BUTTON') {
             addToViewedArtists();
+            $('#modal_div').addClass('is-active');
         }
     })
 
@@ -50093,5 +50099,56 @@ $(function () {
             dropdownButton.removeClass('is-active');
         }
     })
+
+    // Modal close button event listener
+    $('#modal_button').on("click", function(e) {
+        e.preventDefault();
+
+        $('#modal_div').removeClass('is-active');
+    })
+
+    // Modal event listener functionality directly from Bulma
+    document.addEventListener('DOMContentLoaded', () => {
+        // Functions to open and close a modal
+        function openModal($el) {
+          $el.classList.add('is-active');
+        }
+      
+        function closeModal($el) {
+          $el.classList.remove('is-active');
+        }
+      
+        function closeAllModals() {
+          (document.querySelectorAll('.modal') || []).forEach(($modal) => {
+            closeModal($modal);
+          });
+        }
+      
+        // Add a click event on buttons to open a specific modal
+        (document.querySelectorAll('.js-modal-trigger') || []).forEach(($trigger) => {
+          const modal = $trigger.dataset.target;
+          const $target = document.getElementById(modal);
+      
+          $trigger.addEventListener('click', () => {
+            openModal($target);
+          });
+        });
+      
+        // Add a click event on various child elements to close the parent modal
+        (document.querySelectorAll('.modal-background, .modal-close, .modal-card-head .delete, .modal-card-foot .button') || []).forEach(($close) => {
+          const $target = $close.closest('.modal');
+      
+          $close.addEventListener('click', () => {
+            closeModal($target);
+          });
+        });
+      
+        // Add a keyboard event to close all modals
+        document.addEventListener('keydown', (event) => {
+          if (event.code === 'Escape') {
+            closeAllModals();
+          }
+        });
+      });
 });
 
