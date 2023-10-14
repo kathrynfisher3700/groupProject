@@ -9145,7 +9145,7 @@ $(function () {
                 ]
             },
             {
-                "name": "Howard Shore",
+                "name": "Howard Shore",             //DONE
                 "id": "0OcclcP5o8VKH2TRqSY2A7",
                 "genres": [
                     "canadian classical",
@@ -14614,7 +14614,7 @@ $(function () {
                 ]
             },
             {
-                "name": "Vadim Chaimovich",
+                "name": "Vadim Chaimovich",             //DONE
                 "id": "5EfeuEtilmCk8J49T35rqb",
                 "genres": [
                     "baltic classical piano"
@@ -17095,7 +17095,7 @@ $(function () {
                 ]
             },
             {
-                "name": "Michael Harrison",
+                "name": "Michael Harrison",                  
                 "id": "09b9oXw3X9LhhKA8GJsMDT",
                 "genres": [
                     "american 21st century classical",
@@ -49482,7 +49482,7 @@ $(function () {
     /*/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\*/
     //------------------------------------------Youtube-------------------------------------------//
     /*\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/*/
-    const apiKey = "AIzaSyCIBc4TRa2muRC06BVrTzgkkJjy0GMHYbQ";
+    const apiKey = "AIzaSyDCCW8k7NdVWe99k3IFAgS6qvaoQa3TrDc";
     
 
     let grabYoutubeVideo = function (name) {
