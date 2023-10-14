@@ -49922,7 +49922,7 @@ $(function () {
     // Event listener for genre buttons
     $('#popular-genres').on("click", function (e) {
         e.preventDefault();
-        console.log("omg");
+        // console.log("omg");
 
         // $('#artist_info').addClass('is-hidden');
 
@@ -49943,16 +49943,23 @@ $(function () {
                 let newArtistArr = `${newGenre}Artists`;
                 let newGenresArr = `${newGenre}SubGenres`;
 
-                // Set all colors of buttons back to normal
-                 console.log($('#popular-genres > button'));
-                $('#popular-genres > button').removeClass('is-inverted');
+                // Handle the reset button
+                if (newGenre == 'reset') {
+                    // Call the reset function
+                    console.log("reset button clicked!");
+                }
+                else {
 
-                // Invert the colors on the button to show it was clicked
-                $(clickedButton).addClass('is-inverted');
+                    // Set all colors of buttons back to normal
+                    console.log($('#popular-genres > button'));
+                    $('#popular-genres > button').removeClass('is-inverted');
 
+                    // Invert the colors on the button to show it was clicked
+                    $(clickedButton).addClass('is-inverted');
 
-                // Call function to populate screen
-                populateSubGenres(newGenresArr);
+                    // Call function to populate screen
+                    populateSubGenres(newGenresArr);
+                }
             }
 
         }
