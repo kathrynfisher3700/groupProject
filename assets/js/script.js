@@ -49456,7 +49456,7 @@ $(function () {
                 let videos = data.items;
                 for (video of videos) {
                     let videoId = video.id.videoId;
-                    const videoLink = "https://www.youtube.com/embed/"+videoId; //EMBED YOUTUBE VIDEO LINK
+                    const videoLink = "https://cdpn.io/pen/debug/oNPzxKo?v="+videoId; //EMBED YOUTUBE VIDEO LINK
                     console.log(videoLink);
                     let videoPlacement = document.querySelector(".videoPlacement"); //GRABS <IFRAME> ELEMENT
                     videoPlacement.setAttribute("src", ""); //REMOVES CURRENT SRC
