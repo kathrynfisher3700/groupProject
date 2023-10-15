@@ -49438,7 +49438,7 @@ $(function () {
     /*/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\*/
     //------------------------------------------Youtube-------------------------------------------//
     /*\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/*/
-    const apiKey = "AIzaSyBJuki5SqCsZ7EEAAdtDKGejB6A-zQGkL0";
+    const apiKey = "AIzaSyBacYdSMTrtbY7m-HbQwhDKrUaWZojAtLI";
 
 
     let grabYoutubeVideo = function (name) {
@@ -49478,8 +49478,8 @@ $(function () {
         let channelSearch = artistName.toLowerCase(); //ALL LOWERCASE
         fetch(`https://youtube.googleapis.com/youtube/v3/search?part=snippet&maxResults=1&q=${channelSearch}official&type=channel&chart=mostPopular&key=${apiKey}`) //need to add query that inserts artist name
             .then((result) => {
-                return result.json();
                 console.log(result);
+                return result.json();
             }).then((data) => {
                 console.log(data)
                 let videos = data.items;
