@@ -153,8 +153,8 @@ video {
 }
 
 .modal-card-body {
-    border-radius: 10px;
     width: auto;
+    font-size: smaller;
 }
 
 /* Selectors by ID */

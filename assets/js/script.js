@@ -49812,6 +49812,9 @@ $(function () {
             .catch(error => console.error('Error:', error));
     }
 
+    // This function is not currently used for the website
+    // It was used to get a new array of subgenres from the selected genre
+    // DO NOT DELETE
     async function getNewSubGenres(genre) {
         // Reset global genre variables to empty arrays
         genresArr = [];
@@ -49829,32 +49832,33 @@ $(function () {
     // Called when new "add to my list" button is clicked
     // Adds the currently viewed artist to viewed artists array and to local storage
     function addToViewedArtists() {
-        console.log(viewedArtists);
 
+        // If no artists have been added, add this one automatically
         if (viewedArtists.length == 0) {
             viewedArtists.push(artistObj);
         }
 
+        // Check to make sure artist is not already in list
+        // If not, add it
         for (let i = 0; i < viewedArtists.length; i++) {
             if (viewedArtists[i].name == artistObj.name) {
-                // console.log("artist in list already");
-                // $('#modal_text').text("Artist already in your list!");
                 break;
             }
             else if (i == viewedArtists.length - 1) {
-                // console.log("at end of list, not found here, let's add them");
                 viewedArtists.push(artistObj);
-                // $('#modal_text').text("Artist added!");
             }
             else continue;
         }
 
+        // If we hit 6 artists, shift the least recently added one out
         if (viewedArtists.length == 6) {
             viewedArtists.shift();
         }
-        // console.log(viewedArtists);
 
+        // Update local storage
         updateLocalStorage();
+
+        // Refresh which artists are in the dropdown
         populateDropdown();
     }
 
@@ -49870,9 +49874,10 @@ $(function () {
         if (viewedArtists == null) {
             viewedArtists = [];
         }
-        // populateDropdown();
     }
 
+    // Function from clicking "Clear saved artists"
+    // Removes artists from local storage,sets viewedArtists to an empty array, and empties out the dropdown
     function clearLocalStorage() {
         viewedArtists = [];
         localStorage.setItem('artists', JSON.stringify(viewedArtists));
@@ -49882,9 +49887,13 @@ $(function () {
         }
     }
 
+    // Handles putting artists from viewedArtists array into the dropdown
     function populateDropdown() {
+
+        // Clears it out to start
         $('#dropdown_buttons').empty();
-        console.log(viewedArtists);
+
+        // Goes through array and puts every artist in
         for (let i = 0; i < viewedArtists.length; i++) {
             let artistButton = $('<button>').text(viewedArtists[i].name);
             artistButton.addClass('button is-responsive');
@@ -49892,11 +49901,14 @@ $(function () {
             artistButton.css('color', 'var(--spotify-black)');
             $('#dropdown_buttons').append(artistButton);
         }
+
+        // If no artists have been saved, put the placeholder text in
         if (viewedArtists.length == 0) {
             populateDropdownPlaceholder();
         }
     }
 
+    // Placeholder text and styling for dropdown
     function populateDropdownPlaceholder() {
         let tempPTag = $('<p>').text('(Saved artists will appear here)');
         tempPTag.addClass('is-italic');
@@ -49906,56 +49918,47 @@ $(function () {
         $('#dropdown_buttons').append(tempPTag);
     }
 
+    // Hides the youtube section ("not available" message, video, and link to channel)
     function hideYouTube() {
         $('#yt_not_available').removeClass('is-hidden');
         $('#yt_video').addClass('is-hidden');
         $('#yt_channel').addClass('is-hidden');
     }
 
+    // Returns the input string but with the first letter capitalized
+    // Used for adding to buttons (more aesthetic)
     function capitalizeFirstLetter(word) {
         return word.charAt(0).toUpperCase() + word.slice(1);
     }
 
+    // Returns the input string but with the first letter set to lower case
+    // Used for searching APIS when coming from a button
     function unCapitalizeFirstLetter(word) {
         return word.charAt(0).toLowerCase() + word.slice(1);
     }
 
+    // Initialization of page function
     async function generate() {
         await getToken();
         await retrieveFromLocalStorage();
         populateDropdown();
-        // $('#artist_info').addClass('is-hidden');
-        // console.log(viewedArtists);
-        // On page load, populate Explore dropdown with previously searched artists
-
     }
-
-
-
 
     /*/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\*/
     //-------------------------------------On page load-------------------------------------------//
     /*\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/*/
 
     generate();
-    // grabYoutube();
-
-
-
-
 
     /*/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\*/
     //-------------------------------------Event listeners----------------------------------------//
     /*\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/*/
-    // var genreBtn = document.querySelector("")=======
 
     // Event listener for genre buttons
     $('#popular-genres').on("click", function (e) {
         e.preventDefault();
-        // console.log("omg");
 
-        // $('#artist_info').addClass('is-hidden');
-
+        // Ensures user clicked on a button
         if (e.target.nodeName == 'BUTTON') {
             let clickedButton = e.target;
 
@@ -49964,18 +49967,21 @@ $(function () {
             $('#yt_video').addClass('is-hidden');
             $('#yt_channel').addClass('is-hidden');
 
+            // "CLear saved artists" button is in the same div but does not have a data-genre element
+            // This ensures this only applies to genre buttons
             if (clickedButton.dataset.genre != undefined) {
-                // console.log(clickedButton.dataset.genre);
+
                 // Set up artist and genre variables to pass to function to populate page
                 let newGenre = clickedButton.dataset.genre;
 
+                // API searches do not like the '&' symbol
+                // Search by hipHop for same results
                 if (newGenre == 'r&b') {
                     newGenre = 'hipHop';
                 }
                 // Set global currentGenre variable equal to newGenre
                 currentGenre = newGenre;
 
-                let newArtistArr = `${newGenre}Artists`;
                 let newGenresArr = `${newGenre}SubGenres`;
 
                 // Handle the reset button
@@ -50022,13 +50028,15 @@ $(function () {
 
         // Show the artist pane
         $('#artist_info').removeClass('is-hidden');
+
         // Remove the previous info from 'About'
         $('#artist_bio').empty();
         $('#artist_bio').append($('<u>More info</u>'));
 
-
         if (e.target.nodeName == 'SPAN') {
             let node = e.target;
+
+            // Call function to add artist buttons from this subgenre
             populateArtists(node.innerHTML);
         }
     })
@@ -50037,13 +50045,12 @@ $(function () {
     $('#subgenres_artists').on("click", function (e) {
         e.preventDefault();
 
-
         if (e.target.nodeName == 'BUTTON') {
             $('#yt_not_available').addClass('is-hidden');
 
             let clickedButton = e.target;
-            // console.log(clickedButton);
-            // console.log($(clickedButton).data('id'));
+
+            // Populate artist info in "More info" section
             getArtistInfo($(clickedButton).data('id'));
         }
     })
@@ -50053,7 +50060,11 @@ $(function () {
         e.preventDefault();
 
         if (e.target.nodeName == 'BUTTON') {
+
+            // Adds artist to saved list
             addToViewedArtists();
+
+            // Pops up modal to let user know their artist has been saved
             $('#modal_div').addClass('is-active');
         }
     })
@@ -50062,20 +50073,11 @@ $(function () {
     $('#prev_artists_dropdown').on("click", function (e) {
         e.preventDefault();
 
-
-        // Any button clicked should open or close the dropdown
-        // if (e.target.nodeName == 'BUTTON') {
         // If the dropdown is hidden, show it
         // If it's shown, hide it
         let dropdownButton = $('#prev_artists_dropdown');
 
-        if (dropdownButton.hasClass('is-active')) {
-            dropdownButton.removeClass('is-active');
-        }
-        else {
-            dropdownButton.addClass('is-active');
-        }
-        // }
+        dropdownButton.toggleClass('is-active');
 
         // If the button clicked is not the 'Your artists' dropdown, populate the page with artist info
         if (e.target.nodeName == 'BUTTON' &&
@@ -50085,12 +50087,12 @@ $(function () {
             $(e.target).text() != 'Pop' &&
             $(e.target).text() != 'Electronic' &&
             $(e.target).text() != 'HipHop/R&B') {
-            console.log("hELLEOEiaETPOAEIHT");
+
+            // Grabs info about artist
             let nextArtist = $(e.target).text();
             let nextID = '';
 
             // When a cached artist is clicked, it should repopulate the artist pane with information about this artist
-
             // Search through viewedArtists
             // When name matches, grab id and send it to populate artists function
 
@@ -50099,13 +50101,13 @@ $(function () {
                     nextID = viewedArtists[i].id;
                 }
             }
-            console.log("hello you there");
+
             let artistInfo = $('#artist_info');
             if (artistInfo.hasClass('is-hidden')) {
                 artistInfo.toggleClass('is-hidden');
             }
 
-
+            // Add artist info to the page
             getArtistInfo(nextID);
         }
     })
@@ -50173,7 +50175,7 @@ $(function () {
 });
 
 
-//Modal
+// Welcome modal event listener
 document.addEventListener('DOMContentLoaded', function () {
     const delay = 150;
 
