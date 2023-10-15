@@ -50150,3 +50150,30 @@ $(function () {
     });
 });
 
+document.addEventListener('DOMContentLoaded', function () {
+    const delay = 1000;
+
+    function showModal() {
+      const modal = document.getElementById('myModal');
+      modal.classList.add('is-active');
+    }
+
+    // Set a timeout to trigger the modal
+    setTimeout(showModal, delay);
+
+     // Function to close the modal
+     function closeModal() {
+        const modal = document.getElementById('myModal');
+        modal.classList.remove('is-active');
+      }
+  
+      // Close the modal when the close, ok, or background are clicked
+      document.getElementById('myModal').addEventListener('click', function (e) {
+        if (e.target.classList.contains('modal-background') || e.target.classList.contains('delete') || e.target.classList.contains('ok-btn')) {
+          closeModal();
+        }
+      });
+  });
+
+
+

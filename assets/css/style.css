@@ -199,6 +199,12 @@ footer{
     }
 }
 
+/* Modal */
+
+.modal-card-title {
+    text-align: center;
+}
+
 @media only screen and (max-width: 800px) {
     .wrapper {
         width: auto;
