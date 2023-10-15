@@ -27,6 +27,7 @@ body {
 
 }
 
+/* change colors of buttons */
 #popular-genres {
     /* background-color: lightskyblue; */
     background-color: var(--main-background);
@@ -37,6 +38,11 @@ body {
     align-self: self-start;
 }
 
+.dropdown {
+    align-self: self-start;
+}
+
+/* buttons into columns */
 .wrapper2 {
     width: 75%;
     height: 100%;
@@ -44,6 +50,7 @@ body {
     flex-direction: column;
 }
 
+/* bring the tabs content into one container */
 .Vcontainer {
     width: 100%;
     display: flex;
@@ -90,6 +97,7 @@ body {
     width: 100%;  
 } */
 
+/* gradient header background behind title */
 .header {
     background-image: linear-gradient(to left, #EA8CFF, #4E45E5);
     display: flex;
@@ -106,6 +114,7 @@ body {
     padding-bottom: 3px;
 }
 
+/* top background image */
 .hero {
     background-image: url(../css/music-rainbow.jpeg);
     background-size: cover;
@@ -176,6 +185,7 @@ footer{
     justify-content: center;
 }
 
+/* at 1100px removes overlapping */
 @media only screen and (max-width: 1100px) {
     .wrapper {
         width: 25%;
@@ -216,12 +226,14 @@ footer{
     text-align: center;
 }
 
+/* at 800px turns tabs and content into columns below */
 @media only screen and (max-width: 800px) {
     .wrapper {
         width: auto;
     }
 }
 
+/* at 600px centers the buttons and brings tab content below in columns */
 @media only screen and (max-width: 600px) {
     h1 {
         text-align: center;
@@ -271,7 +283,7 @@ footer{
     }
 }
 
-
+/* at 400px keeps buttons centered and tabs content in columns below */
 @media only screen and (max-width: 400px) {
      h1 {
         text-align: center;
