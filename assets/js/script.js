@@ -50150,6 +50150,8 @@ $(function () {
     });
 });
 
+
+//Modal
 document.addEventListener('DOMContentLoaded', function () {
     const delay = 1000;
 
@@ -50158,10 +50160,8 @@ document.addEventListener('DOMContentLoaded', function () {
       modal.classList.add('is-active');
     }
 
-    // Set a timeout to trigger the modal
     setTimeout(showModal, delay);
 
-     // Function to close the modal
      function closeModal() {
         const modal = document.getElementById('myModal');
         modal.classList.remove('is-active');
