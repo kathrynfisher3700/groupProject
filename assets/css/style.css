@@ -165,6 +165,7 @@ footer{
 }
 
 #span_0 {
+    /*justify-self: left; */
     color: var(--spotify-black);
 }
 
