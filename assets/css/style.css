@@ -32,8 +32,16 @@ body {
     /* background-color: lightskyblue; */
     background-color: var(--main-background);
     color: var(--spotify-black);
-
 }
+
+.dropdown {
+    align-self: self-start;
+}
+
+.dropdown {
+    align-self: self-start;
+}
+
 /* buttons into columns */
 .wrapper2 {
     width: 75%;
@@ -173,6 +181,10 @@ footer{
     color: var(--spotify-black);
 }
 
+#prev_artists_dropdown {
+    justify-content: center;
+}
+
 /* at 1100px removes overlapping */
 @media only screen and (max-width: 1100px) {
     .wrapper {
@@ -181,6 +193,10 @@ footer{
 
     #popular-genres {
         width: 100%;
+    }
+
+    #main_body {
+        align-items: center;
     }
 
     .container {

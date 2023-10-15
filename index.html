@@ -11,7 +11,7 @@
   <title>Song Safari</title>
 </head>
 
-<body>
+<body class="mb-3">
   <div class="modal has-text-centered" id="modal_div">
     <div class="modal-background"></div>
     <div class="modal-card">
@@ -37,9 +37,9 @@
   <div class="hero"></div>
 <!-- buttons on the side and center for general genre types -->
   <body>
-    <div class="container">
+    <div class="container" id="main_body">
       <div class="wrapper">
-          <div class="genres is-hidden has-text-centered" id="popular-genres">Popular Genres
+          <div class="genres is-hidden" id="popular-genres">
 
             <button class="button is-link" data-genre="classical" id="classical-btn">Classical</button>
             <button class="button is-link" data-genre="rock" id="rock-btn">Rock</button>
@@ -54,9 +54,9 @@
               <div class="dropdown-trigger">
                 <button class="button" id="drop_button" aria-haspopup="true" aria-controls="dropdown-menu2">
                   <span>Last 5 saved artists</span>
-                  <span class="icon is-small">
+                  <!-- <span class="icon is-small">
                     <i class="fas fa-angle-down" aria-hidden="true"></i>
-                  </span>
+                  </span> -->
                 </button>
               </div>
               <div class="dropdown-menu" id="dropdown-menu2" role="menu">
@@ -84,14 +84,12 @@
             </li>
             <li>
               <a>
-                <span class="subgenres" id="span_2">to 
-                  &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp choose</span>
+                <span class="subgenres" id="span_2">TO</span>
               </a>
             </li>
             <li>
               <a>
-                <span class="subgenres" id="span_3">a 
-                  &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp genre!</span>
+                <span class="subgenres" id="span_3">START</span>
               </a>
             </li>
             <li>
@@ -105,9 +103,10 @@
         <div class="Vcontainer" id="artist_info">
           <div class="artists genres" id="subgenres_artists"><u>Artists</u></div>
           <div class="videos"><u>Videos</u>
-              <iframe class="videoPlacement" src="" 
+            <p class="is-hidden" id="yt_not_available">No Youtube information available for this artist 😞</p>
+              <iframe class="videoPlacement is-hidden" id="yt_video" src="" 
               allow="accelermoter; encrypted-media; gyroscope; picture-in-picture; clipboard-write; web-share" frameborder="0" allowfullscreen></iframe>
-              <a class="channel_link" href=""  target="_blank">Click Here for Artist Youtube Channel</a>
+              <a class="channel_link is-hidden" id="yt_channel" href=""  target="_blank">Click Here for Artist Youtube Channel</a>
           </div>
           <div class="artists about" id="artist_bio">
             <u>More info</u>
@@ -125,9 +124,26 @@
       <button class="delete" aria-label="close"></button>
     </header>
     <section class="modal-card-body">
-      <p>1. Select a genre </p>
-      <p>2. Select a subgenre  </p>
-      <p>3. Select an artist  </p>
+      <p>1. To begin your journey, "CLICK TO START 🎵"!</p>
+      <p>2. Select a genre
+        <pre>Four subgenres will be chosen at random from our immense list
+(750+ subgenres per genre!)</pre>
+      </p>
+      <p>3. Select a subgenre
+        <pre>Want to explore different subgenres?
+Click the genre button again for four new subgenres to explore.
+        </pre>
+      </p>
+      <p>4. Select an artist
+        <pre>Click on an artist's name for a video, link to their YouTube channel,
+and more!
+        </pre>
+      </p>
+      <p>5. Save selected Artist
+        <pre>Click the "Click to save!" button below the artist info 
+to save them to your list.
+        </pre>
+      </p>
     </section>
     <footer class="modal-card-foot">
       <button class="button is-success ok-btn">OK</button>
