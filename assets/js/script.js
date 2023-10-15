@@ -17095,7 +17095,7 @@ $(function () {
                 ]
             },
             {
-                "name": "Michael Harrison",                  
+                "name": "Michael Harrison",
                 "id": "09b9oXw3X9LhhKA8GJsMDT",
                 "genres": [
                     "american 21st century classical",
@@ -49439,7 +49439,7 @@ $(function () {
     //------------------------------------------Youtube-------------------------------------------//
     /*\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/*/
     const apiKey = "AIzaSyAhS40znT9wLb9VnQiKz4eqdEiGM2xGYi4";
-    
+
 
     let grabYoutubeVideo = function (name) {
         console.log(name);
@@ -49455,7 +49455,7 @@ $(function () {
                 let videos = data.items;
                 for (video of videos) {
                     let videoId = video.id.videoId;
-                    const videoLink = "https://cdpn.io/pen/debug/oNPzxKo?v="+videoId; //EMBED YOUTUBE VIDEO LINK
+                    const videoLink = "https://cdpn.io/pen/debug/oNPzxKo?v=" + videoId; //EMBED YOUTUBE VIDEO LINK
                     console.log(videoLink);
                     let videoPlacement = document.querySelector(".videoPlacement"); //GRABS <IFRAME> ELEMENT
                     videoPlacement.setAttribute("src", ""); //REMOVES CURRENT SRC
@@ -49477,7 +49477,7 @@ $(function () {
                 let videos = data.items;
                 for (video of videos) {
                     let channelId = video.id.channelId;
-                    const channelLink = "https://www.youtube.com/channel/" +channelId; //CREATES CHANNEL LINK
+                    const channelLink = "https://www.youtube.com/channel/" + channelId; //CREATES CHANNEL LINK
                     let channelPlacement = document.querySelector(".channel_link"); //GRABS <A> ELEMENT
                     channelPlacement.setAttribute("href", ""); //REMOVES PREVIOUS LINK
                     channelPlacement.setAttribute("href", channelLink); //ADDS NEW LINK
@@ -49950,6 +49950,8 @@ $(function () {
         if (e.target.nodeName == 'BUTTON') {
             let clickedButton = e.target;
 
+            $('#yt_channel').addClass('is-hidden');
+
             if (clickedButton.dataset.genre != undefined) {
                 // console.log(clickedButton.dataset.genre);
                 // Set up artist and genre variables to pass to function to populate page
@@ -50020,6 +50022,7 @@ $(function () {
 
 
         if (e.target.nodeName == 'BUTTON') {
+            $('#yt_channel').removeClass('is-hidden');
             let clickedButton = e.target;
             // console.log(clickedButton);
             // console.log($(clickedButton).data('id'));
@@ -50148,6 +50151,7 @@ $(function () {
             }
         });
     });
+
 });
 
 
@@ -50156,24 +50160,23 @@ document.addEventListener('DOMContentLoaded', function () {
     const delay = 1000;
 
     function showModal() {
-      const modal = document.getElementById('myModal');
-      modal.classList.add('is-active');
+        const modal = document.getElementById('myModal');
+        modal.classList.add('is-active');
     }
 
     setTimeout(showModal, delay);
 
-     function closeModal() {
+    function closeModal() {
         const modal = document.getElementById('myModal');
         modal.classList.remove('is-active');
-      }
-  
-      // Close the modal when the close, ok, or background are clicked
-      document.getElementById('myModal').addEventListener('click', function (e) {
-        if (e.target.classList.contains('modal-background') || e.target.classList.contains('delete') || e.target.classList.contains('ok-btn')) {
-          closeModal();
-        }
-      });
-  });
+    }
 
+    // Close the modal when the close, ok, or background are clicked
+    document.getElementById('myModal').addEventListener('click', function (e) {
+        if (e.target.classList.contains('modal-background') || e.target.classList.contains('delete') || e.target.classList.contains('ok-btn')) {
+            closeModal();
+        }
+    });
+});
 
 
