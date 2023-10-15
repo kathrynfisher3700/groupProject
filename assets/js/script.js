@@ -49438,7 +49438,7 @@ $(function () {
     /*/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\*/
     //------------------------------------------Youtube-------------------------------------------//
     /*\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/*/
-    const apiKey = "AIzaSyAhS40znT9wLb9VnQiKz4eqdEiGM2xGYi4";
+    const apiKey = "AIzaSyBJuki5SqCsZ7EEAAdtDKGejB6A-zQGkL0";
 
 
     let grabYoutubeVideo = function (name) {
@@ -49453,13 +49453,21 @@ $(function () {
             }).then((data) => {
                 console.log(data)
                 let videos = data.items;
-                for (video of videos) {
-                    let videoId = video.id.videoId;
-                    const videoLink = "https://cdpn.io/pen/debug/oNPzxKo?v=" + videoId; //EMBED YOUTUBE VIDEO LINK
-                    console.log(videoLink);
-                    let videoPlacement = document.querySelector(".videoPlacement"); //GRABS <IFRAME> ELEMENT
-                    videoPlacement.setAttribute("src", ""); //REMOVES CURRENT SRC
-                    videoPlacement.setAttribute("src", videoLink);  //GET VIDEOLINK INTO <IFRAME> HTML
+                if (videos.length == 0) {
+                    hideYouTube();
+                }
+                else {
+                    for (video of videos) {
+                        $('#yt_video').removeClass('is-hidden');
+                        $('#yt_channel').removeClass('is-hidden');
+                        let videoId = video.id.videoId;
+                        console.log(videoId);
+                        const videoLink = "https://cdpn.io/pen/debug/oNPzxKo?v=" + videoId; //EMBED YOUTUBE VIDEO LINK
+                        console.log(videoLink);
+                        let videoPlacement = document.querySelector(".videoPlacement"); //GRABS <IFRAME> ELEMENT
+                        videoPlacement.setAttribute("src", ""); //REMOVES CURRENT SRC
+                        videoPlacement.setAttribute("src", videoLink);  //GET VIDEOLINK INTO <IFRAME> HTML
+                    }
                 }
             })
     };
@@ -49796,8 +49804,7 @@ $(function () {
                 let artistImage = $(`<img src=${imageURL}>`);
                 bioBox.append(artistImage);
                 let followButton = $(`<button>Click to save!</button>`);
-                followButton.addClass('button is-link');
-                followButton.addClass('js-modal-trigger');
+                followButton.addClass('button is-link js-modal-trigger mb-3');
                 followButton.attr('id', 'follow_here');
                 followButton.css('background-color', 'var(--spotify-green)');
                 bioBox.append(followButton);
@@ -49903,6 +49910,12 @@ $(function () {
         $('#dropdown_buttons').append(tempPTag);
     }
 
+    function hideYouTube() {
+        $('#yt_not_available').removeClass('is-hidden');
+        $('#yt_video').addClass('is-hidden');
+        $('#yt_channel').addClass('is-hidden');
+    }
+
     function capitalizeFirstLetter(word) {
         return word.charAt(0).toUpperCase() + word.slice(1);
     }
@@ -49950,6 +49963,9 @@ $(function () {
         if (e.target.nodeName == 'BUTTON') {
             let clickedButton = e.target;
 
+            // Hide video and channel sections
+            $('#yt_not_available').addClass('is-hidden');
+            $('#yt_video').addClass('is-hidden');
             $('#yt_channel').addClass('is-hidden');
 
             if (clickedButton.dataset.genre != undefined) {
@@ -50003,6 +50019,11 @@ $(function () {
             $('#popular-genres').toggleClass('is-hidden');
         }
 
+        // Hide video and channel sections
+        $('#yt_not_available').addClass('is-hidden');
+        $('#yt_video').addClass('is-hidden');
+        $('#yt_channel').addClass('is-hidden');
+
         // Show the artist pane
         $('#artist_info').removeClass('is-hidden');
         // Remove the previous info from 'About'
@@ -50022,7 +50043,8 @@ $(function () {
 
 
         if (e.target.nodeName == 'BUTTON') {
-            $('#yt_channel').removeClass('is-hidden');
+            $('#yt_not_available').addClass('is-hidden');
+
             let clickedButton = e.target;
             // console.log(clickedButton);
             // console.log($(clickedButton).data('id'));

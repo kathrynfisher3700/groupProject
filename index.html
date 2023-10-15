@@ -84,14 +84,12 @@
             </li>
             <li>
               <a>
-                <span class="subgenres" id="span_2">to 
-                  &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp choose</span>
+                <span class="subgenres" id="span_2">TO</span>
               </a>
             </li>
             <li>
               <a>
-                <span class="subgenres" id="span_3">a 
-                  &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp genre!</span>
+                <span class="subgenres" id="span_3">START</span>
               </a>
             </li>
             <li>
@@ -105,7 +103,8 @@
         <div class="Vcontainer" id="artist_info">
           <div class="artists genres" id="subgenres_artists"><u>Artists</u></div>
           <div class="videos"><u>Videos</u>
-              <iframe class="videoPlacement" src="" 
+            <p class="is-hidden" id="yt_not_available">No Youtube information available for this artist 😞</p>
+              <iframe class="videoPlacement is-hidden" id="yt_video" src="" 
               allow="accelermoter; encrypted-media; gyroscope; picture-in-picture; clipboard-write; web-share" frameborder="0" allowfullscreen></iframe>
               <a class="channel_link is-hidden" id="yt_channel" href=""  target="_blank">Click Here for Artist Youtube Channel</a>
           </div>
@@ -125,9 +124,21 @@
       <button class="delete" aria-label="close"></button>
     </header>
     <section class="modal-card-body">
-      <p>1. Select a genre </p>
-      <p>2. Select a subgenre  </p>
-      <p>3. Select an artist  </p>
+      <p>1. "CLICK TO START" to begin your journey!</p>
+      <p>2. Select a genre
+        <pre>Four subgenres will be chosen at random from our immense list
+(750+ subgenres per genre!)</pre>
+      </p>
+      <p>3. Select a subgenre
+        <pre>Want to explore different subgenres?
+Click the genre button again for four new subgenres to explore.
+        </pre>
+      </p>
+      <p>4. Select an artist
+        <pre>Click on an artist's name for a video, link to their YT channel,
+and more!
+        </pre>
+      </p>
     </section>
     <footer class="modal-card-foot">
       <button class="button is-success ok-btn">OK</button>
