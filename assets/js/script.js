@@ -50179,7 +50179,7 @@ $(function () {
 
 //Modal
 document.addEventListener('DOMContentLoaded', function () {
-    const delay = 1000;
+    const delay = 150;
 
     function showModal() {
         const modal = document.getElementById('myModal');
