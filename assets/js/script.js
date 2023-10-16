@@ -49441,7 +49441,7 @@ $(function () {
     /*\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/*/
     
     // YouTube API key
-    const apiKey = "AIzaSyBacYdSMTrtbY7m-HbQwhDKrUaWZojAtLI";
+    const apiKey = "AIzaSyBKHsCnvrIaWOBD2TMNUbbZdwmcdVSsS-Q";
 
     // Finds a youtube video from the artist of "name"
     // Displays the embedded video in the Videos section
