@@ -4,14 +4,20 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Style sheets -->
   <link rel="stylesheet" href="assets/css/style.css" />
-  <link rel="icon" type="image/x-icon" href="assets/css/background-music.jpeg" />
+  <!-- <link rel="icon" type="image/x-icon" href="assets/css/background-music.jpeg" /> -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-  <link rel="icon" type="image/x-icon" href="/projects/songSafari/assets/css/background-music.jpeg" />
+  <!-- <link rel="icon" type="image/x-icon" href="/projects/songSafari/assets/css/background-music.jpeg" /> -->
   <title>Song Safari</title>
 </head>
 
+<!-- Main body -->
+
 <body class="mb-3">
+
+  <!-- Modal when artist is saved -->
   <div class="modal has-text-centered" id="modal_div">
     <div class="modal-background"></div>
     <div class="modal-card">
@@ -20,12 +26,13 @@
         <button class="delete" id="modal_button" aria-label="close"></button>
       </header>
       <section class="modal-card-body">
-        Keep in mind, only your five most recent artists will be saved. 
+        Keep in mind, only your five most recent artists will be saved.
         <br>---Explore genres, find your groove!---
-        
+
       </section>
       <footer class="modal-card-foot has-text-centered">
-        <p class="has-text-centered">Brought to you by the <i style="font-size:24px" class="fa">&#xf1bc;</i>Spotify Web API</p>
+        <p class="has-text-centered">Brought to you by the <i style="font-size:24px" class="fa">&#xf1bc;</i>Spotify Web
+          API</p>
       </footer>
     </div>
   </div>
@@ -35,38 +42,39 @@
   </header>
 
   <div class="hero"></div>
-<!-- buttons on the side and center for general genre types -->
+  <!-- Buttons on the side and center for general genre types -->
+
   <body>
     <div class="container" id="main_body">
       <div class="wrapper">
-          <div class="genres is-hidden" id="popular-genres">
+        <div class="genres is-hidden" id="popular-genres">
 
-            <button class="button is-link" data-genre="classical" id="classical-btn">Classical</button>
-            <button class="button is-link" data-genre="rock" id="rock-btn">Rock</button>
-            <button class="button is-link" data-genre="pop" id="pop-btn">Pop</button>
-            <button class="button is-link" data-genre="electronic" id="electronic">Electronic</button>
-            <button class="button is-link" data-genre="r&b" id="hiphop-btn">Hip-Hop/R&B</button>
-            <button class="button is-danger" data-genre="reset" id="reset-btn">Clear saved artists</button>
+          <button class="button is-link" data-genre="classical" id="classical-btn">Classical</button>
+          <button class="button is-link" data-genre="rock" id="rock-btn">Rock</button>
+          <button class="button is-link" data-genre="pop" id="pop-btn">Pop</button>
+          <button class="button is-link" data-genre="electronic" id="electronic">Electronic</button>
+          <button class="button is-link" data-genre="r&b" id="hiphop-btn">Hip-Hop/R&B</button>
+          <button class="button is-danger" data-genre="reset" id="reset-btn">Clear saved artists</button>
 
 
-<!-- saved artists -->
-            <div class="dropdown is-hoverable" id="prev_artists_dropdown">
-              <div class="dropdown-trigger">
-                <button class="button" id="drop_button" aria-haspopup="true" aria-controls="dropdown-menu2">
-                  <span>Last 5 saved artists</span>
-                  <!-- <span class="icon is-small">
+          <!-- Saved artists -->
+          <div class="dropdown is-hoverable" id="prev_artists_dropdown">
+            <div class="dropdown-trigger">
+              <button class="button" id="drop_button" aria-haspopup="true" aria-controls="dropdown-menu2">
+                <span>Last 5 saved artists</span>
+                <!-- <span class="icon is-small">
                     <i class="fas fa-angle-down" aria-hidden="true"></i>
                   </span> -->
-                </button>
-              </div>
-              <div class="dropdown-menu" id="dropdown-menu2" role="menu">
-                <div class="dropdown-content" id="dropdown_buttons">
+              </button>
+            </div>
+            <div class="dropdown-menu" id="dropdown-menu2" role="menu">
+              <div class="dropdown-content" id="dropdown_buttons">
 
-                </div>
               </div>
             </div>
-<!-- tabs with subgenres -->
           </div>
+          <!-- tabs with subgenres -->
+        </div>
       </div>
       <div class="wrapper2">
         <div class="tabs is-centered">
@@ -99,14 +107,16 @@
             </li>
           </ul>
         </div>
-<!-- artist ABOUT section with link to their channel -->
+        <!-- artist ABOUT section with link to their channel -->
         <div class="Vcontainer" id="artist_info">
           <div class="artists genres" id="subgenres_artists"><u>Artists</u></div>
           <div class="videos"><u>Videos</u>
             <p class="is-hidden" id="yt_not_available">No Youtube information available for this artist 😞</p>
-              <iframe class="videoPlacement is-hidden" id="yt_video" src="" 
-              allow="accelermoter; encrypted-media; gyroscope; picture-in-picture; clipboard-write; web-share" frameborder="0" allowfullscreen></iframe>
-              <a class="channel_link is-hidden" id="yt_channel" href=""  target="_blank">Click Here for Artist Youtube Channel</a>
+            <iframe class="videoPlacement is-hidden" id="yt_video" src=""
+              allow="accelerometer; encrypted-media; gyroscope; picture-in-picture; clipboard-write; web-share"
+              frameborder="0" allowfullscreen></iframe>
+            <a class="channel_link is-hidden" id="yt_channel" href="" target="_blank">Click Here for Artist Youtube
+              Channel</a>
           </div>
           <div class="artists about" id="artist_bio">
             <u>More info</u>
@@ -115,66 +125,53 @@
       </div>
     </div>
 
-<!-- Welcome Modal-->
-<div class="modal" id="myModal">
-  <div class="modal-background"></div>
-  <div class="modal-card">
-    <header class="modal-card-head">
-      <p class="modal-card-title">How to use SongSafari:</p>
-      <button class="delete" aria-label="close"></button>
-    </header>
-    <section class="modal-card-body">
-      <p>1. To begin your journey, "CLICK TO START 🎵"!</p>
-      <p>2. Select a genre
-        <pre>Four subgenres will be chosen at random from our immense list
+    <!-- Welcome Modal-->
+    <div class="modal" id="myModal">
+      <div class="modal-background"></div>
+      <div class="modal-card">
+        <header class="modal-card-head">
+          <p class="modal-card-title">How to use SongSafari:</p>
+          <button class="delete" aria-label="close"></button>
+        </header>
+        <section class="modal-card-body">
+          <p>1. To begin your journey, "CLICK TO START 🎵"!</p>
+          <p>2. Select a genre
+          <pre>Four subgenres will be chosen at random from our immense list
 (750+ subgenres per genre!)</pre>
-      </p>
-      <p>3. Select a subgenre
-        <pre>Want to explore different subgenres?
+          </p>
+          <p>3. Select a subgenre
+          <pre>Want to explore different subgenres?
 Click the genre button again for four new subgenres to explore.
         </pre>
-      </p>
-      <p>4. Select an artist
-        <pre>Click on an artist's name for a video, link to their YouTube channel,
+          </p>
+          <p>4. Select an artist
+          <pre>Click on an artist's name for a video, link to their YouTube channel,
 and more!
         </pre>
-      </p>
-      <p>5. Save selected Artist
-        <pre>Click the "Click to save!" button below the artist info 
+          </p>
+          <p>5. Save selected Artist
+          <pre>Click the "Click to save!" button below the artist info 
 to save them to your list.
         </pre>
-      </p>
-    </section>
-    <footer class="modal-card-foot">
-      <button class="button is-success ok-btn">OK</button>
-    </footer>
-  </div>
-</div>
+          </p>
+        </section>
+        <footer class="modal-card-foot">
+          <button class="button is-success ok-btn">OK</button>
+        </footer>
+      </div>
+    </div>
 
 
-</body>
+  </body>
 
-<!-- informative center -->
+  <!-- informative center -->
   <footer class="has-text-centered">Styled with Bulma 🤑</footer>
 
   <!-- Jquery CDN via google -->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
   <script src="assets/js/script.js"></script>
+
+  <!-- YouTube API link -->
   <script src="https://apis.google.com/js/api.js"></script>
 
 </html>
-
-
-
-
-
-
-
-<!--HTML for embedded video 
- _   _ _____ __  __ _        __             __     _____ ____  _____ ___  
-| | | |_   _|  \/  | |      / _| ___  _ __  \ \   / /_ _|  _ \| ____/ _ \ 
-| |_| | | | | |\/| | |     | |_ / _ \| '__|  \ \ / / | || | | |  _|| | | |
-|  _  | | | | |  | | |___  |  _| (_) | |      \ V /  | || |_| | |__| |_| |
-|_| |_| |_| |_|  |_|_____| |_|  \___/|_|       \_/  |___|____/|_____\___/ 
--->
-<!-- <iframe width="420" height="345" src="https://youtube.com/embed/tgbNymZ7vqY"></iframe> -->

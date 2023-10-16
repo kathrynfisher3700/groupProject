@@ -1,10 +1,12 @@
 // Wrapper function for jQuery
-// ALL JavaScript code must go in this function
+// ALL JQuery code must go in this function
 $(function () {
     /*/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\*/
     //------------------------------------------Variables-----------------------------------------//
     /*\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/*/
 
+    // Saved artists arrays
+    // Used to draw from to populate artist buttons
     let artistsArray = {
         "popArtists": [
             {
@@ -46660,6 +46662,8 @@ $(function () {
         ]
     }
 
+    // Saved subgenres arrays
+    // Used to populate tabs to navigate between subgenres
     let genresArray = {
         "popSubGenres": [
             "canadian hip hop",
@@ -49387,71 +49391,68 @@ $(function () {
         ]
     }
 
+    // DO NOT DELETE
+    // Unused variables for current website functionality
+    // These variables are saved because they will be useful for the project extension
+    // Variables in this section were utilized for population of the above arrays (lines 10 through 49392)
+    // DO NOT DELETE
+    // let subGenreArtists = {};
+    // let spotifyData;
+    // let genres = [];
+    // let artists = [];
+    // let genreQuery = `genre:${genreNeeded}`;
+    // let genreName = 'classical';
+    // let subGenre = 'early romantic era';
+    // let listGenresSuffix = 'recommendations/available-genre-seeds';
+
+
+
+
+    //---------------------Variables for website funcitonality--------------------------------//
+
+    // Keeps track of current broad genre (i.e. "Classical", "Rock", "Pop", etc)
     let currentGenre = '';
 
-    let subGenreArtists = {};
-
-    // let nameArr = [];
-
-
-
-    let spotifyData;
-    let genres = [];
-    let artists = [];
-
+    // Once an artist is found from a call to Spotify's API, their object is stored here for population of the Video and More info sections
     let artistObj = {};
+
+    // Keeps track of artists to store and display in the dropdown "Last 5 saved artists"
     let viewedArtists = [];
 
     // Variables for querying Spotify API
     let token = '';
     let genreNeeded = 'classical';
-    let genreQuery = `genre:${genreNeeded}`;
 
     // Genres variables
     // These will be reset upon each button click, or call to getGenres
     let genresArr = [];
     let subGenres = [];
 
-
-    // These are Kurt's personal keys. Keep them safe please! We will find a way to hide them at deployment
+    // Spotify API keys
     const clientId = '838b3be49dbd4b3fbeee945d6a9894cc';
     const clientSecret = '21f201cfdb0a474baf535b148e91e24e';
 
-
-    // API suffices
     // Main suffix passed into getSpotifyData function
     // Update this to desired string, then pass to getSpotifyData
     let apiSuffix = '';
 
-
-    // Specific suffices for different requests
-    // Search for aritsts that include 'genreKeyword' in their description (could be name, genres, etc)
-
-    let genreName = 'classical';
-    let subGenre = 'early romantic era';
-    // let artistsByGenreSuffix = `search?q=genre:${encodeURIComponent(genre)}&type=artist&limit=50&offset=0`;
-
-    // Return an object of all available genres
-    let listGenresSuffix = 'recommendations/available-genre-seeds';
-
-
     /*/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\*/
     //------------------------------------------Youtube-------------------------------------------//
     /*\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/*/
-    const apiKey = "AIzaSyBJuki5SqCsZ7EEAAdtDKGejB6A-zQGkL0";
+    
+    // YouTube API key
+    const apiKey = "AIzaSyBacYdSMTrtbY7m-HbQwhDKrUaWZojAtLI";
 
-
+    // Finds a youtube video from the artist of "name"
+    // Displays the embedded video in the Videos section
     let grabYoutubeVideo = function (name) {
-        console.log(name);
         let artistName = name.replace(/\s/g, ''); //REMOVES SPACES
         let artistSearch = artistName.toLowerCase(); //ALL LOWERCASE
         console.log(artistSearch);
         fetch(`https://youtube.googleapis.com/youtube/v3/search?part=snippet&maxResults=1&q=${artistSearch}official&type=video&key=${apiKey}`)
             .then((result) => {
                 return result.json();
-                console.log(result);
             }).then((data) => {
-                console.log(data)
                 let videos = data.items;
                 if (videos.length == 0) {
                     hideYouTube();
@@ -49472,14 +49473,14 @@ $(function () {
             })
     };
 
-
+    // Finds the artist's ("name") youtube channel and puts the link under the embedded video
     let grabYoutubeChannel = function (name) {
         let artistName = name.replace(/\s/g, ''); //REMOVES SPACES
         let channelSearch = artistName.toLowerCase(); //ALL LOWERCASE
         fetch(`https://youtube.googleapis.com/youtube/v3/search?part=snippet&maxResults=1&q=${channelSearch}official&type=channel&chart=mostPopular&key=${apiKey}`) //need to add query that inserts artist name
             .then((result) => {
-                return result.json();
                 console.log(result);
+                return result.json();
             }).then((data) => {
                 console.log(data)
                 let videos = data.items;
@@ -49494,12 +49495,10 @@ $(function () {
             })
     };
 
-    // Make the token request
-    // TODO: Eventually, this will need to be wrapped in a function to request a new
-    // token every hour (access tokens expire after 1 hour)
-    // IF returning a 400 error, check clientId and clientSecret for accuracy
+    // Gets a useable API access token for Spotify
     const getToken = async () => {
-        // Convert client ID and client secret to base64 for token request (required)
+
+        // Convert client ID and client secret to base64 for token request
         const base64Credentials = btoa(`${clientId}:${clientSecret}`);
 
         await fetch('https://accounts.spotify.com/api/token', {
@@ -49513,20 +49512,20 @@ $(function () {
         })
             .then((response) => response.json())
             .then((data) => {
+
                 // Extract the access token from the response and store in global 'token' variable
-                // This token is used to make requests to the Spotify API
                 token = data.access_token;
-                console.log('Access Token:', token);
             })
             .catch((error) => {
                 console.error('Error:', error);
             });
     }
 
-
     // This is the primary Spotify API call function
     // Modify the variable 'apiSuffix' and pass it in to the function call to suit your search
     // e.g. to display all available genres ===> apiSuffix = listGenresSuffix
+    // NOTE: This function is not used to run the site as is. It was used to generate our database of artists and subgenres
+    // DO NOT DELETE
     function getSpotifyData(apiSuffix) {
         // Spotify API endpoint
         console.log(`suffix is ${apiSuffix}`);
@@ -49552,7 +49551,10 @@ $(function () {
             .catch(error => console.error('Error:', error));
     }
 
-
+    // NOTE: This function is not used to run the site as is. It was used to generate our database of artists and subgenres
+    // DO NOT DELETE
+    // Calls itself as many times as more genres are available from Spotify
+    // Used to populate the global genresArr array in initial data collection
     async function getAllFromGenre(apiSuffix) {
         // Spotify API endpoint
         const spotifyEndpoint = `https://api.spotify.com/v1/${apiSuffix}`;
@@ -49587,15 +49589,12 @@ $(function () {
                     let tempArr = apiSuffix.split('offset=');
                     let newSuffix = tempArr[0] + 'offset=' + (parseInt(tempArr[1]) + 50);
                     getAllFromGenre(`${newSuffix}`);
-                    // console.log(moreArtists);
-                    // moreArtists.forEach(artist => {
-                    //     currArtists.push(artist);
-                    // });
-                    // console.log(currArtists);
                 }
             });
     }
 
+    // NOTE: This function is not used to run the site as is. It was used to generate our database of artists and subgenres
+    // DO NOT DELETE
     // Collects and stores genres found in artists' objects in array "genresArr"
     function getSubGenres(array) {
         array.forEach(artist => {
@@ -49610,14 +49609,13 @@ $(function () {
     }
 
     // Sorts the collected artists by their Spotify popularity score
-    // NOTE: this will only be used if we populate dynamically using the "Explore!" button
+    // More popular artists will be more likely to have a youtube presence, so they were prioritized in sending to the YouTube functions
+    // Not used in current running of site, but was used to sort arrays
     function sortByPopularity(array) {
         setTimeout(function () {
             let currArr = [];
 
-            console.log(array);
             array.sort(function (a, b) { return b.popularity - a.popularity });
-            console.log(array);
 
             // Create an object for each artist
             // {
@@ -49650,32 +49648,32 @@ $(function () {
 
     // Populates the main screen with new subgenre information
     function populateSubGenres(subGenres) {
-        // Removes all children from Artists div (where buttons are going)
+
+        // Clears the Artists and More info sections
         $('#subgenres_artists').empty();
         $('#subgenres_artists').append($('<u>Artists</u>'));
         $('#artist_bio').empty();
         $('#artist_bio').append($('<u>More info</u>'));
 
-
-
-
+        // Temporary array to hold subgenres to display
         let tempGenresArr = [];
+
         // Loops from 1 to 5 to match up with span tag IDs
         // Populates 4 new subgenres to explore
         for (let i = 1; i < 5; i++) {
+
+            // Random genre
             let currGenre = capitalizeFirstLetter(genresArray[subGenres][Math.floor(Math.random() * genresArray[subGenres].length)]);
 
-            // Checks for duplicates
+            // Checks for duplicates before adding to array
             while (tempGenresArr.includes(currGenre)) {
                 currGenre = capitalizeFirstLetter(genresArray[subGenres][Math.floor(Math.random() * genresArray[subGenres].length)]);
             }
             tempGenresArr.push(currGenre);
+
+            // Populates the information into each tab
             let currSpan = $(`#span_${i}`);
             currSpan.text(currGenre);
-            // currSpan.data("genre", currGenre);
-            // console.log(currSpan[0]);
-            // console.log(currSpan.data("genre"));
-            // populateArtists(currGenre);
         }
     };
 
@@ -49686,12 +49684,13 @@ $(function () {
         $('#subgenres_artists').empty();
         $('#subgenres_artists').append($('<u>Artists</u>'));
 
-        console.log(`current genre is: ${currentGenre}`);
-        console.log(`sub genre is: ${subGenre}`);
-
-        // FIX THIS
+        // Temp variable to hold a copy of the needed artists array
+        // This allows for easier manipulation and duplicate verification
         let subGenreArtists = '';
+
         subGenre = unCapitalizeFirstLetter(subGenre);
+
+        // Going to 3 artists max
         let counter = 0;
 
         // Structured clone of genre artists
@@ -49713,16 +49712,12 @@ $(function () {
                 break;
         }
 
-        // CHANGE THIS TO an internal search, NOT an API call
-        // Query API for 50 artists in this sub genre
-        // console.log(`current genre: ${currentGenre}`);
-        // console.log(subGenreArtists);
-        // console.log(subGenre);
-        // // Search through artists array for the first 5 artists who have subGenre in their genres array
+        // Search through artists array for the first (up to) 3 artists who have the subGenre in their genres array
+        // Essentially, find the 3 most popular artists in the subgenre and display them to the page
         for (let i = 0; i < subGenreArtists.length; i++) {
-            // If the artist has subGenre in their genres
+
+            // If the artist has subGenre in their genres array
             if (subGenreArtists[i].genres.includes(subGenre)) {
-                // console.log(subGenreArtists[i]);
 
                 // Create a button with artist's name and append it to the Artists div
                 let newButton = $('<button>').text(subGenreArtists[i].name);
@@ -49734,9 +49729,8 @@ $(function () {
                 newButton.data('id', subGenreArtists[i].id);
                 $('#subgenres_artists').append(newButton);
 
-                // Increment a counter
                 counter++
-                // If the counter reaches 3, break the for loop
+                // If the counter reaches 3, we're done (found 3 artists)
                 if (counter == 3) {
                     break;
                 }
@@ -49768,25 +49762,22 @@ $(function () {
                 }
             })
             .then(data => {
-                console.log(data);
+
+                // Get their YouTube channel
                 grabYoutubeChannel(data.name);
+
                 // Local storage implementation
                 // Local storage will have an array of objects
-                // Each will be named by the artist name
                 // Create an artist object:
-                // let artistName = {
+                // artistName = {
                 //     name: String,
                 //     id: String
                 // };
-                // Store that into local storage
 
                 artistObj = {
                     name: data.name,
                     id: artistID
                 };
-
-                // Update local storage
-                // updateLocalStorage();
 
                 // Grab the image url
                 let imageURL = data.images[0].url;
@@ -49794,15 +49785,21 @@ $(function () {
                 bioBox.empty();
                 bioBox.append($('<u>More info</u>'));
 
-                // Add info to this section
+                // Artist name is added first
                 let artistName = $('<p>').text(data.name);
                 artistName.css('font-weight', 'bold');
                 artistName.css('color', '#485FC7');
                 bioBox.append(artistName);
+
+                // Then the number of followers on Spotify
                 let followersInfo = $('<p>').text(`Followers on Spotify: ${data.followers.total.toLocaleString()}`);
                 bioBox.append(followersInfo);
+
+                // Then an image
                 let artistImage = $(`<img src=${imageURL}>`);
                 bioBox.append(artistImage);
+
+                // Then a button to allow the user to add them to their list
                 let followButton = $(`<button>Click to save!</button>`);
                 followButton.addClass('button is-link js-modal-trigger mb-3');
                 followButton.attr('id', 'follow_here');
@@ -49811,11 +49808,13 @@ $(function () {
 
                 // Add youtube video
                 grabYoutubeVideo(data.name);
-
             })
             .catch(error => console.error('Error:', error));
     }
 
+    // This function is not currently used for the website
+    // It was used to get a new array of subgenres from the selected genre
+    // DO NOT DELETE
     async function getNewSubGenres(genre) {
         // Reset global genre variables to empty arrays
         genresArr = [];
@@ -49833,32 +49832,33 @@ $(function () {
     // Called when new "add to my list" button is clicked
     // Adds the currently viewed artist to viewed artists array and to local storage
     function addToViewedArtists() {
-        console.log(viewedArtists);
 
+        // If no artists have been added, add this one automatically
         if (viewedArtists.length == 0) {
             viewedArtists.push(artistObj);
         }
 
+        // Check to make sure artist is not already in list
+        // If not, add it
         for (let i = 0; i < viewedArtists.length; i++) {
             if (viewedArtists[i].name == artistObj.name) {
-                // console.log("artist in list already");
-                // $('#modal_text').text("Artist already in your list!");
                 break;
             }
             else if (i == viewedArtists.length - 1) {
-                // console.log("at end of list, not found here, let's add them");
                 viewedArtists.push(artistObj);
-                // $('#modal_text').text("Artist added!");
             }
             else continue;
         }
 
+        // If we hit 6 artists, shift the least recently added one out
         if (viewedArtists.length == 6) {
             viewedArtists.shift();
         }
-        // console.log(viewedArtists);
 
+        // Update local storage
         updateLocalStorage();
+
+        // Refresh which artists are in the dropdown
         populateDropdown();
     }
 
@@ -49874,9 +49874,10 @@ $(function () {
         if (viewedArtists == null) {
             viewedArtists = [];
         }
-        // populateDropdown();
     }
 
+    // Function from clicking "Clear saved artists"
+    // Removes artists from local storage,sets viewedArtists to an empty array, and empties out the dropdown
     function clearLocalStorage() {
         viewedArtists = [];
         localStorage.setItem('artists', JSON.stringify(viewedArtists));
@@ -49886,9 +49887,13 @@ $(function () {
         }
     }
 
+    // Handles putting artists from viewedArtists array into the dropdown
     function populateDropdown() {
+
+        // Clears it out to start
         $('#dropdown_buttons').empty();
-        console.log(viewedArtists);
+
+        // Goes through array and puts every artist in
         for (let i = 0; i < viewedArtists.length; i++) {
             let artistButton = $('<button>').text(viewedArtists[i].name);
             artistButton.addClass('button is-responsive');
@@ -49896,11 +49901,14 @@ $(function () {
             artistButton.css('color', 'var(--spotify-black)');
             $('#dropdown_buttons').append(artistButton);
         }
+
+        // If no artists have been saved, put the placeholder text in
         if (viewedArtists.length == 0) {
             populateDropdownPlaceholder();
         }
     }
 
+    // Placeholder text and styling for dropdown
     function populateDropdownPlaceholder() {
         let tempPTag = $('<p>').text('(Saved artists will appear here)');
         tempPTag.addClass('is-italic');
@@ -49910,56 +49918,47 @@ $(function () {
         $('#dropdown_buttons').append(tempPTag);
     }
 
+    // Hides the youtube section ("not available" message, video, and link to channel)
     function hideYouTube() {
         $('#yt_not_available').removeClass('is-hidden');
         $('#yt_video').addClass('is-hidden');
         $('#yt_channel').addClass('is-hidden');
     }
 
+    // Returns the input string but with the first letter capitalized
+    // Used for adding to buttons (more aesthetic)
     function capitalizeFirstLetter(word) {
         return word.charAt(0).toUpperCase() + word.slice(1);
     }
 
+    // Returns the input string but with the first letter set to lower case
+    // Used for searching APIS when coming from a button
     function unCapitalizeFirstLetter(word) {
         return word.charAt(0).toLowerCase() + word.slice(1);
     }
 
+    // Initialization of page function
     async function generate() {
         await getToken();
         await retrieveFromLocalStorage();
         populateDropdown();
-        // $('#artist_info').addClass('is-hidden');
-        // console.log(viewedArtists);
-        // On page load, populate Explore dropdown with previously searched artists
-
     }
-
-
-
 
     /*/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\*/
     //-------------------------------------On page load-------------------------------------------//
     /*\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/*/
 
     generate();
-    // grabYoutube();
-
-
-
-
 
     /*/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\*/
     //-------------------------------------Event listeners----------------------------------------//
     /*\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/*/
-    // var genreBtn = document.querySelector("")=======
 
     // Event listener for genre buttons
     $('#popular-genres').on("click", function (e) {
         e.preventDefault();
-        // console.log("omg");
 
-        // $('#artist_info').addClass('is-hidden');
-
+        // Ensures user clicked on a button
         if (e.target.nodeName == 'BUTTON') {
             let clickedButton = e.target;
 
@@ -49968,18 +49967,21 @@ $(function () {
             $('#yt_video').addClass('is-hidden');
             $('#yt_channel').addClass('is-hidden');
 
+            // "CLear saved artists" button is in the same div but does not have a data-genre element
+            // This ensures this only applies to genre buttons
             if (clickedButton.dataset.genre != undefined) {
-                // console.log(clickedButton.dataset.genre);
+
                 // Set up artist and genre variables to pass to function to populate page
                 let newGenre = clickedButton.dataset.genre;
 
+                // API searches do not like the '&' symbol
+                // Search by hipHop for same results
                 if (newGenre == 'r&b') {
                     newGenre = 'hipHop';
                 }
                 // Set global currentGenre variable equal to newGenre
                 currentGenre = newGenre;
 
-                let newArtistArr = `${newGenre}Artists`;
                 let newGenresArr = `${newGenre}SubGenres`;
 
                 // Handle the reset button
@@ -50026,13 +50028,15 @@ $(function () {
 
         // Show the artist pane
         $('#artist_info').removeClass('is-hidden');
+
         // Remove the previous info from 'About'
         $('#artist_bio').empty();
         $('#artist_bio').append($('<u>More info</u>'));
 
-
         if (e.target.nodeName == 'SPAN') {
             let node = e.target;
+
+            // Call function to add artist buttons from this subgenre
             populateArtists(node.innerHTML);
         }
     })
@@ -50041,13 +50045,12 @@ $(function () {
     $('#subgenres_artists').on("click", function (e) {
         e.preventDefault();
 
-
         if (e.target.nodeName == 'BUTTON') {
             $('#yt_not_available').addClass('is-hidden');
 
             let clickedButton = e.target;
-            // console.log(clickedButton);
-            // console.log($(clickedButton).data('id'));
+
+            // Populate artist info in "More info" section
             getArtistInfo($(clickedButton).data('id'));
         }
     })
@@ -50057,7 +50060,11 @@ $(function () {
         e.preventDefault();
 
         if (e.target.nodeName == 'BUTTON') {
+
+            // Adds artist to saved list
             addToViewedArtists();
+
+            // Pops up modal to let user know their artist has been saved
             $('#modal_div').addClass('is-active');
         }
     })
@@ -50066,20 +50073,11 @@ $(function () {
     $('#prev_artists_dropdown').on("click", function (e) {
         e.preventDefault();
 
-
-        // Any button clicked should open or close the dropdown
-        // if (e.target.nodeName == 'BUTTON') {
         // If the dropdown is hidden, show it
         // If it's shown, hide it
         let dropdownButton = $('#prev_artists_dropdown');
 
-        if (dropdownButton.hasClass('is-active')) {
-            dropdownButton.removeClass('is-active');
-        }
-        else {
-            dropdownButton.addClass('is-active');
-        }
-        // }
+        dropdownButton.toggleClass('is-active');
 
         // If the button clicked is not the 'Your artists' dropdown, populate the page with artist info
         if (e.target.nodeName == 'BUTTON' &&
@@ -50089,12 +50087,12 @@ $(function () {
             $(e.target).text() != 'Pop' &&
             $(e.target).text() != 'Electronic' &&
             $(e.target).text() != 'HipHop/R&B') {
-            console.log("hELLEOEiaETPOAEIHT");
+
+            // Grabs info about artist
             let nextArtist = $(e.target).text();
             let nextID = '';
 
             // When a cached artist is clicked, it should repopulate the artist pane with information about this artist
-
             // Search through viewedArtists
             // When name matches, grab id and send it to populate artists function
 
@@ -50103,13 +50101,13 @@ $(function () {
                     nextID = viewedArtists[i].id;
                 }
             }
-            console.log("hello you there");
+
             let artistInfo = $('#artist_info');
             if (artistInfo.hasClass('is-hidden')) {
                 artistInfo.toggleClass('is-hidden');
             }
 
-
+            // Add artist info to the page
             getArtistInfo(nextID);
         }
     })
@@ -50177,7 +50175,7 @@ $(function () {
 });
 
 
-//Modal
+// Welcome modal event listener
 document.addEventListener('DOMContentLoaded', function () {
     const delay = 150;
 

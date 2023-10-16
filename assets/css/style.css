@@ -1,7 +1,11 @@
+/* Framework import */
 @import "https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css";
+
+/* Font awesome import */
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap');
 
 :root {
+    /* Color variables */
     --spotify-green: #1DB954;
     --spotify-black: #191414;
     --main-background: #a189fd;
@@ -15,34 +19,40 @@
     margin: 0;
 }
 
+/* Selectors by element type */
 html {
-    /* background-color: #EA8CFF; */
     background-color: var(--main-background);
 }
 
 body {
-    /* background-color: #EA8CFF; */
-    background-color:var(--main-background);
-    height: 100%;
-
-}
-
-/* change colors of buttons */
-#popular-genres {
-    /* background-color: lightskyblue; */
     background-color: var(--main-background);
-    color: var(--spotify-black);
+    height: 100%;
 }
 
+section {
+    display: flex;
+    flex-flow: column wrap;
+    width: 60%;
+}
+
+footer {
+    font-size: 12px;
+}
+
+video {
+    height: 200px;
+    width: 280px;
+    display: flex;
+    flex-wrap: wrap;
+    padding-top: 15px;
+}
+
+/* Selectors by class */
 .dropdown {
     align-self: self-start;
 }
 
-.dropdown {
-    align-self: self-start;
-}
-
-/* buttons into columns */
+/* Buttons into columns */
 .wrapper2 {
     width: 100%;
     height: 100%;
@@ -50,7 +60,7 @@ body {
     flex-direction: column;
 }
 
-/* bring the tabs content into one container */
+/* Bring the tabs content into one container */
 .Vcontainer {
     width: 100%;
     display: flex;
@@ -62,7 +72,7 @@ body {
     text-align: center;
 }
 
-.about{
+.about {
     width: 20%;
     height: 300px;
     text-align: center;
@@ -77,27 +87,17 @@ body {
     align-items: center;
 }
 
- .container {
+.container {
     width: 100%;
     height: 100%;
     display: flex;
-    /* justify-content: space-between; */
 }
 
 .Vcontainer {
     color: var(--spotify-black);
 }
- /*
-.content{
-    display: flex;
-    justify-content: center;
-}
-.content p {
-    display: block;
-    width: 100%;  
-} */
 
-/* gradient header background behind title */
+/* Gradient header background behind title */
 .header {
     background-image: linear-gradient(to left, #EA8CFF, #4E45E5);
     display: flex;
@@ -114,7 +114,7 @@ body {
     padding-bottom: 3px;
 }
 
-/* top background image */
+/* Top background image */
 .hero {
     background-image: url(../css/music-rainbow.jpeg);
     background-size: cover;
@@ -136,87 +136,9 @@ body {
     border-radius: 5px;
 }
 
-
-/* aside {
-    display: flex;
-    width: 40%;
-    justify-content: center;
-} */
-
-/* .ytp-cued-thumbnail-overlay-image {
-    max-width: 200px;
-} */
-
-section {
-    display: flex;
-    flex-flow: column wrap;
-    width: 60%;
-}
-
-footer{
-    font-size: 12px;
-}
-
-#subgenres_list {
-    flex-wrap: wrap;
-}
-
-/* #dropdown_buttons {
-    background-color: #65C5F5;
-} */
-
-#drop_button, #dropdown_buttons, .modal-card, .modal-card-foot {
-    background-color: var(--spotify-green)
-}
-
-#li_0 {
-    background-color: var(--spotify-green);
-}
-
-#span_0 {
-    /*justify-self: left; */
-    color: var(--spotify-black);
-}
-
-#prev_artists_dropdown {
-    justify-content: center;
-}
-
-/* at 1100px removes overlapping */
-@media only screen and (max-width: 1100px) {
-    .wrapper {
-        height: auto;
-        width: 25%;
-    }
-    
-    #popular-genres {
-        width: 100%;
-    }
-    
-    #main_body {
-        align-items: center;
-    }
-    
-    .container {
-        display: flex;
-        flex-direction: column;
-    }
-    
-    .Vcontainer {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-    }
-    
-    .artists {
-        height: auto;
-        width: 75%;
-    }
-    
-    .videos {
-        height: auto;
-        width: 75%
-    }
+.channel_link {
+    padding-top: 10px;
+    font-size: 15px;
 }
 
 /*  Welcome Modal  */
@@ -231,8 +153,72 @@ footer{
 }
 
 .modal-card-body {
-    border-radius: 10px;
-    width:auto;
+    width: auto;
+    font-size: smaller;
+}
+
+/* Selectors by ID */
+#subgenres_list {
+    flex-wrap: wrap;
+}
+
+#drop_button, #dropdown_buttons, #li_0, .modal-card, .modal-card-foot {
+    background-color: var(--spotify-green)
+}
+
+#span_0 {
+    color: var(--spotify-black);
+}
+
+#prev_artists_dropdown {
+    justify-content: center;
+}
+
+/* Change colors of buttons */
+#popular-genres {
+    background-color: var(--main-background);
+    color: var(--spotify-black);
+}
+
+/*======================================*/
+/*=========Screen size changes==========*/
+/*======================================*/
+
+/* At 1100px removes overlapping */
+@media only screen and (max-width: 1100px) {
+    .wrapper {
+        height: auto;
+        width: 25%;
+    }
+
+    .container {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .Vcontainer {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .artists {
+        height: auto;
+        width: 75%;
+    }
+
+    .videos {
+        height: auto;
+        width: 75%
+    }
+
+    #popular-genres {
+        width: 100%;
+    }
+
+    #main_body {
+        align-items: center;
+    }
 }
 
 @media only screen and (max-width: 400px) {
@@ -244,13 +230,13 @@ footer{
         font-size: 12px;
         text-align: center;
     }
-    
+
     .modal-card-body {
-        width:auto;
+        width: auto;
     }
 }
-    
-/* at 800px turns tabs and content into columns below */
+
+/* At 800px turns tabs and content into columns below */
 @media only screen and (max-width: 800px) {
     .wrapper {
         height: auto;
@@ -258,19 +244,26 @@ footer{
     }
 }
 
-/* at 600px centers the buttons and brings tab content below in columns */
+/* At 600px centers the buttons and brings tab content below in columns */
 @media only screen and (max-width: 600px) {
     h1 {
         text-align: center;
         font-size: 30px;
     }
+
+    u {
+        width: 100%;
+    }
+
     .hero {
         height: 100px;
     }
+
     .container {
         display: flex;
         flex-direction: column;
     }
+
     .wrapper2 {
         width: 100%;
     }
@@ -281,13 +274,10 @@ footer{
         justify-content: center;
         width: 100%;
     }
+
     .Vcontainer {
         display: flex;
         flex-direction: column;
-    }
-    
-    u {
-        width: 100%;
     }
 
     .artists {
@@ -299,7 +289,7 @@ footer{
         justify-content: center;
     }
 
-    .about button{
+    .about button {
         align-self: center;
     }
 
@@ -311,32 +301,20 @@ footer{
 
 /* at 400px keeps buttons centered and tabs content in columns below */
 @media only screen and (max-width: 400px) {
-    .wrapper{
-        height: auto;
-    }
-     h1 {
+    h1 {
         text-align: center;
         font-size: 20px;
-     }
-     .header {
-        height: 35px;
-     }
-     .hero {
-        height: 50px;
-     }
     }
 
+    .wrapper {
+        height: auto;
+    }
 
-video { 
-    height: 200px;
-    width: 280px;
-    display: flex;
-    flex-wrap: wrap;
-    padding-top: 15px;
+    .header {
+        height: 35px;
+    }
+
+    .hero {
+        height: 50px;
+    }
 }
-
-.channel_link {
-    padding-top: 10px;
-    font-size: 15px;
-}
-
